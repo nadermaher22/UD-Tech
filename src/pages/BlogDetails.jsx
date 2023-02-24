@@ -19,6 +19,7 @@ import BlogGallery2 from "../assests/img/blog/blog-gallery-2.jpg";
 import Auther1 from "../assests/img/author-1.jpg";
 import Auther2 from "../assests/img/author-2.jpg";
 import { Link } from "react-router-dom";
+import WidgetBanner from "../assests/img/widget-banner-bg.jpg";
 const BlogDetails = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -66,7 +67,7 @@ const BlogDetails = () => {
                     <div className="breadcrumb-cnt">
                       <h1>Blog Details</h1>
                       <span>
-                        <Link to="index.html">Home</Link>
+                        <Link to="/">Home</Link>
                         <BsArrowRight className="m-1" />
                         Blog details
                       </span>
@@ -185,11 +186,11 @@ const BlogDetails = () => {
                     <div className="tag-share">
                       <div className="line-tag">
                         <span>Tag:</span>
-                        <Link to="/project">web,</Link>
-                        <Link to="/project">template,</Link>
-                        <Link to="/project">app,</Link>
-                        <Link to="/project">software,</Link>
-                        <Link to="/project">plugin</Link>
+                        <Link to="/projects">web,</Link>
+                        <Link to="/projects">template,</Link>
+                        <Link to="/projects">app,</Link>
+                        <Link to="/projects">software,</Link>
+                        <Link to="/projects">plugin</Link>
                       </div>
                       <div className="share-blog">
                         <span>Share On:</span>
@@ -331,37 +332,37 @@ const BlogDetails = () => {
                     <h4>Category</h4>
                     <ul className="category">
                       <li>
-                        <Link to="project.html">
+                        <Link to="/projects">
                           Web Design
                           <BsArrowRight />
                         </Link>
                       </li>
                       <li>
-                        <Link to="project.html">
+                        <Link to="/projects">
                           Apps Development
                           <BsArrowRight />
                         </Link>
                       </li>
                       <li>
-                        <Link to="project.html">
+                        <Link to="/projects">
                           Software Development
                           <BsArrowRight />
                         </Link>
                       </li>
                       <li>
-                        <Link to="project.html">
+                        <Link to="/projects">
                           Motion Graphics
                           <BsArrowRight />
                         </Link>
                       </li>
                       <li>
-                        <Link to="project.html">
+                        <Link to="/projects">
                           UI/UX Design
                           <BsArrowRight />
                         </Link>
                       </li>
                       <li>
-                        <Link to="project.html">
+                        <Link to="/projects">
                           Graphic Design
                           <BsArrowRight />
                         </Link>
@@ -372,14 +373,14 @@ const BlogDetails = () => {
                     <h4>Newest Post</h4>
                     <div className="recent-post">
                       <div className="recent-thumb">
-                        <Link to="blog-details.html">
+                        <Link to="/blog-details">
                           <img src="assets/img/blog/blog-tiny-1.jpg" alt="" />
                         </Link>
                       </div>
                       <div className="recent-post-cnt">
                         <span>23.12.2022</span>
                         <h5>
-                          <Link to="blog-details.html">
+                          <Link to="/blog-details">
                             Grant Distributions Conti nu to Incr Ease.
                           </Link>
                         </h5>
@@ -387,14 +388,14 @@ const BlogDetails = () => {
                     </div>
                     <div className="recent-post">
                       <div className="recent-thumb">
-                        <Link to="blog-details.html">
+                        <Link to="/blog-details">
                           <img src="assets/img/blog/blog-tiny-2.jpg" alt="" />
                         </Link>
                       </div>
                       <div className="recent-post-cnt">
                         <span>10.10.2022</span>
                         <h5>
-                          <Link to="blog-details.html">
+                          <Link to="/blog-details">
                             Distributions Conti nu to grant Incr Ease.
                           </Link>
                         </h5>
@@ -402,14 +403,14 @@ const BlogDetails = () => {
                     </div>
                     <div className="recent-post">
                       <div className="recent-thumb">
-                        <Link to="blog-details.html">
+                        <Link to="/blog-details">
                           <img src="assets/img/blog/blog-tiny-3.jpg" alt="" />
                         </Link>
                       </div>
                       <div className="recent-post-cnt">
                         <span>23.12.2022</span>
                         <h5>
-                          <Link to="blog-details.html">
+                          <Link to="/blog-details">
                             Conti nu to Incr Ease malesuada sapien sed.
                           </Link>
                         </h5>
@@ -420,36 +421,36 @@ const BlogDetails = () => {
                     <h4>Post Tag</h4>
                     <ul className="tag-list">
                       <li>
-                        <Link to="project.html">Website</Link>
+                        <Link to="/projects">Website</Link>
                       </li>
                       <li>
-                        <Link to="project.html">Web Design</Link>
+                        <Link to="/projects">Web Design</Link>
                       </li>
                       <li>
-                        <Link to="project.html">Development</Link>
+                        <Link to="/projects">Development</Link>
                       </li>
                       <li>
-                        <Link to="project.html">Graphic Design</Link>
+                        <Link to="/projects">Graphic Design</Link>
                       </li>
                       <li>
-                        <Link to="project.html">Graphic</Link>
+                        <Link to="/projects">Graphic</Link>
                       </li>
                       <li>
-                        <Link to="project.html">UI/UX Design</Link>
+                        <Link to="/projects">UI/UX Design</Link>
                       </li>
                       <li>
-                        <Link to="project.html">Activities</Link>
+                        <Link to="/projects">Activities</Link>
                       </li>
                       <li>
-                        <Link to="project.html">Software Design</Link>
+                        <Link to="/projects">Software Design</Link>
                       </li>
                       <li>
-                        <Link to="project.html">3d Design</Link>
+                        <Link to="/projects">3d Design</Link>
                       </li>
                     </ul>
                   </div>
                   <div className="sidebar-banner">
-                    <img src="assets/img/widget-banner-bg.jpg" alt="" />
+                    <img src={WidgetBanner} alt="" />
                     <div className="banner-inner">
                       <h3>
                         Any Project <span>Call Now.</span>
@@ -459,14 +460,13 @@ const BlogDetails = () => {
                           alt=""
                         />
                       </h3>
-                      <Link to="tel:11231231234">+1-123-123-1234</Link>
+                      <Link to="/tel:11231231234">+1-123-123-1234</Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </section>
-
           <Newsletter />
         </main>
       </div>

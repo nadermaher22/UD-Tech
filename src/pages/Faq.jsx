@@ -53,7 +53,7 @@ const Faq = () => {
                     <div className="breadcrumb-cnt">
                       <h1>FAQ</h1>
                       <span>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                         <BsArrowRight className="m-1" />
                         FAQ
                       </span>
@@ -80,13 +80,13 @@ const Faq = () => {
                 <div className="col-lg-4">
                   <div className="sidebar-tab">
                     <div className="tabs">
-                      <a href="#progress-tab" className="tab-link active">
+                      <a href="/" className="tab-link active">
                         Progress
                       </a>
-                      <a href="#payment-tab" className="tab-link">
+                      <a href="/" className="tab-link">
                         Payment
                       </a>
-                      <a href="#support-tab" className="tab-link">
+                      <a href="/" className="tab-link">
                         Support
                       </a>
                     </div>

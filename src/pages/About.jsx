@@ -21,6 +21,7 @@ import Blog3 from "../assests/img/blog/blog-1.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
+import { Modal } from "bootstrap";
 
 const About = () => {
   useEffect(() => {
@@ -38,6 +39,7 @@ const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   });
+  const [lgShow, setLgShow] = useState(false);
   return (
     <>
       <div className="about">
@@ -67,11 +69,20 @@ const About = () => {
                     <div className="breadcrumb-cnt">
                       <h1>About us</h1>
                       <span>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                         <BsArrowRight className="m-1" />
                         About us
                       </span>
                       <div className="breadcrumb-video">
+                        <div className="video-inner">
+                          <a
+                            className="video-popup"
+                            href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                          >
+                            <FaPlay />
+                          </a>
+                        </div>
+
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
                           <a
@@ -217,12 +228,12 @@ const About = () => {
                       <div className="cmn-btn">
                         <div className="line-1"></div>
                         <div className="line-2"></div>
-                        <a href="contact.html">Call Us</a>
+                        <a href="/contact">Call Us</a>
                       </div>
                       <div className="cmn-btn ">
                         <div className="line-1"></div>
                         <div className="line-2"></div>
-                        <a href="/">Company Profile</a>
+                        <a href="/team">Company Profile</a>
                       </div>
                     </div>
                   </div>
@@ -433,11 +444,11 @@ const About = () => {
                 >
                   <div className="single-blog">
                     <div className="blog-thumb">
-                      <a href="blog-details.html">
+                      <a href="/blog-details">
                         <img src={Blog1} alt="" />
                       </a>
                       <div className="tag">
-                        <a href="blog-details.html">UI/UX</a>
+                        <a href="/blog-details">UI/UX</a>
                       </div>
                     </div>
                     <div className="blog-inner">
@@ -446,7 +457,7 @@ const About = () => {
                         <a href="/">22.02.2022</a>
                       </div>
                       <h4>
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           Quisque malesuada sapien and Donec sed nunc.
                         </a>
                       </h4>
@@ -460,11 +471,11 @@ const About = () => {
                 >
                   <div className="single-blog">
                     <div className="blog-thumb">
-                      <a href="blog-details.html">
+                      <a href="/blog-details">
                         <img src={Blog2} alt="" />
                       </a>
                       <div className="tag">
-                        <a href="blog-details.html">Software</a>
+                        <a href="/blog-details">Software</a>
                       </div>
                     </div>
                     <div className="blog-inner">
@@ -473,7 +484,7 @@ const About = () => {
                         <a href="/">22.02.2022</a>
                       </div>
                       <h4>
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           Suspendisse pretium magna qu nisl egestas porttitor.
                         </a>
                       </h4>
@@ -487,7 +498,7 @@ const About = () => {
                 >
                   <div className="single-blog">
                     <div className="blog-thumb">
-                      <a href="blog-details.html">
+                      <a href="/blog-details">
                         <img src={Blog3} alt="" />
                       </a>
                       <div className="tag">
@@ -500,7 +511,7 @@ const About = () => {
                         <a href="/">22.02.2022</a>
                       </div>
                       <h4>
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           In a augue sit amet erat Suspel eleifend suscipit
                           issen.
                         </a>
@@ -513,8 +524,6 @@ const About = () => {
           </section>
           <Newsletter />
         </main>
-
-        <div className="cursor"></div>
       </div>
     </>
   );

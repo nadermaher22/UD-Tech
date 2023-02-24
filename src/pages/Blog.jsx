@@ -67,7 +67,7 @@ const Blog = () => {
                     <div className="breadcrumb-cnt">
                       <h1>Blog sidebar</h1>
                       <span>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                         <BsArrowRight className="m-1" />
                         Blog sidebar
                       </span>
@@ -110,33 +110,33 @@ const Blog = () => {
                     <h4>Category</h4>
                     <ul className="category">
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Web Design
                           <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Apps Development <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Software Development <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Motion Graphics <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           UI/UX Design <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Graphic Design <BsArrowRight />
                         </a>
                       </li>
@@ -146,14 +146,14 @@ const Blog = () => {
                     <h4>Newest Post</h4>
                     <div className="recent-post">
                       <div className="recent-thumb">
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           <img src={TinyBlog1} alt="" />
                         </a>
                       </div>
                       <div className="recent-post-cnt">
                         <span>11.12.22</span>
                         <h5>
-                          <a href="blog-details.html">
+                          <a href="/blog-details">
                             Grant Distributions Conti nu to Incr Ease.
                           </a>
                         </h5>
@@ -161,14 +161,14 @@ const Blog = () => {
                     </div>
                     <div className="recent-post">
                       <div className="recent-thumb">
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           <img src={TinyBlog2} alt="" />
                         </a>
                       </div>
                       <div className="recent-post-cnt">
                         <span>30.10.2022</span>
                         <h5>
-                          <a href="blog-details.html">
+                          <a href="/blog-details">
                             Distributions Conti nu to grant Incr Ease.
                           </a>
                         </h5>
@@ -176,14 +176,14 @@ const Blog = () => {
                     </div>
                     <div className="recent-post">
                       <div className="recent-thumb">
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           <img src={TinyBlog3} alt="" />
                         </a>
                       </div>
                       <div className="recent-post-cnt">
                         <span>20.08.2022</span>
                         <h5>
-                          <a href="blog-details.html">
+                          <a href="/blog-details">
                             Conti nu to Incr Ease malesuada sapien sed.
                           </a>
                         </h5>
@@ -262,11 +262,11 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog2} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">Software</a>
+                              <a href="/projects">Software</a>
                             </div>
                           </div>
                           <div className="blog-inner">
@@ -275,7 +275,7 @@ const Blog = () => {
                               <a href="/">12.02.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 Suspendisse pretium magna qu nisl egestas
                                 porttitor.
                               </a>
@@ -286,11 +286,11 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog3} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">Dashbord</a>
+                              <a href="/projects">Dashbord</a>
                             </div>
                           </div>
                           <div className="blog-inner">
@@ -299,7 +299,7 @@ const Blog = () => {
                               <a href="/">25.02.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 In a augue sit amet erat Suspel eleifend
                                 suscipit issen.
                               </a>
@@ -310,7 +310,7 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog4} alt="" />
                             </a>
                             <div className="tag">
@@ -323,7 +323,7 @@ const Blog = () => {
                               <a href="/">30.03.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 Quisque malesuada sapien and Donec sed nunc.
                               </a>
                             </h4>
@@ -333,11 +333,11 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog5} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">Graphic</a>
+                              <a href="/projects">Graphic</a>
                             </div>
                           </div>
                           <div className="blog-inner">
@@ -346,7 +346,7 @@ const Blog = () => {
                               <a href="/">21.05.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 Suspendisse pretium magna qu nisl egestas
                                 porttitor.
                               </a>
@@ -357,11 +357,11 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog6} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">App</a>
+                              <a href="/projects">App</a>
                             </div>
                           </div>
                           <div className="blog-inner">
@@ -370,7 +370,7 @@ const Blog = () => {
                               <a href="/">26.04.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 In a augue sit amet erat Suspel eleifend
                                 suscipit issen.
                               </a>
@@ -381,7 +381,7 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog7} alt="" />
                             </a>
                             <div className="tag">
@@ -394,7 +394,7 @@ const Blog = () => {
                               <a href="/">15.04.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 Quisque malesuada sapien and Donec sed nunc.
                               </a>
                             </h4>
@@ -404,11 +404,11 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog8} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">Software</a>
+                              <a href="/projects">Software</a>
                             </div>
                           </div>
                           <div className="blog-inner">
@@ -417,7 +417,7 @@ const Blog = () => {
                               <a href="/">12.06.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 Suspendisse pretium magna qu nisl egestas
                                 porttitor.
                               </a>
@@ -428,11 +428,11 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog9} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">UI/UX</a>
+                              <a href="/projects">UI/UX</a>
                             </div>
                           </div>
                           <div className="blog-inner">
@@ -441,7 +441,7 @@ const Blog = () => {
                               <a href="/">20.12.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 In a augue sit amet erat Suspel eleifend
                                 suscipit issen.
                               </a>
@@ -452,11 +452,11 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog10} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">3D Design</a>
+                              <a href="/projects">3D Design</a>
                             </div>
                           </div>
                           <div className="blog-inner">
@@ -465,7 +465,7 @@ const Blog = () => {
                               <a href="/">22.05.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 In a augue sit amet erat Suspel eleifend
                                 suscipit issen.
                               </a>

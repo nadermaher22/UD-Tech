@@ -82,7 +82,7 @@ const MobileApps = () => {
                   <div className="breadcrumb-cnt">
                     <h1>Mobile Apps</h1>
                     <span>
-                      <a href="index.html">Home</a>
+                      <a href="/">Home</a>
                       <BsArrowRight className="m-1" />
                       Mobile Apps
                     </span>
@@ -150,7 +150,7 @@ const MobileApps = () => {
               <div className="row g-4 project-items">
                 <div className="col-md-6 col-lg-4 single-item graphic ui">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project1} alt="" />
                     </a>
                   </div>
@@ -158,13 +158,13 @@ const MobileApps = () => {
                     <span>Software</span>
                     <h4>Desktop Mockup</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item developing web">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project2} alt="" />
                     </a>
                   </div>
@@ -172,13 +172,13 @@ const MobileApps = () => {
                     <span>Template</span>
                     <h4>Creative Agency</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item developing">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project3} alt="" />
                     </a>
                   </div>
@@ -186,13 +186,13 @@ const MobileApps = () => {
                     <span>App</span>
                     <h4>Mobile Crypto Wallet</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item graphic">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project4} alt="" />
                     </a>
                   </div>
@@ -200,13 +200,13 @@ const MobileApps = () => {
                     <span>UI Kit</span>
                     <h4>E-Shop Ecommerce</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item ui">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project5} alt="" />
                     </a>
                   </div>
@@ -214,13 +214,13 @@ const MobileApps = () => {
                     <span>Graphic</span>
                     <h4>Art Deco Cocktails</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item web">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project6} alt="" />
                     </a>
                   </div>
@@ -228,13 +228,13 @@ const MobileApps = () => {
                     <span>3D Design</span>
                     <h4>Low poly Base mesh</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item developping">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project7} alt="" />
                     </a>
                   </div>
@@ -242,13 +242,13 @@ const MobileApps = () => {
                     <span>Video</span>
                     <h4>Animation Studio</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item ui">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project8} alt="" />
                     </a>
                   </div>
@@ -256,13 +256,13 @@ const MobileApps = () => {
                     <span>Motion</span>
                     <h4>Motion Graphics</h4>
                     <div className="view-btn">
-                      <a href="project.html">view details</a>
+                      <a href="/projects">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item developing">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project9} alt="" />
                     </a>
                   </div>
@@ -270,13 +270,13 @@ const MobileApps = () => {
                     <span>App</span>
                     <h4>Mobile Crypto Wallet</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item web">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project10} alt="" />
                     </a>
                   </div>
@@ -284,13 +284,13 @@ const MobileApps = () => {
                     <span>UI/UX</span>
                     <h4>Design Demo</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item graphic">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project11} alt="" />
                     </a>
                   </div>
@@ -298,13 +298,13 @@ const MobileApps = () => {
                     <span>Graphic</span>
                     <h4>Art Deco Cocktails</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item ui">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project12} alt="" />
                     </a>
                   </div>
@@ -312,7 +312,7 @@ const MobileApps = () => {
                     <span>UI Kit</span>
                     <h4>E-Shop Ecommerce</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
@@ -322,7 +322,7 @@ const MobileApps = () => {
                   <div className="cmn-btn">
                     <div className="line-1"></div>
                     <div className="line-2"></div>
-                    <a href="contact.html">Send us email</a>
+                    <a href="/contact">Send us email</a>
                   </div>
                   <div className="cmn-btn layout-two">
                     <div className="line-1"></div>
@@ -541,8 +541,7 @@ const MobileApps = () => {
               </div>
               <div className="col-lg-9">
                 <Swiper
-                  spaceBetween={20}
-                  slidesPerView={3}
+
                   navigation={false}
                   modules={[Navigation]}
                   className="mySwiper"
@@ -550,6 +549,24 @@ const MobileApps = () => {
                   loop={true}
                   autoplay={true}
                   onSwiper={(swiper) => setSwiperRef(swiper)}
+                  breakpoints={{
+                    0: {
+                      spaceBetween: 50,
+                      slidesPerView: 1,
+                    },
+                    480: {
+                      slidesPerView: 1,
+                      spaceBetween: 30,
+                    },
+                    768: {
+                      slidesPerView: 1,
+                      spaceBetween: 20,
+                    },
+                    1204: {
+                      slidesPerView: 3,
+                      spaceBetween: 20,
+                    },
+                  }}
                 >
                   <div className="swiper partner-slider">
                     <div className="swiper-wrapper">

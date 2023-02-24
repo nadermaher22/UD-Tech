@@ -54,7 +54,7 @@ const ElectronicInvoice = () => {
                     <div className="breadcrumb-cnt">
                       <h1>ELECTRONIC INVOICE</h1>
                       <span>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                         <BsArrowRight className="m-1" />
                         ELECTRONIC INVOICE
                       </span>

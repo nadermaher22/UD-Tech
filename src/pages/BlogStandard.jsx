@@ -64,7 +64,7 @@ const BlogStandard = () => {
                     <div className="breadcrumb-cnt">
                       <h1>Blog standard</h1>
                       <span>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                         <BsArrowRight className="m-1" />
                         Blog standard
                       </span>
@@ -92,7 +92,7 @@ const BlogStandard = () => {
                   <div className="blog-standard-details">
                     <div className="single-blog layout3">
                       <div className="blog-thumb">
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           <img src={BlogImg1} alt="" />
                         </a>
                         <div className="tag">
@@ -119,7 +119,7 @@ const BlogStandard = () => {
                     </div>
                     <div className="single-blog layout4">
                       <div className="blog-thumb">
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           <img src={BlogStandard1} alt="" />
                         </a>
                       </div>
@@ -142,7 +142,7 @@ const BlogStandard = () => {
                     </div>
                     <div className="single-blog layout4">
                       <div className="blog-thumb">
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           <img src={BlogStandard2} alt="" />
                         </a>
                       </div>
@@ -155,7 +155,7 @@ const BlogStandard = () => {
                           <a href="/">22.02.2022</a>
                         </div>
                         <h4>
-                          <a href="blog-details.html">
+                          <a href="/blog-details">
                             consectetur vehicula enim metus bibendum elitangu
                             quis vulputate lectus leo sed erat vehicula elitangu
                             quis.
@@ -165,7 +165,7 @@ const BlogStandard = () => {
                     </div>
                     <div className="single-blog layout4">
                       <div className="blog-thumb">
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           <img src={BlogStandard3} alt="" />
                         </a>
                       </div>
@@ -178,7 +178,7 @@ const BlogStandard = () => {
                           <a href="/">22.02.2022</a>
                         </div>
                         <h4>
-                          <a href="blog-details.html">
+                          <a href="/blog-details">
                             Aliquam nec urna non nisl finibus ornare et in dolor
                             Praesent suscipit dui vel urna non nisl finibus
                             ornare.
@@ -233,37 +233,37 @@ const BlogStandard = () => {
                     <h4>Category</h4>
                     <ul className="category">
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Web Design
                           <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Apps Development
                           <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Software Development
                           <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Motion Graphics
                           <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           UI/UX Design
                           <BsArrowRight />
                         </a>
                       </li>
                       <li>
-                        <a href="project.html">
+                        <a href="/projects">
                           Graphic Design
                           <BsArrowRight />
                         </a>
@@ -274,14 +274,14 @@ const BlogStandard = () => {
                     <h4>Newest Post</h4>
                     <div className="recent-post">
                       <div className="recent-thumb">
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           <img src={TinyBlog1} alt="" />
                         </a>
                       </div>
                       <div className="recent-post-cnt">
                         <span>20.12.2022</span>
                         <h5>
-                          <a href="blog-details.html">
+                          <a href="/blog-details">
                             Grant Distributions Conti nu to Incr Ease.
                           </a>
                         </h5>
@@ -289,14 +289,14 @@ const BlogStandard = () => {
                     </div>
                     <div className="recent-post">
                       <div className="recent-thumb">
-                        <a href="blog-details.html">
+                        <a href="/blog-details">
                           <img src={TinyBlog2} alt="" />
                         </a>
                       </div>
                       <div className="recent-post-cnt">
                         <span>30.02.2022</span>
                         <h5>
-                          <a href="blog-details.html">
+                          <a href="/blog-details">
                             Distributions Conti nu to grant Incr Ease.
                           </a>
                         </h5>
@@ -322,31 +322,31 @@ const BlogStandard = () => {
                     <h4>Post Tag</h4>
                     <ul className="tag-list">
                       <li>
-                        <a href="/project">Website</a>
+                        <a href="/projects">Website</a>
                       </li>
                       <li>
-                        <a href="/project">Web Design</a>
+                        <a href="/projects">Web Design</a>
                       </li>
                       <li>
-                        <a href="/project">Development</a>
+                        <a href="/projects">Development</a>
                       </li>
                       <li>
-                        <a href="/project">Graphic Design</a>
+                        <a href="/projects">Graphic Design</a>
                       </li>
                       <li>
-                        <a href="/project">Graphic</a>
+                        <a href="/projects">Graphic</a>
                       </li>
                       <li>
-                        <a href="/project">UI/UX Design</a>
+                        <a href="/projects">UI/UX Design</a>
                       </li>
                       <li>
-                        <a href="/project">Activities</a>
+                        <a href="/projects">Activities</a>
                       </li>
                       <li>
-                        <a href="/project">Software Design</a>
+                        <a href="/projects">Software Design</a>
                       </li>
                       <li>
-                        <a href="/project">3d Design</a>
+                        <a href="/projects">3d Design</a>
                       </li>
                     </ul>
                   </div>

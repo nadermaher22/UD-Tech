@@ -46,7 +46,7 @@ const ServiceDetails = () => {
                   <div className="breadcrumb-cnt">
                     <h1>Service Details</h1>
                     <span>
-                      <a href="index.html">Home</a>
+                      <a href="/">Home</a>
                       <BsArrowRight className="m-1" />
                       Service Details
                     </span>

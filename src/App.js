@@ -25,6 +25,7 @@ import ProjectDetails from "./pages/ProjectDetails";
 import Team from "./pages/Team";
 import "../src/assests/css/bootstrap-icons.css";
 import { useEffect, useState } from "react";
+import AnimatedCursor from "react-animated-cursor";
 
 function Layout() {
   const [isShown, setIsShown] = useState(false);
@@ -33,7 +34,7 @@ function Layout() {
   useEffect(() => {
     setTimeout(function () {
       setPreLoader(false);
-    }, 2500);
+    }, 2000);
   }, []);
 
   const handleClick = (event) => {
@@ -56,45 +57,72 @@ function Layout() {
       <Outlet />
       <Footer />
       {/* Ask for cookies */}
-      <div className={isShown ? "d-none" : ""}
-                  onClick={handleClick}>
-      <div className="cookies sc-breuTD gPIury aos-init aos-animate">
-        <div className="container">
-          <div className="row my-2">
-            <div className="col-12 col-md-8 ">
-              <p className="m-0">WE USE COOKIES</p>
-              <p className="m-0">
-                THIS WEBSITE USES COOKIES TO ENSURE YOU GET THE BEST EXPERIENCE
-                ON OUR WEBSITE
-              </p>
-            </div>
-            <div className="col-12 col-md-4 d-flex gap-3 align-items-center">
-              <div className="buttons mt-3">
-                <div
-                  className={isShown ? "d-none" : "cmn-btn"}
-                  onClick={handleClick}
-                >
-                  <div className="line-1"></div>
-                  <div className="line-2"></div>
-                  <span>Refuse</span>
-                </div>
+      <div className={isShown ? "d-none" : ""}>
+        <div className="cookies sc-breuTD gPIury aos-init aos-animate">
+          <div className="container">
+            <div className="row my-2">
+              <div className="col-12 col-md-8 ">
+                <p className="m-0">WE USE COOKIES</p>
+                <p className="m-0">
+                  THIS WEBSITE USES COOKIES TO ENSURE YOU GET THE BEST
+                  EXPERIENCE ON OUR WEBSITE
+                </p>
               </div>
-              <div className="buttons mt-3">
-                <div
-                  className={isShown ? "d-none" : "cmn-btn"}
-                  onClick={handleClick}
-                >
-                  <div className="line-1"></div>
-                  <div className="line-2"></div>
-                  <span>Accept</span>
+              <div className="col-12 col-md-4 d-flex gap-3 align-items-center">
+                <div className="buttons mt-3">
+                  <div
+                    className={isShown ? "d-none" : "cmn-btn"}
+                    onClick={handleClick}
+                  >
+                    <div className="line-1"></div>
+                    <div className="line-2"></div>
+                    <span>Refuse</span>
+                  </div>
+                </div>
+                <div className="buttons mt-3">
+                  <div
+                    className={isShown ? "d-none" : "cmn-btn"}
+                    onClick={handleClick}
+                  >
+                    <div className="line-1"></div>
+                    <div className="line-2"></div>
+                    <span>Accept</span>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
       </div>
+      <div>
+        <AnimatedCursor
+          innerStyle={null}
+          hasBlendMode={true}
+          outerStyle={{
+            mixBlendMode: "exclusion",
+          }}
+          innerSize={10}
+          trailingSpeed={30}
+          outerSize={30}
+          color="255, 255 ,255"
+          outerAlpha={0.8}
+          innerScale={1}
+          outerScale={1}
+          clickables={[
+            "a",
+            'input[type="text"]',
+            'input[type="email"]',
+            'input[type="number"]',
+            'input[type="submit"]',
+            'input[type="image"]',
+            "label[for]",
+            "select",
+            "textarea",
+            "button",
+            ".link",
+          ]}
+        />
       </div>
-
     </div>
   );
 }
@@ -170,6 +198,10 @@ const router = createBrowserRouter([
       {
         path: "/team",
         element: <Team />,
+      },
+      {
+        path: "/*",
+        element: <Error />,
       },
     ],
   },

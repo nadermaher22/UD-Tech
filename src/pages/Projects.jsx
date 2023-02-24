@@ -64,7 +64,7 @@ const Projects = () => {
                     <div className="breadcrumb-cnt">
                       <h1>Project</h1>
                       <span>
-                        <a href="index.html">Home</a>
+                        <a href="/">Home</a>
                         <BsArrowRight className="m-1" />
                         Project
                       </span>
@@ -114,7 +114,7 @@ const Projects = () => {
               <div className="row g-4 project-items">
                 <div className="col-md-6 col-lg-4 single-item graphic ui">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project1} alt="" />
                     </a>
                   </div>
@@ -122,13 +122,13 @@ const Projects = () => {
                     <span>Software</span>
                     <h4>Desktop Mockup</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item developing web">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project2} alt="" />
                     </a>
                   </div>
@@ -136,13 +136,13 @@ const Projects = () => {
                     <span>Template</span>
                     <h4>Creative Agency</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item developing">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project3} alt="" />
                     </a>
                   </div>
@@ -150,13 +150,13 @@ const Projects = () => {
                     <span>App</span>
                     <h4>Mobile Crypto Wallet</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item graphic">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project4} alt="" />
                     </a>
                   </div>
@@ -164,13 +164,13 @@ const Projects = () => {
                     <span>UI Kit</span>
                     <h4>E-Shop Ecommerce</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item ui">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project5} alt="" />
                     </a>
                   </div>
@@ -178,13 +178,13 @@ const Projects = () => {
                     <span>Graphic</span>
                     <h4>Art Deco Cocktails</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item web">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project6} alt="" />
                     </a>
                   </div>
@@ -192,13 +192,13 @@ const Projects = () => {
                     <span>3D Design</span>
                     <h4>Low poly Base mesh</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item developping">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project7} alt="" />
                     </a>
                   </div>
@@ -206,13 +206,13 @@ const Projects = () => {
                     <span>Video</span>
                     <h4>Animation Studio</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item ui">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project8} alt="" />
                     </a>
                   </div>
@@ -220,13 +220,13 @@ const Projects = () => {
                     <span>Motion</span>
                     <h4>Motion Graphics</h4>
                     <div className="view-btn">
-                      <a href="project.html">view details</a>
+                      <a href="/projects">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item developing">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project9} alt="" />
                     </a>
                   </div>
@@ -234,13 +234,13 @@ const Projects = () => {
                     <span>App</span>
                     <h4>Mobile Crypto Wallet</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item web">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project10} alt="" />
                     </a>
                   </div>
@@ -248,13 +248,13 @@ const Projects = () => {
                     <span>UI/UX</span>
                     <h4>Design Demo</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item graphic">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project11} alt="" />
                     </a>
                   </div>
@@ -262,13 +262,13 @@ const Projects = () => {
                     <span>Graphic</span>
                     <h4>Art Deco Cocktails</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
                 <div className="col-md-6 col-lg-4 single-item ui">
                   <div className="item-img">
-                    <a href="project-details.html">
+                    <a href="/project-details">
                       <img src={Project12} alt="" />
                     </a>
                   </div>
@@ -276,7 +276,7 @@ const Projects = () => {
                     <span>UI Kit</span>
                     <h4>E-Shop Ecommerce</h4>
                     <div className="view-btn">
-                      <a href="project-details.html">view details</a>
+                      <a href="/project-details">view details</a>
                     </div>
                   </div>
                 </div>
