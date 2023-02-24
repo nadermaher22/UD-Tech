@@ -2819,7 +2819,7 @@ header {
   bottom: 45px;
 }
 
-.quote i {
+.quote svg {
   color: #e4e4e4;
   font-size: 80px;
   opacity: 0.1;

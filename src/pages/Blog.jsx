@@ -239,11 +239,11 @@ const Blog = () => {
                       <div className="col-md-6">
                         <div className="single-blog">
                           <div className="blog-thumb">
-                            <a href="blog-details.html">
+                            <a href="/blog-details">
                               <img src={Blog1} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">UI/UX</a>
+                              <a href="/projects">UI/UX</a>
                             </div>
                           </div>
                           <div className="blog-inner">
@@ -252,7 +252,7 @@ const Blog = () => {
                               <a href="/">23.02.2022</a>
                             </div>
                             <h4>
-                              <a href="blog-details.html">
+                              <a href="/blog-details">
                                 Quisque malesuada sapien and Donec sed nunc.
                               </a>
                             </h4>
@@ -314,7 +314,7 @@ const Blog = () => {
                               <img src={Blog4} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">3D Design</a>
+                              <a href="/projects">3D Design</a>
                             </div>
                           </div>
                           <div className="blog-inner">
@@ -385,7 +385,7 @@ const Blog = () => {
                               <img src={Blog7} alt="" />
                             </a>
                             <div className="tag">
-                              <a href="project.html">Development</a>
+                              <a href="/projects">Development</a>
                             </div>
                           </div>
                           <div className="blog-inner">

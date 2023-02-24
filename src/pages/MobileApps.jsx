@@ -541,7 +541,6 @@ const MobileApps = () => {
               </div>
               <div className="col-lg-9">
                 <Swiper
-
                   navigation={false}
                   modules={[Navigation]}
                   className="mySwiper"
@@ -673,7 +672,7 @@ const MobileApps = () => {
                     <div className="cmn-btn">
                       <div className="line-1"></div>
                       <div className="line-2"></div>
-                      <a href="clients.html">More Clients</a>
+                      <a href="/clients">More Clients</a>
                     </div>
                   </div>
                 </div>

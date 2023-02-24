@@ -502,7 +502,7 @@ const About = () => {
                         <img src={Blog3} alt="" />
                       </a>
                       <div className="tag">
-                        <a href="blog-details.html">Dashbord</a>
+                        <a href="/blog-details">Dashbord</a>
                       </div>
                     </div>
                     <div className="blog-inner">
