@@ -35,7 +35,7 @@ import Testimonials from "../components/Testimonials";
 import Features from "../components/Features";
 import { motion, useMotionValue } from "framer-motion";
 import Data from "../components/Data.js";
-import ProjectCard from '../components/ProjectCard'
+import ProjectCard from "../components/ProjectCard";
 import ProjectBtn from "../components/ProjectBtn";
 
 const Home = () => {
@@ -44,8 +44,8 @@ const Home = () => {
   const [swiperRef, setSwiperRef] = useState(null);
   const filterItem = (curcat) => {
     const newItem = Data.filter((newVal) => {
-      return newVal.category === curcat; 
-        	// comparing category for displaying data
+      return newVal.category === curcat;
+      // comparing category for displaying data
     });
     setItem(newItem);
   };
@@ -368,7 +368,11 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <ProjectBtn setItem={setItem} menuItems={menuItems} filterItem={filterItem} />
+            <ProjectBtn
+              setItem={setItem}
+              menuItems={menuItems}
+              filterItem={filterItem}
+            />
             <ProjectCard item={item} />
             {/*
             <div className="row g-4 project-items">
@@ -607,7 +611,7 @@ const Home = () => {
         <section className="blog-area">
           <div className="container">
             <div
-              className="title-wrap wow animate__animated animate__fadeInUp"
+              className="title-wrap wow animate animate__fadeInUp"
               data-wow-delay="200ms"
               data-wow-duration="1500ms"
             >
@@ -623,7 +627,7 @@ const Home = () => {
             </div>
             <div className="row gy-4">
               <div
-                className="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp"
+                className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
                 data-wow-delay="200ms"
                 data-wow-duration="1500ms"
               >
@@ -650,7 +654,7 @@ const Home = () => {
                 </div>
               </div>
               <div
-                className="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp"
+                className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
                 data-wow-delay="400ms"
                 data-wow-duration="1500ms"
               >
@@ -677,7 +681,7 @@ const Home = () => {
                 </div>
               </div>
               <div
-                className="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp"
+                className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
                 data-wow-delay="600ms"
                 data-wow-duration="1500ms"
               >

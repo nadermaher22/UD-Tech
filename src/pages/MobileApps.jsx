@@ -25,11 +25,25 @@ import Project10 from "../assests/img/project/project-10.jpg";
 import Project11 from "../assests/img/project/project-11.jpg";
 import Project12 from "../assests/img/project/project-12.jpg";
 import JavaImg from "../assests/img/java.png";
+import ProjectBtn from "../components/ProjectBtn";
+import ProjectCard from "../components/ProjectCard";
+import Data from "../components/Data.js";
 
 const MobileApps = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
+  const [item, setItem] = useState(Data);
+  const menuItems = [...new Set(Data.map((Val) => Val.category))];
+  // const [swiperRef, setSwiperRef] = useState(null);
+  const filterItem = (curcat) => {
+    const newItem = Data.filter((newVal) => {
+      return newVal.category === curcat;
+      // comparing category for displaying data
+    });
+    setItem(newItem);
+  };
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // });
   const prevHandler = () => {
     swiperRef.slidePrev();
   };
@@ -134,7 +148,13 @@ const MobileApps = () => {
                   </p>
                 </div>
               </div>
-              <div className="row">
+              <ProjectBtn
+                setItem={setItem}
+                menuItems={menuItems}
+                filterItem={filterItem}
+              />
+              <ProjectCard item={item} />
+              {/* <div className="row">
                 <div className="col-12">
                   <ul className="isotope-menu">
                     <li className="active" data-filter="*">
@@ -316,7 +336,7 @@ const MobileApps = () => {
                     </div>
                   </div>
                 </div>
-              </div>
+              </div> */}
               <div className="row text-center">
                 <div className="MobApp buttons">
                   <div className="cmn-btn">
