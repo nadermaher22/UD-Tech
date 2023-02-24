@@ -129,12 +129,12 @@ const Navbar = () => {
             <div className="cmn-btn">
               <div className="line-1"></div>
               <div className="line-2"></div>
-              <Link to="/">Company Profile</Link>
+              <Link to="/about">Company Profile</Link>
             </div>
             <div className="cmn-btn">
               <div className="line-1"></div>
               <div className="line-2"></div>
-              <Link to="/">Call Us</Link>
+              <Link to="/contact">Call Us</Link>
             </div>
           </div>
           <div className="mobile-menu">
@@ -142,7 +142,7 @@ const Navbar = () => {
             <span className="cross-top"></span>
             <span className="cross-middle"></span>
             <span className="cross-bottom"></span>
-            {/* </a> */}
+            {/* </Link> */}
           </div>
         </div>
       </header>

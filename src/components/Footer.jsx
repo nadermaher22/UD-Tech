@@ -13,7 +13,6 @@ import {
 } from "react-icons/fa";
 
 const Footer = () => {
-
   return (
     <>
       <footer>
@@ -23,7 +22,7 @@ const Footer = () => {
               <div className="col-md-3 col-lg-3 col-xl-3">
                 <div className="footer-widget">
                   <div className="footer-logo">
-                    <a href="index.html">
+                    <a href="/">
                       <img src={Logo} alt="" />
                     </a>
                   </div>
@@ -60,22 +59,22 @@ const Footer = () => {
                   <h4>Our Services</h4>
                   <ul className="footer-menu p-0">
                     <li>
-                      <a href="service-details.html">Strategy &amp; Research</a>
+                      <a href="/service-details">Strategy &amp; Research</a>
                     </li>
                     <li>
-                      <a href="service-details.html">Web Development</a>
+                      <a href="/service-details">Web Development</a>
                     </li>
                     <li>
-                      <a href="service-details.html">Web Solution</a>
+                      <a href="/service-details">Web Solution</a>
                     </li>
                     <li>
-                      <a href="service-details.html">Digital Merketing</a>
+                      <a href="/service-details">Digital Merketing</a>
                     </li>
                     <li>
-                      <a href="service-details.html">App Design</a>
+                      <a href="/service-details">App Design</a>
                     </li>
                     <li>
-                      <a href="service-details.html">App Development</a>
+                      <a href="/service-details">App Development</a>
                     </li>
                   </ul>
                 </div>
@@ -85,22 +84,22 @@ const Footer = () => {
                   <h4>Quick Links</h4>
                   <ul className="footer-menu p-0">
                     <li>
-                      <a href="about.html">About Us</a>
+                      <a href="/about">About Us</a>
                     </li>
                     <li>
-                      <a href="services.html">Services</a>
+                      <a href="/services">Services</a>
                     </li>
                     <li>
-                      <a href="project.html">Project</a>
+                      <a href="/projects">Project</a>
                     </li>
                     <li>
-                      <a href="blog.html">Blog</a>
+                      <a href="/blog">Blog</a>
                     </li>
                     <li>
-                      <a href="contact.html">Career</a>
+                      <a href="/contact">Career</a>
                     </li>
                     <li>
-                      <a href="services.html">services</a>
+                      <a href="/services">services</a>
                     </li>
                   </ul>
                 </div>
@@ -169,7 +168,6 @@ const Footer = () => {
           </li>
         </ul>
       </div>
-
     </>
   );
 };

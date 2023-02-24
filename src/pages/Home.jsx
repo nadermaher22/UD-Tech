@@ -31,16 +31,27 @@ import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
 import "swiper/css";
 import Newsletter from "../components/Newsletter";
-import Footer from "../components/Footer";
 import Testimonials from "../components/Testimonials";
 import Features from "../components/Features";
 import { motion, useMotionValue } from "framer-motion";
+import Data from "../components/Data.js";
+import ProjectCard from '../components/ProjectCard'
+import ProjectBtn from "../components/ProjectBtn";
 
 const Home = () => {
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
+  const [item, setItem] = useState(Data);
+  const menuItems = [...new Set(Data.map((Val) => Val.category))];
   const [swiperRef, setSwiperRef] = useState(null);
+  const filterItem = (curcat) => {
+    const newItem = Data.filter((newVal) => {
+      return newVal.category === curcat; 
+        	// comparing category for displaying data
+    });
+    setItem(newItem);
+  };
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // });
 
   const prevHandler = () => {
     swiperRef.slidePrev();
@@ -357,19 +368,9 @@ const Home = () => {
                 </p>
               </div>
             </div>
-            <div className="row">
-              <div className="col-12">
-                <ul className="isotope-menu layout2">
-                  <li className="active" data-filter="*">
-                    All
-                  </li>
-                  <li data-filter=".ui">UI/UX</li>
-                  <li data-filter=".web">Web Design</li>
-                  <li data-filter=".developing">Developing</li>
-                  <li data-filter=".graphic">Graphic Design</li>
-                </ul>
-              </div>
-            </div>
+            <ProjectBtn setItem={setItem} menuItems={menuItems} filterItem={filterItem} />
+            <ProjectCard item={item} />
+            {/*
             <div className="row g-4 project-items">
               <div className="col-md-6 col-lg-4 single-item graphic ui">
                 <div className="item-img">
@@ -455,7 +456,7 @@ const Home = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
 
