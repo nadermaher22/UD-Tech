@@ -4,7 +4,9 @@ import CallCenter from "../assests/img/call-center.png";
 import { BsArrowRight } from "react-icons/bs";
 import {
   FaFacebookF,
+  FaGoogleDrive,
   FaInstagram,
+  FaLinkedin,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaPinterestP,
@@ -15,7 +17,9 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
+import axios from "axios";
 const ContactUs = () => {
+  
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -31,6 +35,19 @@ const ContactUs = () => {
       setPreLoader(false);
     }, 3000);
   }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=1")
+      .then((res) => {
+        setApiData(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const [apiData, setApiData] = useState([]);
 
   return (
     <>
@@ -93,22 +110,22 @@ const ContactUs = () => {
                     </div>
                     <ul className="social-follow">
                       <li>
-                        <a href="https://www.facebook.com/">
-                          <FaFacebookF />
+                        <a href={apiData.lurl}>
+                          <FaLinkedin />
                         </a>
                       </li>
                       <li>
-                        <a href="https://www.twitter.com/">
+                        <a href={apiData.turl}>
                           <FaTwitter />
                         </a>
                       </li>
                       <li>
-                        <a href="https://www.pinterest.com/">
-                          <FaPinterestP />
+                        <a href={apiData.wurl}>
+                          <FaGoogleDrive />
                         </a>
                       </li>
                       <li>
-                        <a href="https://www.instagram.com/">
+                        <a href={apiData.iurl}>
                           <FaInstagram />
                         </a>
                       </li>
@@ -120,10 +137,7 @@ const ContactUs = () => {
                         </div>
                         <div className="info">
                           <h3>Location</h3>
-                          <p>
-                            168/170, Avenue 01, Old York Drive Rich Mirpur DOHS,
-                            Bangladesh
-                          </p>
+                          <p>{apiData.address}</p>
                         </div>
                       </div>
                       <div className="single-info">
@@ -132,8 +146,7 @@ const ContactUs = () => {
                         </div>
                         <div className="info">
                           <h3>Phone</h3>
-                          <a href="tel:05661111985">+880 566 1111 985</a>
-                          <a href="tel:06571111576">+880 657 1111 576</a>
+                          <a href="tel:${apiData.mobile}">{apiData.mobile}</a>
                         </div>
                       </div>
                       <div className="single-info">
@@ -142,8 +155,7 @@ const ContactUs = () => {
                         </div>
                         <div className="info">
                           <h3>Email</h3>
-                          <a href="tell:info@example.com">info@example.com</a>
-                          <a href="tell:info@support.com">info@support.com</a>
+                          <a href={apiData.email}>{apiData.email}</a>
                         </div>
                       </div>
                     </div>
@@ -152,7 +164,7 @@ const ContactUs = () => {
                 <div className="col-md-6 col-lg-7">
                   <div className="mapouter">
                     <div className="gmap_canvas">
-                      <iframe src="https://maps.google.com/maps?q=dhaka%20bangladesh&amp;t=&amp;z=9&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
+                      <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3710.3503421209366!2d39.17810381421185!3d21.57224367437963!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x15c3d19c274486c1%3A0x3bf6242bc980369c!2sUD-Tech%20United%20Diamond%20Technology!5e0!3m2!1sen!2seg!4v1677317107987!5m2!1sen!2seg"></iframe>
                     </div>
                   </div>
                 </div>

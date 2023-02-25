@@ -6,6 +6,7 @@ import "./assests/css/bootstrap.min.css";
 import "./assests/css/fontawesome.min.css";
 import "animate.css/animate.css";
 import Navbar from "./components/Navbar";
+import NabBarModified from "./components/NabBarModified";
 import About from "./pages/About";
 import Footer from "./components/Footer";
 import Services from "./pages/Services";

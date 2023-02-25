@@ -38,7 +38,7 @@ const Navbar = () => {
         <div className="main-menu">
           <nav className="main-nav">
             <div className="mobile-menu-logo">
-              <Link to="index.html">
+              <Link to="/">
                 <img src={LogoDark} alt="logo" />
               </Link>
               <div className="remove">
@@ -138,11 +138,12 @@ const Navbar = () => {
             </div>
           </div>
           <div className="mobile-menu">
-            {/* <Link to="javascript:void(0)" className="cross-btn"> */}
-            <span className="cross-top"></span>
-            <span className="cross-middle"></span>
-            <span className="cross-bottom"></span>
-            {/* </Link> */}
+            <div to="" className="cross-btn">
+              <span className="cross-top"></span>
+              <span className="cross-middle"></span>
+              <span className="cross-bottom"></span>
+            </div>
+            
           </div>
         </div>
       </header>
