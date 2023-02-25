@@ -6,14 +6,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
 import Testimonials from "../components/Testimonials";
-import Service1 from "../assests/img/icons/service-icon-1.png";
-import Service2 from "../assests/img/icons/service-icon-2.png";
-import Service3 from "../assests/img/icons/service-icon-3.png";
-import Service4 from "../assests/img/icons/service-icon-4.png";
-import Service5 from "../assests/img/icons/service-icon-5.png";
-import Service6 from "../assests/img/icons/service-icon-6.png";
+import axios from "axios";
 
 const Services = () => {
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetServices?languageId=1")
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const [apiData, setApiData] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -94,126 +100,28 @@ const Services = () => {
                 </div>
               </div>
               <div className="row g-4">
-                <div
-                  className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                  data-wow-delay="200ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="single-service">
-                    <span>01</span>
-                    <div className="icon">
-                      <img src={Service1} alt="" />
+                {apiData.map((e) => {
+                  return (
+                    <div
+                      className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
+                      data-wow-delay="200ms"
+                      data-wow-duration="1500ms"
+                      key={e.id}
+                    >
+                      <div className="single-service">
+                        <span>{e.id}</span>
+                        <div className="icon">
+                          <img src={e.photoPath} alt="" />
+                        </div>
+                        <h4>{e.title}</h4>
+                        <p>{e.description}</p>
+                        <div className="read-btn">
+                          <a href="/service-details">Read More</a>
+                        </div>
+                      </div>
                     </div>
-                    <h4>Web Design</h4>
-                    <p>
-                      Integer purus odio, placerat nec rhoncu in, ullamcorper
-                      nec dolor.
-                    </p>
-                    <div className="read-btn">
-                      <a href="/service-details">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                  data-wow-delay="400ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="single-service">
-                    <span>02</span>
-                    <div className="icon">
-                      <img src={Service2} alt="" />
-                    </div>
-                    <h4>UI/UX Design</h4>
-                    <p>
-                      Integer purus odio, placerat nec rhoncu in, ullamcorper
-                      nec dolor.
-                    </p>
-                    <div className="read-btn">
-                      <a href="/service-details">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                  data-wow-delay="600ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="single-service">
-                    <span>03</span>
-                    <div className="icon">
-                      <img src={Service3} alt="" />
-                    </div>
-                    <h4>Software Development</h4>
-                    <p>
-                      Integer purus odio, placerat nec rhoncu in, ullamcorper
-                      nec dolor.
-                    </p>
-                    <div className="read-btn">
-                      <a href="/service-details">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                  data-wow-delay="800ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="single-service">
-                    <span>04</span>
-                    <div className="icon">
-                      <img src={Service4} alt="" />
-                    </div>
-                    <h4>App Design</h4>
-                    <p>
-                      Integer purus odio, placerat nec rhoncu in, ullamcorper
-                      nec dolor.
-                    </p>
-                    <div className="read-btn">
-                      <a href="/service-details">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                  data-wow-delay="1000ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="single-service">
-                    <span>05</span>
-                    <div className="icon">
-                      <img src={Service5} alt="" />
-                    </div>
-                    <h4>Graphic Design</h4>
-                    <p>
-                      Integer purus odio, placerat nec rhoncu in, ullamcorper
-                      nec dolor.
-                    </p>
-                    <div className="read-btn">
-                      <a href="/service-details">Read More</a>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                  data-wow-delay="1200ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="single-service">
-                    <span>06</span>
-                    <div className="icon">
-                      <img src={Service6} alt="" />
-                    </div>
-                    <h4>Video Animation</h4>
-                    <p>
-                      Integer purus odio, placerat nec rhoncu in, ullamcorper
-                      nec dolor.
-                    </p>
-                    <div className="read-btn">
-                      <a href="/service-details">Read More</a>
-                    </div>
-                  </div>
-                </div>
+                  );
+                })}
               </div>
             </div>
           </section>

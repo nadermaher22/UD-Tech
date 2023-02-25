@@ -5,20 +5,20 @@ import { FaPlay } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
-import Client1 from "../assests/img/project/project-1.jpg";
-import Client2 from "../assests/img/project/project-2.jpg";
-import Client3 from "../assests/img/project/project-3.jpg";
-import Client4 from "../assests/img/project/project-4.jpg";
-import Client5 from "../assests/img/project/project-5.jpg";
-import Client6 from "../assests/img/project/project-6.jpg";
-import Client7 from "../assests/img/project/project-7.jpg";
-import Client8 from "../assests/img/project/project-8.jpg";
-import Client9 from "../assests/img/project/project-9.jpg";
-import Client10 from "../assests/img/project/project-10.jpg";
-import Client11 from "../assests/img/project/project-11.jpg";
-import Client12 from "../assests/img/project/project-12.jpg";
+import axios from "axios";
 
 const Clients = () => {
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetClients?languageId=1")
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const [apiData, setApiData] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -92,20 +92,28 @@ const Clients = () => {
           >
             <div className="container">
               <div className="row g-4 ">
-                <div className="col-12 col-md-4 col-lg-3 single-item graphic ui">
-                  <div className="item-img">
-                    <a href="/">
-                      <img src={Client1} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <h4>Client Name</h4>
-                    <div className="view-btn">
-                      <a href="/">View Website</a>
+                {apiData.map((e) => {
+                  return (
+                    <div
+                      className="col-12 col-md-4 col-lg-3 single-item graphic ui"
+                      key={e.id}
+                    >
+                      <div className="item-img">
+                        <a href="/">
+                          <img src={e.photoPath} alt="" />
+                        </a>
+                      </div>
+                      <div className="item-inner-cnt">
+                        <h4>{e.name}</h4>
+                        <div className="view-btn">
+                          <a href="/">View Website</a>
+                        </div>
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div className="col-12 col-md-4 col-lg-3 single-item developing web">
+                  );
+                })}
+
+                {/* <div className="col-12 col-md-4 col-lg-3 single-item developing web">
                   <div className="item-img">
                     <a href="/">
                       <img src={Client2} alt="" />
@@ -247,7 +255,7 @@ const Clients = () => {
                       <a href="/">View Website</a>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </section>

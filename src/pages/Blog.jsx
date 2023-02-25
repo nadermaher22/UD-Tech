@@ -8,20 +8,22 @@ import Newsletter from "../components/Newsletter";
 import TinyBlog1 from "../assests/img/blog/blog-tiny-1.jpg";
 import TinyBlog2 from "../assests/img/blog/blog-tiny-2.jpg";
 import TinyBlog3 from "../assests/img/blog/blog-tiny-3.jpg";
-import Blog1 from "../assests/img/blog/blog-1.jpg";
-import Blog2 from "../assests/img/blog/blog-2.jpg";
-import Blog3 from "../assests/img/blog/blog-3.jpg";
-import Blog4 from "../assests/img/blog/blog-4.jpg";
-import Blog5 from "../assests/img/blog/blog-5.jpg";
-import Blog6 from "../assests/img/blog/blog-5.jpg";
-import Blog7 from "../assests/img/blog/blog-7.jpg";
-import Blog8 from "../assests/img/blog/blog-8.jpg";
-import Blog9 from "../assests/img/blog/blog-9.jpg";
-import Blog10 from "../assests/img/blog/blog-10.jpg";
 import WidgetBanner from "../assests/img/widget-banner-bg.jpg";
 import ArrowAngle from "../assests/img/arrow-angle.png";
 import { Link } from "react-router-dom";
+import axios from "axios";
 const Blog = () => {
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetClients?languageId=1")
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const [apiData, setApiData] = useState([]);
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -236,243 +238,33 @@ const Blog = () => {
                 <div className="col-lg-8">
                   <div className="blog-item-grid">
                     <div className="row g-4">
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog1} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">UI/UX</a>
+                      {apiData.map((e) => {
+                        return (
+                          <div className="col-md-6" key={e.id}>
+                            <div className="single-blog">
+                              <div className="blog-thumb">
+                                <a href="/blog-details">
+                                  <img src={e.photoPath} alt="" />
+                                </a>
+                                <div className="tag">
+                                  <a href="/projects">{e.title}</a>
+                                </div>
+                              </div>
+                              <div className="blog-inner">
+                                <div className="author-date">
+                                  <a href="/">By, Admin</a>
+                                  <a href="/">23.02.2022</a>
+                                </div>
+                                <h4>
+                                  <a href="/blog-details">
+                                    Quisque malesuada sapien and Donec sed nunc.
+                                  </a>
+                                </h4>
+                              </div>
                             </div>
                           </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">23.02.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                Quisque malesuada sapien and Donec sed nunc.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog2} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">Software</a>
-                            </div>
-                          </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">12.02.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                Suspendisse pretium magna qu nisl egestas
-                                porttitor.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog3} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">Dashbord</a>
-                            </div>
-                          </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">25.02.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                In a augue sit amet erat Suspel eleifend
-                                suscipit issen.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog4} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">3D Design</a>
-                            </div>
-                          </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">30.03.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                Quisque malesuada sapien and Donec sed nunc.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog5} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">Graphic</a>
-                            </div>
-                          </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">21.05.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                Suspendisse pretium magna qu nisl egestas
-                                porttitor.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog6} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">App</a>
-                            </div>
-                          </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">26.04.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                In a augue sit amet erat Suspel eleifend
-                                suscipit issen.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog7} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">Development</a>
-                            </div>
-                          </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">15.04.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                Quisque malesuada sapien and Donec sed nunc.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog8} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">Software</a>
-                            </div>
-                          </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">12.06.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                Suspendisse pretium magna qu nisl egestas
-                                porttitor.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog9} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">UI/UX</a>
-                            </div>
-                          </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">20.12.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                In a augue sit amet erat Suspel eleifend
-                                suscipit issen.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="col-md-6">
-                        <div className="single-blog">
-                          <div className="blog-thumb">
-                            <a href="/blog-details">
-                              <img src={Blog10} alt="" />
-                            </a>
-                            <div className="tag">
-                              <a href="/projects">3D Design</a>
-                            </div>
-                          </div>
-                          <div className="blog-inner">
-                            <div className="author-date">
-                              <a href="/">By, Admin</a>
-                              <a href="/">22.05.2022</a>
-                            </div>
-                            <h4>
-                              <a href="/blog-details">
-                                In a augue sit amet erat Suspel eleifend
-                                suscipit issen.
-                              </a>
-                            </h4>
-                          </div>
-                        </div>
-                      </div>
+                        );
+                      })}
                     </div>
                   </div>
                   <div className="load-more">

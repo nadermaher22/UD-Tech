@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import VideoImg from "../assests/img/breadcrumb-video.jpg";
 import CallCenter from "../assests/img/call-center.png";
 import { BsArrowRight } from "react-icons/bs";
@@ -19,10 +19,25 @@ import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
 import axios from "axios";
 const ContactUs = () => {
-  
-  useEffect(() => {
-    window.scrollTo(0, 0);
-  });
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [subject, setSubject] = useState('');
+  const [message, setMessage] = useState('');
+  const PostMessage = (e) => {
+    e.preventDefault();
+    axios
+      .post("http://apiv2.udtech-sa.com/api/WebSite/SendContactUs", {
+        name,
+        email,
+        subject,
+        message,
+      })
+      .then((response) => console.log("data posted", response.data))
+      .catch((err) => {
+        console.log(err);
+      });
+  };
+
   useEffect(() => {
     new WOW.WOW({
       live: false,
@@ -41,7 +56,6 @@ const ContactUs = () => {
       .get("http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=1")
       .then((res) => {
         setApiData(res.data);
-        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -178,37 +192,41 @@ const ContactUs = () => {
                       data-wow-duration="1500ms"
                     >
                       <h3>Have Any Questions</h3>
-                      <form action="#" method="post">
+                      <form>
                         <div className="row">
                           <div className="col-12">
                             <input
                               type="text"
-                              name="name"
                               placeholder="Enter your name"
+                              value={name}
+                              onChange={(e) => setName(e.target.value)}
                             />
                           </div>
                           <div className="col-md-6">
                             <input
                               type="email"
-                              name="email"
                               placeholder="Enter your email"
+                              value={email}
+                              onChange={(e) => setEmail(e.target.value)}
                             />
                           </div>
                           <div className="col-md-6">
                             <input
                               type="text"
-                              name="subject"
                               placeholder="Subject"
+                              value={subject}
+                              onChange={(e) => setSubject(e.target.value)}
                             />
                           </div>
                           <div className="col-12">
                             <textarea
-                              name="message"
                               cols="30"
                               rows="10"
                               placeholder="Your message"
+                              value={message}
+                              onChange={(e) => setMessage(e.target.value)}
                             ></textarea>
-                            <input type="submit" value="Send Message" />
+                            <input type="submit" onClick={PostMessage} />
                           </div>
                         </div>
                       </form>
