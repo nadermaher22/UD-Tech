@@ -1,12 +1,9 @@
 import React, { useEffect, useState } from "react";
 import VideoImg from "../assests/img/breadcrumb-video.jpg";
-import { BsArrowLeft, BsArrowRight } from "react-icons/bs";
+import { BsArrowRight } from "react-icons/bs";
 import {
-  FaEnvelope,
   FaFacebookF,
   FaInstagram,
-  FaMapMarkerAlt,
-  FaPhoneAlt,
   FaPlay,
   FaTwitter,
   FaWhatsapp,
@@ -18,7 +15,7 @@ import Team1 from "../assests/img/team/team-1.jpg";
 import Team2 from "../assests/img/team/team-2.jpg";
 import Team3 from "../assests/img/team/team-3.jpg";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
+import { A11y, Pagination } from "swiper";
 
 const Team = () => {
   useEffect(() => {

@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import LogoDark from "../assests/img/logo.svg";
+import LogoDarkMob from "../assests/img/logo-dark.svg";
+import { BsPlus, BsPlusLg } from "react-icons/bs";
 
 const Navbar = () => {
   // navbar scroll
@@ -19,6 +21,10 @@ const Navbar = () => {
   useEffect(() => {
     setUrl(location.pathname);
   }, [location]);
+  const [addClass, setAddClass] = useState(false);
+  const AddClassSlide = () => {
+    setAddClass(!addClass);
+  };
   return (
     <div>
       <header
@@ -36,13 +42,13 @@ const Navbar = () => {
           </div>
         </div>
         <div className="main-menu">
-          <nav className="main-nav">
+          <nav className={addClass ? "main-nav slidenav" : "main-nav"}>
             <div className="mobile-menu-logo">
               <Link to="/">
-                <img src={LogoDark} alt="logo" />
+                <img src={LogoDarkMob} alt="logo" />
               </Link>
               <div className="remove">
-                <i className="bi bi-plus-lg"></i>
+                <BsPlus />
               </div>
             </div>
             <ul>
@@ -137,13 +143,12 @@ const Navbar = () => {
               <Link to="/contact">Call Us</Link>
             </div>
           </div>
-          <div className="mobile-menu">
+          <div className="mobile-menu" onClick={() => AddClassSlide()}>
             <div to="" className="cross-btn">
               <span className="cross-top"></span>
               <span className="cross-middle"></span>
               <span className="cross-bottom"></span>
             </div>
-            
           </div>
         </div>
       </header>

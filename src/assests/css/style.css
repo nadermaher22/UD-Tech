@@ -747,7 +747,7 @@
   cursor: pointer;
 }
 
-.mobile-menu-logo .remove i {
+.mobile-menu-logo .remove svg {
   height: 30px;
   width: 30px;
   line-height: 30px;
@@ -6311,6 +6311,6 @@ footer.error {
 }
 /* modified navbar */
 
-.modifiedNavBar{
+.modifiedNavBar {
   background-color: transparent !important;
 }

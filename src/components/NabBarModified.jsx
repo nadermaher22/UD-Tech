@@ -28,15 +28,33 @@ function NabBarModified() {
             <Nav.Link href="/" className={url === "/" ? " active" : ""}>
               Home
             </Nav.Link>
-            <Nav.Link href="#link">About Us</Nav.Link>
-            <Nav.Link href="#link">Service</Nav.Link>
-            <Nav.Link href="#link">Project</Nav.Link>
-            <Nav.Link href="#link">Clients</Nav.Link>
-            <Nav.Link href="/mobile">Mobile Apps</Nav.Link>
-            <Nav.Link href="/electronic">electronic invoice</Nav.Link>
-            <Nav.Link href="/blog">Blog</Nav.Link>
-            <Nav.Link href="/contact">Contact Us</Nav.Link>
-
+            <Nav.Link href="/about" className={url === "/" ? " active" : ""}>
+              About Us
+            </Nav.Link>
+            <Nav.Link href="/services" className={url === "/" ? " active" : ""}>
+              Service
+            </Nav.Link>
+            <Nav.Link href="projects/" className={url === "/" ? " active" : ""}>
+              Project
+            </Nav.Link>
+            <Nav.Link href="/clients" className={url === "/" ? " active" : ""}>
+              Clients
+            </Nav.Link>
+            <Nav.Link href="/mobile" className={url === "/" ? " active" : ""}>
+              Mobile Apps
+            </Nav.Link>
+            <Nav.Link
+              href="/electronic"
+              className={url === "/" ? " active" : ""}
+            >
+              electronic invoice
+            </Nav.Link>
+            <Nav.Link href="/blog" className={url === "/" ? " active" : ""}>
+              Blog
+            </Nav.Link>
+            <Nav.Link href="/contact" className={url === "/" ? " active" : ""}>
+              Contact Us
+            </Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
