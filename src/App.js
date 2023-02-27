@@ -27,6 +27,7 @@ import Team from "./pages/Team";
 import "../src/assests/css/bootstrap-icons.css";
 import { useEffect, useState } from "react";
 import AnimatedCursor from "react-animated-cursor";
+import { motion } from "framer-motion";
 
 function Layout() {
   const [isShown, setIsShown] = useState(false);
@@ -41,6 +42,8 @@ function Layout() {
   const handleClick = (event) => {
     setIsShown((current) => !current);
   };
+
+  // Mouse with framer motion
 
   return (
     <div className="App">
@@ -95,19 +98,21 @@ function Layout() {
           </div>
         </div>
       </div>
+
+      {/* animated-cursor-react */}
+      <div className="cursor"></div>
       <div>
         <AnimatedCursor
-          innerStyle={null}
+          cursorInner={false}
           hasBlendMode={true}
           outerStyle={{
             mixBlendMode: "exclusion",
           }}
-          innerSize={10}
+          innerSize={0.001}
           trailingSpeed={30}
           outerSize={30}
           color="255, 255 ,255"
           outerAlpha={0.8}
-          innerScale={1}
           outerScale={1}
           clickables={[
             "a",
@@ -120,6 +125,7 @@ function Layout() {
             "select",
             "textarea",
             "button",
+            "li",
             ".link",
           ]}
         />

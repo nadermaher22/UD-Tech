@@ -1,0 +1,7 @@
+* {
+  cursor: auto;
+}
+
+* a:hover {
+  cursor: pointer !important;
+}
