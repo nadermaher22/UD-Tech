@@ -6,7 +6,6 @@ import "./assests/css/bootstrap.min.css";
 import "./assests/css/fontawesome.min.css";
 import "animate.css/animate.css";
 import Navbar from "./components/Navbar";
-import NabBarModified from "./components/NabBarModified";
 import About from "./pages/About";
 import Footer from "./components/Footer";
 import Services from "./pages/Services";
@@ -27,7 +26,6 @@ import Team from "./pages/Team";
 import "../src/assests/css/bootstrap-icons.css";
 import { useEffect, useState } from "react";
 import AnimatedCursor from "react-animated-cursor";
-import { motion } from "framer-motion";
 
 function Layout() {
   const [isShown, setIsShown] = useState(false);
@@ -100,10 +98,8 @@ function Layout() {
       </div>
 
       {/* animated-cursor-react */}
-      <div className="cursor"></div>
       <div>
         <AnimatedCursor
-          cursorInner={false}
           hasBlendMode={true}
           outerStyle={{
             mixBlendMode: "exclusion",
