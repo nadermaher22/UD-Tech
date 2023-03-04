@@ -1,28 +1,40 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 import VideoImg from "../assests/img/breadcrumb-video.jpg";
 import CallCenter from "../assests/img/call-center.png";
 import { BsArrowRight } from "react-icons/bs";
 import {
-  FaFacebookF,
   FaGoogleDrive,
   FaInstagram,
   FaLinkedin,
   FaMapMarkerAlt,
   FaPhoneAlt,
-  FaPinterestP,
   FaPlay,
   FaRegEnvelope,
   FaTwitter,
 } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
-import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
 import axios from "axios";
+
 const ContactUs = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [subject, setSubject] = useState('');
-  const [message, setMessage] = useState('');
+  const [preLoader, setPreLoader] = useState(true);
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
+  const [message, setMessage] = useState("");
+  const [apiData, setApiData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=1")
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   const PostMessage = (e) => {
     e.preventDefault();
     axios
@@ -37,31 +49,11 @@ const ContactUs = () => {
         console.log(err);
       });
   };
-
-  useEffect(() => {
-    new WOW.WOW({
-      live: false,
-    }).init();
-  });
-  const [preLoader, setPreLoader] = useState(true);
-
   useEffect(() => {
     setTimeout(function () {
       setPreLoader(false);
     }, 3000);
   }, []);
-
-  useEffect(() => {
-    axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=1")
-      .then((res) => {
-        setApiData(res.data);
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  }, []);
-  const [apiData, setApiData] = useState([]);
 
   return (
     <>
@@ -160,7 +152,7 @@ const ContactUs = () => {
                         </div>
                         <div className="info">
                           <h3>Phone</h3>
-                          <a href="tel:${apiData.mobile}">{apiData.mobile}</a>
+                          <a href={`tel:${apiData.mobile}`}>{apiData.mobile}</a>
                         </div>
                       </div>
                       <div className="single-info">
@@ -187,7 +179,7 @@ const ContactUs = () => {
                 <div className="row">
                   <div className="col-md-6 col-lg-7">
                     <div
-                      className="contact-form wow animate fadeInUp"
+                      className="contact-form wow animate animate__fadeInUp"
                       data-wow-delay="200ms"
                       data-wow-duration="1500ms"
                     >
@@ -233,7 +225,7 @@ const ContactUs = () => {
                     </div>
                   </div>
                   <div
-                    className="col-md-6 col-lg-5 wow animate fadeInUp"
+                    className="col-md-6 col-lg-5 wow animate animate__fadeInUp"
                     data-wow-delay="300ms"
                     data-wow-duration="1500ms"
                   >

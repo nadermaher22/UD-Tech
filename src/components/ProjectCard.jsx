@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import WOW from "wowjs";
 import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
+
 const ProjectCard = ({ item }) => {
   useEffect(() => {
     axios

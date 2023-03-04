@@ -5,3 +5,21 @@
 * a:hover {
   cursor: pointer !important;
 }
+* li:hover {
+  cursor: pointer !important;
+}
+* li a svg:hover {
+  cursor: pointer !important;
+}
+* li a :hover {
+  cursor: pointer !important;
+}
+* input {
+  cursor: auto !important;
+}
+* textarea {
+  cursor: auto !important;
+}
+* input[type="submit"] {
+  cursor: pointer !important;
+}

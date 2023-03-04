@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
 import VideoImg from "../assests/img/breadcrumb-video.jpg";
 import { BsArrowRight, BsReply } from "react-icons/bs";
 import {
@@ -18,12 +19,37 @@ import BlogGallery1 from "../assests/img/blog/blog-gallery-1.jpg";
 import BlogGallery2 from "../assests/img/blog/blog-gallery-2.jpg";
 import Auther1 from "../assests/img/author-1.jpg";
 import Auther2 from "../assests/img/author-2.jpg";
-import { Link } from "react-router-dom";
 import WidgetBanner from "../assests/img/widget-banner-bg.jpg";
+import axios from "axios";
+
 const BlogDetails = () => {
+  const [apiData, setApiData] = useState([]);
+  const [blogDetailsData, setBlogDetailsData] = useState([]);
+  const [dataId, setDataId] = useState("");
+  const { blogId } = useParams();
+
   useEffect(() => {
-    window.scrollTo(0, 0);
-  });
+    axios
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetBlogDetails?languageId=1&Id=${blogId}`
+      )
+      .then((res) => {
+        setApiData(res.data);
+        // console.log("BlogData", apiData);
+        // console.log("BlogId from api", blogId);
+        // let BlogDataww = apiData.filter((item) => item.id === Number(dataId));
+        // setBlogDetailsData(BlogDataww);
+        // console.log("nader ", BlogDataww);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // });
+
   useEffect(() => {
     new WOW.WOW({
       live: false,
@@ -93,95 +119,17 @@ const BlogDetails = () => {
               <div className="row">
                 <div className="col-lg-8">
                   <div className="blog-details-content">
-                    <h3>
-                      How To Use a Remarketing Strategy To Get Morelknoi anda
-                      malesuada sapienl and Donec sed nunc.
-                    </h3>
+                    <h3>{apiData.title}</h3>
                     <div className="author-date layout2">
                       <Link to="/">By, Admin</Link>
                       <Link to="/">Comment (02)</Link>
                       <Link to="/">22.02.2022</Link>
                     </div>
                     <div className="details-thumb">
-                      <img src={BlogThumb1} alt="" />
+                      <img src={apiData.photoPath} alt="" />
                     </div>
-                    <p>
-                      Interdum et malesuada fames ac ante ipsum primis in
-                      faucibus. Etiam eu nibh elementum, accumsan ona neque ac,
-                      aliquet nunc. In eu ipsum fringilla, accumsan purus vel,
-                      pellentesque risus. Vivamus vehicula nl purus at eros
-                      interdum, in dignissim nulla vestibulum. Nunc sit amet
-                      finibus felis, ut egestas lacus. Sedan pellentesque quis
-                      magna eu vestibulum. Ut sed commodo neque. Morbi erat
-                      nisi, vehicula quis faucibus il ut, hendrerit vel tortor.
-                      In pharetra lectus luctus ornare sollicitudin.
-                      Pellentesque at neque nec justo sokal porttitor egestas
-                      nec eget ex.Etiam suscipit neque elit, hendrerit laoreet
-                      quam ultrices id. Proin nec tolde lacinia ligula, sed
-                      laoreet ex. Sed nisl ligula, euismod vel justo
-                      scelerisque, vestibulum ultricies tellus. volv
-                      Pellentesque vel turpis vitae urna tincidunt hendrerit at
-                      ut est. Sed eget feugiat felis. Integer sed ornare sem,
-                      eget porttitor nisi. Nunc erat sapien, porta laoreet
-                      gravida ac, dictum eu tortor. Nulla faucibus leoren
-                      rhoncus, gravida ligula a, ultrices enim. Proin lacinia
-                      malesuada finibus. Proin sit amet arcu sem. dontami
-                      Phasellus ut pharetra purus, sed condimentum dui.
-                      Suspendisse potenti. Nam bibendum, augue europea ultricies
-                      semper, nisi lorem consectetur diam, nec dapibus nulla
-                      tortor at sem.
-                    </p>
-                    <div className="blog-gallery">
-                      <div className="b-gallery">
-                        <img src={BlogGallery1} alt="" />
-                      </div>
-                      <div className="b-gallery">
-                        <img src={BlogGallery2} alt="" />
-                      </div>
-                    </div>
-                    <h4>Remarketing Strategy To Get Morelknoi anda?</h4>
-                    <div className="special">
-                      <p>
-                        <span>V</span>Interdum et malesuada fames ac ante ipsum
-                        primis in faucibus. Etiam eu nibh elementum, accu neque
-                        ac, aliquet nunc. In eu ipsum fringilla, accumsan purus
-                        vel, pellentesque risus. Vivamus v
-                      </p>
-                    </div>
-                    <p>
-                      purus at eros interdum, in dignissim nulla vestibulum.
-                      Nunc sit amet finibus felis, ut egestas lacus. Sedan
-                      pellentesque quis magna eu vestibulum. Ut sed commodo
-                      neque. Morbi erat nisi, vehicula quis faucibus il ut,
-                      hendrerit vel tortor. In pharetra lectus luctus ornare
-                      sollicitudin. Pellentesque at neque nec justo sokal
-                      porttitor egestas nec eget ex.Etiam suscipit neque elit.
-                    </p>
-                    <div className="blog-quote">
-                      <FaQuoteLeft />
-                      <p>
-                        Purus at eros interdum, in dignissim nulla vestibulum.
-                        pellentesque quis magna eu vestibulum. Ut sed nec e
-                        commodo neque. Morbi erat nisi, vehicula porttitor egut,
-                        hendrerit vel tortor. In pharetra lectus luctus.
-                      </p>
-                    </div>
-                    <p>
-                      Interdum et malesuada fames ac ante ipsum primis in
-                      faucibus. Etiam eu nibh elementum, accumsan ona neque ac,
-                      aliquet nunc. In eu ipsum fringilla, accumsan purus vel,
-                      pellentesque risus. Vivamus vehicula nl purus at eros
-                      interdum, in dignissim nulla vestibulum. Nunc sit amet
-                      finibus felis, ut egestas lacus. Sedan pellentesque quis
-                      magna eu vestibulum. Ut sed commodo neque. Morbi erat
-                      nisi, vehicula quis faucibus il ut, hendrerit vel tortor.
-                      In pharetra lectus luctus ornare sollicitudin.
-                      Pellentesque at neque nec justo sokalporttitor egestas nec
-                      eget ex.Etiam suscipit neque elit, hendrerit laoreet quam
-                      ultrices id. Proin nec toldelacinia ligula, sed laoreet
-                      ex. Sed nisl ligula, euismod vel justo scelerisque,
-                      vestibulum ultricies tellus. volv Pellentesque vel turpis
-                      vitae urna tincidunt hendrerit at ut est.
+                    <p dangerouslySetInnerHTML={{ __html: apiData.description }}>
+                      
                     </p>
                     <div className="tag-share">
                       <div className="line-tag">
@@ -411,7 +359,7 @@ const BlogDetails = () => {
                         <span>23.12.2022</span>
                         <h5>
                           <Link to="/blog-details">
-                            Conti nu to Incr Ease malesuada sapien sed.
+                            Conti nu to Incr Ease malesuada sapien sed
                           </Link>
                         </h5>
                       </div>

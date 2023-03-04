@@ -108,13 +108,15 @@ const Services = () => {
                       data-wow-duration="1500ms"
                       key={e.id}
                     >
-                      <div className="single-service">
+                      <div className="single-service h-100">
                         <span>{e.id}</span>
                         <div className="icon">
                           <img src={e.photoPath} alt="" />
                         </div>
                         <h4>{e.title}</h4>
-                        <p>{e.description}</p>
+                        <p
+                          dangerouslySetInnerHTML={{ __html: e.description }}
+                        ></p>
                         <div className="read-btn">
                           <a href="/service-details">Read More</a>
                         </div>

@@ -1,10 +1,35 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper";
-import Reviewer1 from "../assests/img/reivewer.jpg";
 import { FaQuoteRight, FaStar } from "react-icons/fa";
+import axios from "axios";
 
 const Testimonials = () => {
+  const [apiData, setApiData] = useState([]);
+  useEffect(() => {
+    axios
+      .get(
+        "http://apiv2.udtech-sa.com/api/WebSite/GetTestimonials?languageId=1"
+      )
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  function starsCounter(stars) {
+    const rows = [];
+    for (let i = 0; i < stars; i++) {
+      rows.push(
+        <a href="/">
+          <FaStar />
+        </a>
+      );
+    }
+    return rows;
+  }
+
   const [swiperRef, setSwiperRef] = useState(null);
   const prevHandler = () => {
     swiperRef.slidePrev();
@@ -45,286 +70,58 @@ const Testimonials = () => {
               }}
               onSwiper={(swiper) => setSwiperRef(swiper)}
             >
-              <SwiperSlide>
-                {({ isActive }) => (
-                  <div
-                    className={
-                      isActive
-                        ? "swiper-slide swiper-slide-active"
-                        : "swiper-slide"
-                    }
-                  >
-                    <div className="single-testimonial">
-                      <div className="quote">
-                        <FaQuoteRight />
+              {apiData.map((testimonial) => {
+                return (
+                  <SwiperSlide key={testimonial.id}>
+                    {({ isActive }) => (
+                      <div
+                        className={
+                          isActive
+                            ? "swiper-slide swiper-slide-active"
+                            : "swiper-slide"
+                        }
+                      >
+                        <div className="single-testimonial">
+                          <div className="quote">
+                            <FaQuoteRight />
+                          </div>
+                          <h5>{testimonial.name}</h5>
+                          <span>{testimonial.category}</span>
+                          <div className="stars">
+                            {/* ToDo: map stars */}
+                            {starsCounter(testimonial.starsCount)}
+                            {/* <a href="/">
+                              <FaStar />
+                            </a>
+                            <a href="/">
+                              <FaStar />
+                            </a>
+                            <a href="/">
+                              <FaStar />
+                            </a>
+                            <a href="/">
+                              <FaStar />
+                            </a>
+                            <a href="/">
+                              <FaStar />
+                            </a> */}
+                          </div>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: testimonial.comment,
+                            }}
+                          ></p>
+                          <div className="reviewer">
+                            <img src={testimonial.photoPath} alt="" />
+                          </div>
+                        </div>
                       </div>
-                      <h5>Martha Maldonado</h5>
-                      <span>Executive Chairman</span>
-                      <div className="stars">
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                      </div>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec dolor. ani aptent taciti sociosqu ad litora torquent
-                        per conubia nostra, per sonic himenaeos. Praesent nec
-                        neque at dolor venenatis consectetur europ Donec lacinia
-                        placerat felis non aliquam.
-                      </p>
-                      <div className="reviewer">
-                        <img src={Reviewer1} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </SwiperSlide>
-              <SwiperSlide>
-                {({ isActive }) => (
-                  <div
-                    className={
-                      isActive
-                        ? "swiper-slide swiper-slide-active"
-                        : "swiper-slide"
-                    }
-                  >
-                    <div className="single-testimonial">
-                      <div className="quote">
-                        <FaQuoteRight />
-                      </div>
-                      <h5>Martha Maldonado</h5>
-                      <span>Executive Chairman</span>
-                      <div className="stars">
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                      </div>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec dolor. ani aptent taciti sociosqu ad litora torquent
-                        per conubia nostra, per sonic himenaeos. Praesent nec
-                        neque at dolor venenatis consectetur europ Donec lacinia
-                        placerat felis non aliquam.
-                      </p>
-                      <div className="reviewer">
-                        <img src={Reviewer1} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </SwiperSlide>
-              <SwiperSlide>
-                {({ isActive }) => (
-                  <div
-                    className={
-                      isActive
-                        ? "swiper-slide swiper-slide-active"
-                        : "swiper-slide"
-                    }
-                  >
-                    <div className="single-testimonial">
-                      <div className="quote">
-                        <FaQuoteRight />
-                      </div>
-                      <h5>Martha Maldonado</h5>
-                      <span>Executive Chairman</span>
-                      <div className="stars">
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                      </div>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec dolor. ani aptent taciti sociosqu ad litora torquent
-                        per conubia nostra, per sonic himenaeos. Praesent nec
-                        neque at dolor venenatis consectetur europ Donec lacinia
-                        placerat felis non aliquam.
-                      </p>
-                      <div className="reviewer">
-                        <img src={Reviewer1} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </SwiperSlide>
-              <SwiperSlide>
-                {({ isActive }) => (
-                  <div
-                    className={
-                      isActive
-                        ? "swiper-slide swiper-slide-active"
-                        : "swiper-slide"
-                    }
-                  >
-                    <div className="single-testimonial">
-                      <div className="quote">
-                        <FaQuoteRight />
-                      </div>
-                      <h5>Martha Maldonado</h5>
-                      <span>Executive Chairman</span>
-                      <div className="stars">
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                      </div>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec dolor. ani aptent taciti sociosqu ad litora torquent
-                        per conubia nostra, per sonic himenaeos. Praesent nec
-                        neque at dolor venenatis consectetur europ Donec lacinia
-                        placerat felis non aliquam.
-                      </p>
-                      <div className="reviewer">
-                        <img src={Reviewer1} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </SwiperSlide>
-              <SwiperSlide>
-                {({ isActive }) => (
-                  <div
-                    className={
-                      isActive
-                        ? "swiper-slide swiper-slide-active"
-                        : "swiper-slide"
-                    }
-                  >
-                    <div className="single-testimonial">
-                      <div className="quote">
-                        <FaQuoteRight />
-                      </div>
-                      <h5>Martha Maldonado</h5>
-                      <span>Executive Chairman</span>
-                      <div className="stars">
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                      </div>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec dolor. ani aptent taciti sociosqu ad litora torquent
-                        per conubia nostra, per sonic himenaeos. Praesent nec
-                        neque at dolor venenatis consectetur europ Donec lacinia
-                        placerat felis non aliquam.
-                      </p>
-                      <div className="reviewer">
-                        <img src={Reviewer1} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </SwiperSlide>
-              <SwiperSlide>
-                {({ isActive }) => (
-                  <div
-                    className={
-                      isActive
-                        ? "swiper-slide swiper-slide-active"
-                        : "swiper-slide"
-                    }
-                  >
-                    <div className="single-testimonial">
-                      <div className="quote">
-                        <FaQuoteRight />
-                      </div>
-                      <h5>Martha Maldonado</h5>
-                      <span>Executive Chairman</span>
-                      <div className="stars">
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                        <a href="/">
-                          <FaStar />
-                        </a>
-                      </div>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec dolor. ani aptent taciti sociosqu ad litora torquent
-                        per conubia nostra, per sonic himenaeos. Praesent nec
-                        neque at dolor venenatis consectetur europ Donec lacinia
-                        placerat felis non aliquam.
-                      </p>
-                      <div className="reviewer">
-                        <img src={Reviewer1} alt="" />
-                      </div>
-                    </div>
-                  </div>
-                )}
-              </SwiperSlide>
+                    )}
+                  </SwiperSlide>
+                );
+              })}
             </Swiper>
           </div>
-          {/* <div className="swiper-button-next"></div>
-            <div className="swiper-button-prev"></div> */}
         </div>
       </section>
     </>

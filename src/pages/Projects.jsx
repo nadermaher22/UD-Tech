@@ -5,18 +5,6 @@ import { FaPlay } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
-import Project1 from "../assests/img/project/project-1.jpg";
-import Project2 from "../assests/img/project/project-2.jpg";
-import Project3 from "../assests/img/project/project-3.jpg";
-import Project4 from "../assests/img/project/project-4.jpg";
-import Project5 from "../assests/img/project/project-5.jpg";
-import Project6 from "../assests/img/project/project-6.jpg";
-import Project7 from "../assests/img/project/project-7.jpg";
-import Project8 from "../assests/img/project/project-8.jpg";
-import Project9 from "../assests/img/project/project-9.jpg";
-import Project10 from "../assests/img/project/project-10.jpg";
-import Project11 from "../assests/img/project/project-11.jpg";
-import Project12 from "../assests/img/project/project-12.jpg";
 import ProjectBtn from "../components/ProjectBtn";
 import ProjectCard from "../components/ProjectCard";
 import Data from "../components/Data.js";
@@ -24,6 +12,7 @@ import Data from "../components/Data.js";
 const Projects = () => {
   const [item, setItem] = useState(Data);
   const menuItems = [...new Set(Data.map((Val) => Val.category))];
+  console.log(menuItems);
   const [swiperRef, setSwiperRef] = useState(null);
   const filterItem = (curcat) => {
     const newItem = Data.filter((newVal) => {

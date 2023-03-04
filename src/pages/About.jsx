@@ -22,8 +22,20 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
 import { Modal } from "bootstrap";
+import axios from "axios";
 
 const About = () => {
+  const [apiData, setApiData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetAboutUs?languageId=1")
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   useEffect(() => {
     new WOW.WOW({
       live: false,
@@ -193,38 +205,41 @@ const About = () => {
               <div className="row">
                 <div className="col-lg-6 or-2">
                   <div className="sec-title layout2">
-                    <span>Get To Know</span>
-                    <h2>About Us</h2>
+                    <div
+                      dangerouslySetInnerHTML={{ __html: apiData.title }}
+                    ></div>
                   </div>
                   <div className="about-left">
-                    <h3>
-                      We do design, code & develop Software finally launch.
-                    </h3>
-                    <p>
-                      Integer purus odio, placerat nec rhoncus in, ullamcorper
-                      nec dolor. Class onlin aptent taciti sociosqu ad litora
-                      torquent per conubia nostra, per inceptos only himenaeos.
-                      Praesent nec neque at dolor venenatis consectetur eu quis
-                      ex. the Donec lacinia placerat felis non aliquam.
-                    </p>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: apiData.aboutDescription,
+                      }}
+                    ></div>
+
                     <div className="company-since">
                       <div className="company-logo">
-                        <img src={Logo} alt="" />
+                        <img src={apiData.missionPhotoPath} alt="" />
                       </div>
-                      <strong>#1</strong>
-                      <h4>
-                        Best Creative IT Agency And Solutions
-                        <span>Since 2005.</span>
-                      </h4>
+                      <div
+                        dangerouslySetInnerHTML={{
+                          __html: apiData.missionDescription,
+                        }}
+                      ></div>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-6 or-1">
                   <div className="about-right">
                     <div className="banner-1">
-                      <img src={AboutBanner} alt="" />
+                      <img src={apiData.visionPhotoPath} alt="" />
                     </div>
-                    <div className="buttons">
+
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: apiData.visionDescription,
+                      }}
+                    ></div>
+                    {/* <div className="buttons">
                       <div className="cmn-btn">
                         <div className="line-1"></div>
                         <div className="line-2"></div>
@@ -235,7 +250,7 @@ const About = () => {
                         <div className="line-2"></div>
                         <a href="/team">Company Profile</a>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

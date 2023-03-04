@@ -1,5 +1,6 @@
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import { createBrowserRouter, Outlet, RouterProvider } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import "./assests/css/style.css";
 import "./assests/css/bootstrap.min.css";
@@ -24,10 +25,10 @@ import ServiceDetails from "./pages/ServiceDetails";
 import ProjectDetails from "./pages/ProjectDetails";
 import Team from "./pages/Team";
 import "../src/assests/css/bootstrap-icons.css";
-import { useEffect, useState } from "react";
+
 import AnimatedCursor from "react-animated-cursor";
 
-function Layout() {
+const App = () => {
   const [isShown, setIsShown] = useState(false);
   const [preLoader, setPreLoader] = useState(true);
 
@@ -40,180 +41,111 @@ function Layout() {
   const handleClick = (event) => {
     setIsShown((current) => !current);
   };
-
-  // Mouse with framer motion
-
   return (
     <div className="App">
-      {preLoader && (
-        <div className="preloader">
-          <div className="loader">
-            <span></span>
-            <span></span>
-            <span></span>
-            <span></span>
+      <BrowserRouter>
+        {preLoader && (
+          <div className="preloader">
+            <div className="loader">
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
           </div>
-        </div>
-      )}
-      <Navbar />
-      <Outlet />
-      <Footer />
-      {/* Ask for cookies */}
-      <div className={isShown ? "d-none" : ""}>
-        <div className="cookies sc-breuTD gPIury aos-init aos-animate">
-          <div className="container">
-            <div className="row my-2">
-              <div className="col-12 col-md-8 ">
-                <p className="m-0">WE USE COOKIES</p>
-                <p className="m-0">
-                  THIS WEBSITE USES COOKIES TO ENSURE YOU GET THE BEST
-                  EXPERIENCE ON OUR WEBSITE
-                </p>
-              </div>
-              <div className="col-12 col-md-4 d-flex gap-3 align-items-center">
-                <div className="buttons mt-3">
-                  <div
-                    className={isShown ? "d-none" : "cmn-btn"}
-                    onClick={handleClick}
-                  >
-                    <div className="line-1"></div>
-                    <div className="line-2"></div>
-                    <span>Refuse</span>
-                  </div>
+        )}
+        {/* Ask for cookies */}
+        <div className={isShown ? "d-none" : ""}>
+          <div className="cookies sc-breuTD gPIury aos-init aos-animate">
+            <div className="container">
+              <div className="row my-2">
+                <div className="col-12 col-md-8 ">
+                  <p className="m-0">WE USE COOKIES</p>
+                  <p className="m-0">
+                    THIS WEBSITE USES COOKIES TO ENSURE YOU GET THE BEST
+                    EXPERIENCE ON OUR WEBSITE
+                  </p>
                 </div>
-                <div className="buttons mt-3">
-                  <div
-                    className={isShown ? "d-none" : "cmn-btn"}
-                    onClick={handleClick}
-                  >
-                    <div className="line-1"></div>
-                    <div className="line-2"></div>
-                    <span>Accept</span>
+                <div className="col-12 col-md-4 d-flex gap-3 align-items-center">
+                  <div className="buttons mt-3">
+                    <div
+                      className={isShown ? "d-none" : "cmn-btn"}
+                      onClick={handleClick}
+                    >
+                      <div className="line-1"></div>
+                      <div className="line-2"></div>
+                      <span>Refuse</span>
+                    </div>
+                  </div>
+                  <div className="buttons mt-3">
+                    <div
+                      className={isShown ? "d-none" : "cmn-btn"}
+                      onClick={handleClick}
+                    >
+                      <div className="line-1"></div>
+                      <div className="line-2"></div>
+                      <span>Accept</span>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div>
 
-      {/* animated-cursor-react */}
-      <div>
-        <AnimatedCursor
-          hasBlendMode={true}
-          outerStyle={{
-            mixBlendMode: "exclusion",
-          }}
-          innerSize={0.001}
-          trailingSpeed={30}
-          outerSize={30}
-          color="255, 255 ,255"
-          outerAlpha={0.8}
-          outerScale={1}
-          clickables={[
-            "a",
-            'input[type="text"]',
-            'input[type="email"]',
-            'input[type="number"]',
-            'input[type="submit"]',
-            'input[type="image"]',
-            "label[for]",
-            "select",
-            "textarea",
-            "button",
-            "li",
-            ".link",
-          ]}
-        />
-      </div>
+        {/* animated-cursor-react */}
+        <div>
+          <AnimatedCursor
+            hasBlendMode={true}
+            outerStyle={{
+              mixBlendMode: "exclusion",
+            }}
+            innerSize={0.001}
+            trailingSpeed={30}
+            outerSize={30}
+            color="255, 255 ,255"
+            outerAlpha={0.8}
+            outerScale={1}
+            clickables={[
+              "a",
+              'input[type="text"]',
+              'input[type="email"]',
+              'input[type="number"]',
+              'input[type="submit"]',
+              'input[type="image"]',
+              "label[for]",
+              "select",
+              "textarea",
+              "button",
+              "li",
+              ".link",
+            ]}
+          />
+        </div>
+        <Navbar />
+        <Routes>
+          <Route path="/" element={<Home />} exact />
+          <Route path="/about" element={<About />} />
+          <Route path="/services" element={<Services />} />
+          <Route path="/projects" element={<Projects />} />
+          <Route path="/clients" element={<Clients />} />
+          <Route path="/mobile" element={<Mobile />} />
+          <Route path="/electronic" element={<ElectronicInvoice />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/contact" element={<ContactUs />} />
+          <Route path="/blog-details/:blogId" element={<BlogDetails />} />
+          <Route path="/blog-standard" element={<BlogStandard />} />
+          <Route path="/faq" element={<Faq />} />
+          <Route path="/pricing" element={<Pricing />} />
+          <Route path="/service-details" element={<ServiceDetails />} />
+          <Route path="/team" element={<Team />} />
+          <Route path="/project-details" element={<ProjectDetails />} />
+          <Route path="/*" element={<Error />} />
+        </Routes>
+        <Footer />
+      </BrowserRouter>
     </div>
   );
-}
-const router = createBrowserRouter([
-  {
-    path: "/",
-    element: <Layout />,
-    children: [
-      {
-        path: "/",
-        element: <Home />,
-      },
-      {
-        path: "/about",
-        element: <About />,
-      },
-      {
-        path: "/services",
-        element: <Services />,
-      },
-      {
-        path: "/projects",
-        element: <Projects />,
-      },
-      {
-        path: "/clients",
-        element: <Clients />,
-      },
-      {
-        path: "/mobile",
-        element: <Mobile />,
-      },
-      {
-        path: "/electronic",
-        element: <ElectronicInvoice />,
-      },
-      {
-        path: "/blog",
-        element: <Blog />,
-      },
-      {
-        path: "/contact",
-        element: <ContactUs />,
-      },
-      {
-        path: "/blog-details",
-        element: <BlogDetails />,
-      },
-      {
-        path: "/blog-standard",
-        element: <BlogStandard />,
-      },
-      {
-        path: "/error",
-        element: <Error />,
-      },
-      {
-        path: "/faq",
-        element: <Faq />,
-      },
-      {
-        path: "/pricing",
-        element: <Pricing />,
-      },
-      {
-        path: "/service-details",
-        element: <ServiceDetails />,
-      },
-      {
-        path: "/project-details",
-        element: <ProjectDetails />,
-      },
-      {
-        path: "/team",
-        element: <Team />,
-      },
-      {
-        path: "/*",
-        element: <Error />,
-      },
-    ],
-  },
-]);
-function App() {
-  return (
-    <div>
-      <RouterProvider router={router} />
-    </div>
-  );
-}
+};
+
 export default App;

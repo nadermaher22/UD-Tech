@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import IntroVideo from "../assests/img/video/ocean.webm";
 import Logo from "../assests/img/logo.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, FreeMode } from "swiper";
+import { Navigation, FreeMode, Autoplay } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
@@ -14,18 +14,12 @@ import Icon2 from "../assests/img/icons/service-icon-2.png";
 import Icon3 from "../assests/img/icons/service-icon-3.png";
 import Banner1 from "../assests/img/about-baner-1.jpg";
 import Project1 from "../assests/img/project/project-1.jpg";
-import Project2 from "../assests/img/project/project-2.jpg";
-import Project3 from "../assests/img/project/project-3.jpg";
-import Project4 from "../assests/img/project/project-4.jpg";
-import Project5 from "../assests/img/project/project-5.jpg";
-import Project6 from "../assests/img/project/project-6.jpg";
 import Blog1 from "../assests/img/blog/blog-1.jpg";
 import Blog2 from "../assests/img/blog/blog-1.jpg";
 import Blog3 from "../assests/img/blog/blog-1.jpg";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
-import IsoTopeGrid from "react-isotope";
 
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
 
@@ -37,8 +31,67 @@ import { motion, useMotionValue } from "framer-motion";
 import Data from "../components/Data.js";
 import ProjectCard from "../components/ProjectCard";
 import ProjectBtn from "../components/ProjectBtn";
+import axios from "axios";
 
 const Home = () => {
+  const [servicesApiData, setServicesApiData] = useState([]);
+  const [aboutData, setAboutData] = useState([]);
+  const [getClients, setGetClients] = useState([]);
+  const [getBlogsHome, setGetBlogsHome] = useState([]);
+  const [getContact, setGetcontact] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=1")
+      .then((res) => {
+        setGetcontact(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetClients?languageId=1")
+      .then((res) => {
+        setGetClients(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=1")
+      .then((res) => {
+        setGetBlogsHome(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetServices?languageId=1")
+      .then((res) => {
+        setServicesApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetAboutUs?languageId=1")
+      .then((res) => {
+        setAboutData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   const [item, setItem] = useState(Data);
   const menuItems = [...new Set(Data.map((Val) => Val.category))];
   const [swiperRef, setSwiperRef] = useState(null);
@@ -112,13 +165,13 @@ const Home = () => {
           <div className="verticale-social">
             <ul className="vertical-media">
               <li>
-                <a href="https://www.twitter.com/">Twitter</a>
+                <a href={getContact.turl}>Twitter</a>
               </li>
               <li>
-                <a href="https://www.instagram.com/">Instagram</a>
+                <a href={getContact.iurl}>Instagram</a>
               </li>
               <li>
-                <a href="https://www.linkedin.com/">Linkedin</a>
+                <a href={getContact.lurl}>Linkedin</a>
               </li>
             </ul>
           </div>
@@ -151,10 +204,10 @@ const Home = () => {
         </section>
         <div>
           <section className="services-area layout2 sec-mar">
-            <div className="container-fluid">
+            <div className="container">
               <div
                 className="title-wrap wow animate animate__fadeInUp"
-                data-wow-delay="200ms"
+                // data-wow-delay="200ms"
                 data-wow-duration="1500ms"
               >
                 <div className="sec-title white">
@@ -169,17 +222,17 @@ const Home = () => {
                 </div>
               </div>
               <Swiper
-                freeMode={true}
                 navigation={true}
-                modules={[Navigation, FreeMode]}
-                className="mySwiper homeSwiper"
+                modules={[Navigation, Autoplay]}
+                className="mySwiper"
+                centeredSlides={false}
                 scrollbar={{ draggable: true }}
                 loop={true}
                 pagination={{
                   clickable: true,
                 }}
                 autoplay={{
-                  delay: 2000,
+                  delay: 4000,
                   disableOnInteraction: false,
                 }}
                 breakpoints={{
@@ -196,99 +249,40 @@ const Home = () => {
                     spaceBetween: 50,
                   },
                   1204: {
-                    slidesPerView: 3,
-                    spaceBetween: 60,
+                    slidesPerView: 2.8,
+                    spaceBetween: 50,
                   },
                 }}
               >
-                <SwiperSlide>
-                  <div
-                    className="swiper-slide wow animate animate__fadeInUp"
-                    data-wow-delay="200ms"
-                    data-wow-duration="1500ms"
-                  >
-                    <div className="single-service layout2">
-                      <span>01</span>
-                      <div className="icon">
-                        <img src={Icon1} alt="" />
+                {servicesApiData.map((service) => {
+                  return (
+                    <SwiperSlide key={service.id}>
+                      <div
+                        className="swiper-slide wow animate animate__fadeInUp"
+                        data-wow-delay="200ms"
+                        data-wow-duration="1500ms"
+                      >
+                        <div className="single-service layout2 ">
+                          <span>{service.id}</span>
+                          <div className="icon">
+                            <img src={service.photoPath} alt="" />
+                          </div>
+                          <h4>{service.title}</h4>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: service.description
+                                .substring(200, 20)
+                                .concat(" ..."),
+                            }}
+                          ></p>
+                          <div className="read-btn">
+                            <a href="/service-details">Read More</a>
+                          </div>
+                        </div>
                       </div>
-                      <h4>Web Design</h4>
-                      <p>
-                        Integer purus odio, placerat nec rhoncu in, ullamcorper
-                        nec dolor.
-                      </p>
-                      <div className="read-btn">
-                        <a href="/service-details">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div
-                    className="swiper-slide wow animate animate__fadeInUp"
-                    data-wow-delay="400ms"
-                    data-wow-duration="1500ms"
-                  >
-                    <div className="single-service layout2">
-                      <span>02</span>
-                      <div className="icon">
-                        <img src={Icon2} alt="" />
-                      </div>
-                      <h4>UI/UX Design</h4>
-                      <p>
-                        Integer purus odio, placerat nec rhoncu in, ullamcorper
-                        nec dolor.
-                      </p>
-                      <div className="read-btn">
-                        <a href="/service-details">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div
-                    className="swiper-slide wow animate animate__fadeInUp"
-                    data-wow-delay="400ms"
-                    data-wow-duration="1500ms"
-                  >
-                    <div className="single-service layout2">
-                      <span>03</span>
-                      <div className="icon">
-                        <img src={Icon3} alt="" />
-                      </div>
-                      <h4>Software Development</h4>
-                      <p>
-                        Integer purus odio, placerat nec rhoncu in, ullamcorper
-                        nec dolor.
-                      </p>
-                      <div className="read-btn">
-                        <a href="/service-details">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
-                <SwiperSlide>
-                  <div
-                    className="swiper-slide wow animate animate__fadeInUp"
-                    data-wow-delay="600ms"
-                    data-wow-duration="1500ms"
-                  >
-                    <div className="single-service layout2">
-                      <span>01</span>
-                      <div className="icon">
-                        <img src={Icon1} alt="" />
-                      </div>
-                      <h4>Web Design</h4>
-                      <p>
-                        Integer purus odio, placerat nec rhoncu in, ullamcorper
-                        nec dolor.
-                      </p>
-                      <div className="read-btn">
-                        <a href="/service-details">Read More</a>
-                      </div>
-                    </div>
-                  </div>
-                </SwiperSlide>
+                    </SwiperSlide>
+                  );
+                })}
               </Swiper>
             </div>
           </section>
@@ -303,27 +297,25 @@ const Home = () => {
                 data-wow-duration="1500ms"
               >
                 <div className="sec-title white layout2">
-                  <span>Get To Know</span>
-                  <h2>About Us</h2>
+                  <div
+                    dangerouslySetInnerHTML={{ __html: aboutData.title }}
+                  ></div>
                 </div>
                 <div className="about-left layout2">
-                  <h3>We do design, code & develop Software finally launch.</h3>
-                  <p>
-                    Integer purus odio, placerat nec rhoncus in, ullamcorper nec
-                    dolor. Class onlin aptent taciti sociosqu ad litora torquent
-                    per conubia nostra, per inceptos only himenaeos. Praesent
-                    nec neque at dolor venenatis consectetur eu quis ex. the
-                    Donec lacinia placerat felis non aliquam.
-                  </p>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: aboutData.aboutDescription,
+                    }}
+                  ></div>
                   <div className="company-since layout2">
                     <div className="company-logo">
-                      <img src={Logo} alt="" />
+                      <img src={aboutData.missionPhotoPath} alt="" />
                     </div>
-                    <strong>#1</strong>
-                    <h4>
-                      Best Creative IT Agency And Solutions
-                      <span>Since 2005.</span>
-                    </h4>
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: aboutData.missionDescription,
+                      }}
+                    ></div>
                   </div>
                 </div>
               </div>
@@ -334,7 +326,7 @@ const Home = () => {
               >
                 <div className="about-right layout2">
                   <div className="banner-1">
-                    <img src={Banner1} alt="" />
+                    <img src={aboutData.visionPhotoPath} alt="" />
                   </div>
                   <div className="buttons">
                     <div className="cmn-btn">
@@ -374,93 +366,6 @@ const Home = () => {
               filterItem={filterItem}
             />
             <ProjectCard item={item} />
-            {/*
-            <div className="row g-4 project-items">
-              <div className="col-md-6 col-lg-4 single-item graphic ui">
-                <div className="item-img">
-                  <a href="/projects">
-                    <img src={Project1} alt="" />
-                  </a>
-                </div>
-                <div className="item-inner-cnt">
-                  <span>Software</span>
-                  <h4>Desktop Mockup</h4>
-                  <div className="view-btn">
-                    <a href="/project-details">view details</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-4 single-item developing web">
-                <div className="item-img">
-                  <a href="/projects">
-                    <img src={Project2} alt="" />
-                  </a>
-                </div>
-                <div className="item-inner-cnt">
-                  <span>Template</span>
-                  <h4>Creative Agency</h4>
-                  <div className="view-btn">
-                    <a href="/project-details">view details</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-4 single-item developing">
-                <div className="item-img">
-                  <a href="/projects">
-                    <img src={Project3} alt="" />
-                  </a>
-                </div>
-                <div className="item-inner-cnt">
-                  <span>App</span>
-                  <h4>Mobile Crypto Wallet</h4>
-                  <div className="view-btn">
-                    <a href="/project-details">view details</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-4 single-item graphic">
-                <div className="item-img">
-                  <a href="/projects">
-                    <img src={Project4} alt="" />
-                  </a>
-                </div>
-                <div className="item-inner-cnt">
-                  <span>UI Kit</span>
-                  <h4>E-Shop Ecommerce</h4>
-                  <div className="view-btn">
-                    <a href="/project-details">view details</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-4 single-item ui">
-                <div className="item-img">
-                  <a href="/projects">
-                    <img src={Project5} alt="" />
-                  </a>
-                </div>
-                <div className="item-inner-cnt">
-                  <span>Graphic</span>
-                  <h4>Art Deco Cocktails</h4>
-                  <div className="view-btn">
-                    <a href="/project-details">view details</a>
-                  </div>
-                </div>
-              </div>
-              <div className="col-md-6 col-lg-4 single-item web">
-                <div className="item-img">
-                  <a href="/projects">
-                    <img src={Project6} alt="" />
-                  </a>
-                </div>
-                <div className="item-inner-cnt">
-                  <span>3D Design</span>
-                  <h4>Low poly Base mesh</h4>
-                  <div className="view-btn">
-                    <a href="/project-details">view details</a>
-                  </div>
-                </div>
-              </div>
-            </div> */}
           </div>
         </section>
 
@@ -493,100 +398,29 @@ const Home = () => {
                   autoplay={true}
                   onSwiper={(swiper) => setSwiperRef(swiper)}
                 >
-                  <div className="swiper partner-slider">
-                    <div className="swiper-wrapper">
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
+                  {getClients.map((client) => {
+                    return (
+                      <div className="swiper partner-slider" key={client.id}>
+                        <div className="swiper-wrapper">
+                          <SwiperSlide>
+                            <div className="single-partner single-item graphic ui">
+                              <div className="item-img">
+                                <a href="/">
+                                  <img src={client.photoPath} alt="" />
+                                </a>
+                              </div>
+                              <div className="item-inner-cnt">
+                                <h4 className="d-flex">{client.name}</h4>
+                                <div className="view-btn">
+                                  <a href="/">View Website</a>
+                                </div>
+                              </div>
                             </div>
-                          </div>
+                          </SwiperSlide>
                         </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                    </div>
-                  </div>
+                      </div>
+                    );
+                  })}
                 </Swiper>
               </div>
             </div>
@@ -626,87 +460,36 @@ const Home = () => {
               </div>
             </div>
             <div className="row gy-4">
-              <div
-                className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                data-wow-delay="200ms"
-                data-wow-duration="1500ms"
-              >
-                <div className="single-blog layout2">
-                  <div className="blog-thumb">
-                    <a href="/blog-details">
-                      <img src={Blog1} alt="" />
-                    </a>
-                    <div className="tag">
-                      <a href="/projects">UI/UX</a>
+              {getBlogsHome.slice(0, 3).map((blog) => {
+                return (
+                  <div
+                    className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
+                    data-wow-delay="200ms"
+                    data-wow-duration="1500ms"
+                    key={blog.id}
+                  >
+                    <div className="single-blog layout2">
+                      <div className="blog-thumb">
+                        <a href={`/blog-details/${blog.id}`}>
+                          <img src={blog.photoPath} alt="" />
+                        </a>
+                        <div className="tag">
+                          <a href="/projects">UI/UX</a>
+                        </div>
+                      </div>
+                      <div className="blog-inner">
+                        <div className="author-date">
+                          <a href="/">By, Admin</a>
+                          <a href="/">22.02.2022</a>
+                        </div>
+                        <h4>
+                          <a href={`/blog-details/${blog.id}`}>{blog.title}</a>
+                        </h4>
+                      </div>
                     </div>
                   </div>
-                  <div className="blog-inner">
-                    <div className="author-date">
-                      <a href="/">By, Admin</a>
-                      <a href="/">22.02.2022</a>
-                    </div>
-                    <h4>
-                      <a href="/blog-details">
-                        Quisque malesuada sapien and Donec sed nunc.
-                      </a>
-                    </h4>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                data-wow-delay="400ms"
-                data-wow-duration="1500ms"
-              >
-                <div className="single-blog layout2">
-                  <div className="blog-thumb">
-                    <a href="/blog-details">
-                      <img src={Blog2} alt="" />
-                    </a>
-                    <div className="tag">
-                      <a href="/projects">Software</a>
-                    </div>
-                  </div>
-                  <div className="blog-inner">
-                    <div className="author-date">
-                      <a href="/">By, Admin</a>
-                      <a href="/">22.02.2022</a>
-                    </div>
-                    <h4>
-                      <a href="/blog-details">
-                        Suspendisse pretium magna qu nisl egestas porttitor.
-                      </a>
-                    </h4>
-                  </div>
-                </div>
-              </div>
-              <div
-                className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                data-wow-delay="600ms"
-                data-wow-duration="1500ms"
-              >
-                <div className="single-blog layout2">
-                  <div className="blog-thumb">
-                    <a href="/blog-details">
-                      <img src={Blog3} alt="" />
-                    </a>
-                    <div className="tag">
-                      <a href="/projects">Dashbord</a>
-                    </div>
-                  </div>
-                  <div className="blog-inner">
-                    <div className="author-date">
-                      <a href="/">By, Admin</a>
-                      <a href="/">22.02.2022</a>
-                    </div>
-                    <h4>
-                      <a href="/blog-details">
-                        In a augue sit amet erat Suspel eleifend suscipit issen.
-                      </a>
-                    </h4>
-                  </div>
-                </div>
-              </div>
+                );
+              })}
             </div>
           </div>
         </section>

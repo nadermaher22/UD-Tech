@@ -1704,7 +1704,7 @@ header {
 }
 
 .services-area .swiper-button-next {
-  right: 7%;
+  right: -9%;
 }
 
 @media only screen and (min-width: 1400px) and (max-width: 1699px),
@@ -1712,7 +1712,7 @@ header {
   only screen and (min-width: 992px) and (max-width: 1199px),
   only screen and (min-width: 768px) and (max-width: 991px) {
   .services-area .swiper-button-next {
-    right: 1%;
+    right: -7%;
   }
 }
 
@@ -1725,7 +1725,7 @@ header {
   only screen and (min-width: 992px) and (max-width: 1199px),
   only screen and (min-width: 768px) and (max-width: 991px) {
   .services-area .swiper-button-prev {
-    left: 1%;
+    left: -7%;
   }
 }
 
@@ -1742,6 +1742,7 @@ header {
   padding: 30px;
   -webkit-transition: all 0.5s ease-out 0s;
   transition: all 0.5s ease-out 0s;
+  min-height: 415px;
 }
 
 .single-service span {
@@ -2418,6 +2419,7 @@ header {
 .single-partner img {
   height: auto;
   width: auto;
+  min-height: 250px;
 }
 
 /*===========================
@@ -2752,11 +2754,11 @@ header {
 }
 
 .testimonial-area .swiper-button-next {
-  right: 7%;
+  right: 1%;
 }
 
 .testimonial-area .swiper-button-prev {
-  left: 7%;
+  left: 1%;
 }
 
 .swiper.testimonial-slider .swiper-slide {
@@ -3789,11 +3791,11 @@ footer.error {
 }
 
 .single-service.layout2 h4 {
-  color: #e4e4e4;
+  color: #e4e4e4 !important;
 }
 
 .single-service.layout2 p {
-  color: #e4e4e4;
+  color: #e4e4e4 !important;
 }
 
 .single-service.layout2 .read-btn a {
@@ -3811,6 +3813,9 @@ footer.error {
 
 .about-left.layout2 p {
   color: #e4e4e4;
+}
+.services-area .swiper {
+  overflow: unset !important;
 }
 
 .company-since.layout2 {
