@@ -160,7 +160,7 @@ const About = () => {
                               <span ref={countUpRef} />
                             </ReactVisibilitySensor>
                           )}
-                        </CountUp>{" "}
+                        </CountUp>
                         <sup>+</sup>
                         <h5>Satisfied Clients</h5>
                       </div>
@@ -171,7 +171,7 @@ const About = () => {
                               <span ref={countUpRef} />
                             </ReactVisibilitySensor>
                           )}
-                        </CountUp>{" "}
+                        </CountUp>
                         <sup>+</sup>
                         <h5>Expert Teams</h5>
                       </div>

@@ -1,18 +1,30 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Logo from "../assests/img/logo.svg";
 
 import {
-  FaFacebookF,
   FaTwitter,
-  FaPinterestP,
   FaInstagram,
   FaRegEnvelope,
   FaPhoneAlt,
   FaMapMarkerAlt,
   FaWhatsapp,
+  FaLinkedin,
+  FaGoogleDrive,
 } from "react-icons/fa";
+import axios from "axios";
 
 const Footer = () => {
+  const [apiData, setApiData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=1")
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   return (
     <>
       <footer>
@@ -32,22 +44,22 @@ const Footer = () => {
                   </p>
                   <ul className="social-media-icons p-0">
                     <li>
-                      <a href="https://www.facebook.com/">
-                        <FaFacebookF />
+                      <a href={apiData.lurl}>
+                        <FaLinkedin />
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.twitter.com/">
+                      <a href={apiData.turl}>
                         <FaTwitter />
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.pinterest.com/">
-                        <FaPinterestP />
+                      <a href={apiData.wurl}>
+                        <FaGoogleDrive />
                       </a>
                     </li>
                     <li>
-                      <a href="https://www.instagram.com/">
+                      <a href={apiData.iurl}>
                         <FaInstagram />
                       </a>
                     </li>
@@ -59,22 +71,22 @@ const Footer = () => {
                   <h4>Our Services</h4>
                   <ul className="footer-menu p-0">
                     <li>
-                      <a href="/service-details">Strategy &amp; Research</a>
+                      <a href="/services">Strategy &amp; Research</a>
                     </li>
                     <li>
-                      <a href="/service-details">Web Development</a>
+                      <a href="/services">Web Development</a>
                     </li>
                     <li>
-                      <a href="/service-details">Web Solution</a>
+                      <a href="/services">Web Solution</a>
                     </li>
                     <li>
-                      <a href="/service-details">Digital Merketing</a>
+                      <a href="/services">Digital Merketing</a>
                     </li>
                     <li>
-                      <a href="/service-details">App Design</a>
+                      <a href="/services">App Design</a>
                     </li>
                     <li>
-                      <a href="/service-details">App Development</a>
+                      <a href="/services">App Development</a>
                     </li>
                   </ul>
                 </div>
@@ -112,8 +124,7 @@ const Footer = () => {
                       <FaPhoneAlt />
                     </div>
                     <div className="phone">
-                      <a href="tel:05661111985">+880 566 1111 985</a>
-                      <a href="tel:06571111576">+880 657 1111 576</a>
+                      <a href={`tel:${apiData.mobile}`}>{apiData.mobile}</a>
                     </div>
                   </div>
                   <div className="office-mail">
@@ -121,15 +132,14 @@ const Footer = () => {
                       <FaRegEnvelope />
                     </div>
                     <div className="email">
-                      <a href="tell:info@example.com">info@example.com</a>
-                      <a href="tell:info@support.com">info@support.com</a>
+                      <a href={`mailto:${apiData.email}`}>{apiData.email}</a>
                     </div>
                   </div>
                   <div className="address">
                     <div className="address-icon">
                       <FaMapMarkerAlt />
                     </div>
-                    <p>168/170, Avenue 01, Mirpur DOHS, Bangladesh</p>
+                    <p>{apiData.address}</p>
                   </div>
                 </div>
               </div>
@@ -162,7 +172,7 @@ const Footer = () => {
       <div className="whatsapp-button EN">
         <ul className="social-media-icons">
           <li>
-            <a href="https://wa.me/+9660599209361">
+            <a href={`https://wa.me/${apiData.mobile}`}>
               <FaWhatsapp />
             </a>
           </li>

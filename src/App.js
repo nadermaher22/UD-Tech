@@ -25,7 +25,6 @@ import ServiceDetails from "./pages/ServiceDetails";
 import ProjectDetails from "./pages/ProjectDetails";
 import Team from "./pages/Team";
 import "../src/assests/css/bootstrap-icons.css";
-
 import AnimatedCursor from "react-animated-cursor";
 
 const App = () => {
@@ -55,6 +54,7 @@ const App = () => {
           </div>
         )}
         {/* Ask for cookies */}
+
         <div className={isShown ? "d-none" : ""}>
           <div className="cookies sc-breuTD gPIury aos-init aos-animate">
             <div className="container">
@@ -139,7 +139,10 @@ const App = () => {
           <Route path="/pricing" element={<Pricing />} />
           <Route path="/service-details" element={<ServiceDetails />} />
           <Route path="/team" element={<Team />} />
-          <Route path="/project-details" element={<ProjectDetails />} />
+          <Route
+            path="/project-details/:projectId"
+            element={<ProjectDetails />}
+          />
           <Route path="/*" element={<Error />} />
         </Routes>
         <Footer />

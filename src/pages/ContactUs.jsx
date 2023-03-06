@@ -23,6 +23,8 @@ const ContactUs = () => {
   const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [apiData, setApiData] = useState([]);
+  const [messagesSubmit, setMessageSubmit] = useState("");
+  const [errorMessagesSubmit, setErrorMessageSubmit] = useState("");
 
   useEffect(() => {
     axios
@@ -44,9 +46,11 @@ const ContactUs = () => {
         subject,
         message,
       })
-      .then((response) => console.log("data posted", response.data))
+      .then((response) => {
+        setMessageSubmit(response.data);
+      })
       .catch((err) => {
-        console.log(err);
+        setErrorMessageSubmit(err.response.data.message);
       });
   };
   useEffect(() => {
@@ -184,7 +188,7 @@ const ContactUs = () => {
                       data-wow-duration="1500ms"
                     >
                       <h3>Have Any Questions</h3>
-                      <form>
+                      <form method="post" onSubmit={PostMessage}>
                         <div className="row">
                           <div className="col-12">
                             <input
@@ -218,10 +222,14 @@ const ContactUs = () => {
                               value={message}
                               onChange={(e) => setMessage(e.target.value)}
                             ></textarea>
-                            <input type="submit" onClick={PostMessage} />
+                            <input type="submit" />
                           </div>
                         </div>
                       </form>
+                      <h1 className="mt-3 text-success">{messagesSubmit}</h1>
+                      <h1 className="mt-3 text-danger">
+                        {errorMessagesSubmit}
+                      </h1>
                     </div>
                   </div>
                   <div

@@ -72,9 +72,10 @@ const Testimonials = () => {
             >
               {apiData.map((testimonial) => {
                 return (
-                  <SwiperSlide key={testimonial.id}>
+                  <SwiperSlide>
                     {({ isActive }) => (
                       <div
+                        key={testimonial.id}
                         className={
                           isActive
                             ? "swiper-slide swiper-slide-active"

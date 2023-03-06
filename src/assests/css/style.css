@@ -1652,7 +1652,7 @@ header {
 }
 .mySwiper {
   position: relative;
-  /* padding: 0px 50px; */
+  padding: 0px 50px;
 }
 .homeSwiper {
   padding: 0px 70px !important;
@@ -1685,6 +1685,7 @@ header {
 
 .services-area .swiper-button-next:after,
 .services-area .swiper-button-prev:after {
+  position: absolute;
   font-size: 20px;
   height: 40px;
   min-width: 40px;
@@ -3814,9 +3815,9 @@ footer.error {
 .about-left.layout2 p {
   color: #e4e4e4;
 }
-.services-area .swiper {
+/* .services-area .swiper {
   overflow: unset !important;
-}
+} */
 
 .company-since.layout2 {
   background: #0d0d0f;

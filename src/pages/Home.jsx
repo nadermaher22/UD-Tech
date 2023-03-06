@@ -1,22 +1,12 @@
 import React, { useState, useEffect } from "react";
 import IntroVideo from "../assests/img/video/ocean.webm";
-import Logo from "../assests/img/logo.svg";
+import Logo from "../assests/img/logo-dark.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, FreeMode, Autoplay } from "swiper";
+import { Navigation, Autoplay } from "swiper";
 // Import Swiper styles
 import "swiper/css";
-import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/bundle";
-import "swiper/css/free-mode";
-import Icon1 from "../assests/img/icons/service-icon-1.png";
-import Icon2 from "../assests/img/icons/service-icon-2.png";
-import Icon3 from "../assests/img/icons/service-icon-3.png";
-import Banner1 from "../assests/img/about-baner-1.jpg";
-import Project1 from "../assests/img/project/project-1.jpg";
-import Blog1 from "../assests/img/blog/blog-1.jpg";
-import Blog2 from "../assests/img/blog/blog-1.jpg";
-import Blog3 from "../assests/img/blog/blog-1.jpg";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
@@ -225,14 +215,11 @@ const Home = () => {
                 navigation={true}
                 modules={[Navigation, Autoplay]}
                 className="mySwiper"
-                centeredSlides={false}
+                centeredSlides={true}
                 scrollbar={{ draggable: true }}
                 loop={true}
-                pagination={{
-                  clickable: true,
-                }}
                 autoplay={{
-                  delay: 4000,
+                  delay: 5000,
                   disableOnInteraction: false,
                 }}
                 breakpoints={{
@@ -245,11 +232,11 @@ const Home = () => {
                     spaceBetween: 30,
                   },
                   768: {
-                    slidesPerView: 1,
+                    slidesPerView: 3,
                     spaceBetween: 50,
                   },
                   1204: {
-                    slidesPerView: 2.8,
+                    slidesPerView: 2.7,
                     spaceBetween: 50,
                   },
                 }}
@@ -258,14 +245,14 @@ const Home = () => {
                   return (
                     <SwiperSlide key={service.id}>
                       <div
-                        className="swiper-slide wow animate animate__fadeInUp"
+                        className="swiper-slide wow animate animate__fadeInUp "
                         data-wow-delay="200ms"
                         data-wow-duration="1500ms"
                       >
-                        <div className="single-service layout2 ">
+                        <div className="single-service layout2">
                           <span>{service.id}</span>
                           <div className="icon">
-                            <img src={service.photoPath} alt="" />
+                            <img src={service.photoPath} alt={service.title} />
                           </div>
                           <h4>{service.title}</h4>
                           <p
@@ -276,7 +263,9 @@ const Home = () => {
                             }}
                           ></p>
                           <div className="read-btn">
-                            <a href="/service-details">Read More</a>
+                            <a href={`/service-details/${service.id}`}>
+                              Read More
+                            </a>
                           </div>
                         </div>
                       </div>
@@ -309,7 +298,7 @@ const Home = () => {
                   ></div>
                   <div className="company-since layout2">
                     <div className="company-logo">
-                      <img src={aboutData.missionPhotoPath} alt="" />
+                      <img src={Logo} alt="" />
                     </div>
                     <div
                       dangerouslySetInnerHTML={{
@@ -389,7 +378,8 @@ const Home = () => {
               <div className="col-lg-9">
                 <Swiper
                   spaceBetween={20}
-                  slidesPerView={3}
+                  slidesPerView={2.7}
+                  centeredSlides={true}
                   navigation={false}
                   modules={[Navigation]}
                   className="mySwiper"

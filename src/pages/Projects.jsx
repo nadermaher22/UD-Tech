@@ -7,18 +7,30 @@ import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
 import ProjectBtn from "../components/ProjectBtn";
 import ProjectCard from "../components/ProjectCard";
-import Data from "../components/Data.js";
+import axios from "axios";
 
 const Projects = () => {
-  const [item, setItem] = useState(Data);
-  const menuItems = [...new Set(Data.map((Val) => Val.category))];
-  console.log(menuItems);
+  const [apiData, setApiData] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=1")
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const [item, setItem] = useState(apiData);
+  const menuItems = [...new Set(apiData.map((Val) => Val.category))];
   const [swiperRef, setSwiperRef] = useState(null);
   const filterItem = (curcat) => {
-    const newItem = Data.filter((newVal) => {
+    const newItem = apiData.filter((newVal) => {
       return newVal.category === curcat;
-      // comparing category for displaying data
     });
+    console.log(newItem);
+
     setItem(newItem);
   };
 

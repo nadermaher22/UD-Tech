@@ -9,6 +9,7 @@ import Newsletter from "../components/Newsletter";
 import WidgetBanner from "../assests/img/widget-banner-bg.jpg";
 import ArrowAngle from "../assests/img/arrow-angle.png";
 import axios from "axios";
+
 const Blog = () => {
   const [apiData, setApiData] = useState([]);
 

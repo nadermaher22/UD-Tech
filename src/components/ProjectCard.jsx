@@ -4,6 +4,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import axios from "axios";
 
 const ProjectCard = ({ item }) => {
+  const [apiData, setApiData] = useState([]);
+
   useEffect(() => {
     axios
       .get("http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=1")
@@ -14,12 +16,23 @@ const ProjectCard = ({ item }) => {
         console.log(err);
       });
   }, []);
-  const [apiData, setApiData] = useState([]);
   useEffect(() => {
     new WOW.WOW({
       live: false,
     }).init();
   });
+
+  // function cardsCounter(cards) {
+  //   const rows = [];
+  //   for (let i = 0; i < cards; i++) {
+  //     rows.push(
+  //       <a href="/">
+  //         <FaStar />
+  //       </a>
+  //     );
+  //   }
+  //   return rows;
+  // }
   return (
     <section className="">
       <div className="container-fluid">
@@ -33,7 +46,7 @@ const ProjectCard = ({ item }) => {
                 key={Val.id}
               >
                 <div className="item-img">
-                  <a href="/projects">
+                  <a href={`/project-details/${Val.id}`}>
                     <img src={Val.photoPath} alt="" />
                   </a>
                 </div>
@@ -41,7 +54,7 @@ const ProjectCard = ({ item }) => {
                   <span>{Val.title}</span>
                   <h4>{Val.project}</h4>
                   <div className="view-btn">
-                    <a href="/project-details">view details</a>
+                    <a href={`/project-details/${Val.id}`}>view details</a>
                   </div>
                 </div>
               </div>

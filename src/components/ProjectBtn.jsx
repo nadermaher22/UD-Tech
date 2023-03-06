@@ -1,9 +1,10 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
-import Data from "./Data.js";
 
 const ProjectBtn = ({ setItem, menuItems, filterItem }) => {
   const [apiData, setApiData] = useState([]);
+  const [active, setActive] = useState("All");
+
   useEffect(() => {
     axios
       .get("http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=1")
@@ -14,13 +15,13 @@ const ProjectBtn = ({ setItem, menuItems, filterItem }) => {
         console.log(err);
       });
   }, []);
-  const [active, setActive] = useState("All");
+
   const filterFunction = (Val) => {
     filterItem(Val);
     setActive(Val);
   };
   const AllFilterFunction = (Val) => {
-    setItem(Data);
+    setItem(apiData);
     setActive("All");
   };
   return (
@@ -36,7 +37,7 @@ const ProjectBtn = ({ setItem, menuItems, filterItem }) => {
           return (
             <li
               onClick={() => filterFunction(Val)}
-              key={id}
+              key={Val.id}
               className={active === Val && "active"}
             >
               {Val}

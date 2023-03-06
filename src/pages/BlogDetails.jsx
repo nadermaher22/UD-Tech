@@ -7,16 +7,12 @@ import {
   FaInstagram,
   FaPinterestP,
   FaPlay,
-  FaQuoteLeft,
   FaSearch,
   FaTwitter,
 } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
-import BlogThumb1 from "../assests/img/blog/blog-thumb.jpg";
-import BlogGallery1 from "../assests/img/blog/blog-gallery-1.jpg";
-import BlogGallery2 from "../assests/img/blog/blog-gallery-2.jpg";
 import Auther1 from "../assests/img/author-1.jpg";
 import Auther2 from "../assests/img/author-2.jpg";
 import WidgetBanner from "../assests/img/widget-banner-bg.jpg";
@@ -35,11 +31,6 @@ const BlogDetails = () => {
       )
       .then((res) => {
         setApiData(res.data);
-        // console.log("BlogData", apiData);
-        // console.log("BlogId from api", blogId);
-        // let BlogDataww = apiData.filter((item) => item.id === Number(dataId));
-        // setBlogDetailsData(BlogDataww);
-        // console.log("nader ", BlogDataww);
       })
       .catch((err) => {
         console.log(err);

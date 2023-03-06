@@ -5,21 +5,38 @@ import { FaEnvelope, FaMapMarkerAlt, FaPhoneAlt, FaPlay } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
-import ProjectThumbnail from "../assests/img/project/thumbnail-project.jpg";
 import WorkThumbnail from "../assests/img/project/work-thumb-slide.jpg";
 import CheckImg from "../assests/img/icons/check.svg";
 import Project1 from "../assests/img/project/project-1.jpg";
 import Project2 from "../assests/img/project/project-2.jpg";
 import Project3 from "../assests/img/project/project-3.jpg";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
-import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
+import { A11y, Navigation, Pagination } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/bundle";
+import axios from "axios";
+import { useParams } from "react-router-dom";
 
 const ProjectDetails = () => {
+  const [apiData, setApiData] = useState([]);
+  const { projectId } = useParams();
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetProjectDetails?languageId=1&Id=${projectId}`
+      )
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -77,33 +94,15 @@ const ProjectDetails = () => {
               <div className="col-lg-8">
                 <div className="project-details-content">
                   <div className="project-thumb">
-                    <img src={ProjectThumbnail} alt="" />
+                    <img src={apiData.photoPath} alt="" />
                     <div className="tag">
                       <a href="/project-details">Software</a>
                     </div>
                   </div>
                   <h3>Desktop Mockup</h3>
-                  <p>
-                    Interdum et malesuada fames ac ante ipsum primis in
-                    faucibus. Etiam eu nibh elementum, accumsan ona neque ac,
-                    aliquet nunc. In eu ipsum fringilla, accumsan purus vel,
-                    pellentesque risus. Vivamus vehicula nl purus at eros
-                    interdum, in dignissim nulla vestibulum. Nunc sit amet
-                    finibus felis, ut egestas lacus. Sedan pellentesque quis
-                    magna eu vestibulum. Ut sed commodo neque. Morbi erat nisi,
-                    vehicula quis faucibus il ut, hendrerit vel tortor. In
-                    pharetra lectus luctus ornare sollicitudin. Pellentesque at
-                    neque nec justo sokal porttitor egestas nec eget ex.Etiam
-                    suscipit neque elit, hendrerit laoreet quam ultrices id.
-                    Proin nec tolde lacinia ligula, sed laoreet ex. Sed nisl
-                    ligula, euismod vel justo scelerisque, vestibulum ultricies
-                    tellus. volv Pellentesque vel turpis vitae urna tincidunt
-                    hendrerit at ut est. Sed eget feugiat felis. Integer sed
-                    ornare sem, eget porttitor nisi. Nunc erat sapien, porta
-                    laoreet gravida ac, dictum eu tortor. Nulla faucibus leoren
-                    rhoncus, gravida ligula a, ultrices enim. Proin lacinia
-                    malesuada finibus.
-                  </p>
+                  <p
+                    dangerouslySetInnerHTML={{ __html: apiData.description }}
+                  ></p>
                   <div className="clinet-need">
                     <h4>Client Needs</h4>
                     <p>
