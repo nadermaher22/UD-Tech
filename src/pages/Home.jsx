@@ -7,22 +7,18 @@ import { Navigation, Autoplay } from "swiper";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/bundle";
-
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
-
 import { BsChevronLeft, BsChevronRight } from "react-icons/bs";
-
 import "swiper/css";
 import Newsletter from "../components/Newsletter";
 import Testimonials from "../components/Testimonials";
 import Features from "../components/Features";
 import { motion, useMotionValue } from "framer-motion";
-import Data from "../components/Data.js";
 import ProjectCard from "../components/ProjectCard";
 import ProjectBtn from "../components/ProjectBtn";
 import axios from "axios";
-
+import Data from "../components/Data.js";
 const Home = () => {
   const [servicesApiData, setServicesApiData] = useState([]);
   const [aboutData, setAboutData] = useState([]);
@@ -387,6 +383,24 @@ const Home = () => {
                   loop={true}
                   autoplay={true}
                   onSwiper={(swiper) => setSwiperRef(swiper)}
+                  breakpoints={{
+                    0: {
+                      spaceBetween: 50,
+                      slidesPerView: 1,
+                    },
+                    480: {
+                      slidesPerView: 1,
+                      spaceBetween: 30,
+                    },
+                    768: {
+                      slidesPerView: 3,
+                      spaceBetween: 50,
+                    },
+                    1204: {
+                      slidesPerView: 2.7,
+                      spaceBetween: 50,
+                    },
+                  }}
                 >
                   {getClients.map((client) => {
                     return (

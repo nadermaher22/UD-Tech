@@ -12,7 +12,25 @@ import Arrow from "../assests/img/arrow-angle.png";
 import Thumb from "../assests/img/blog/thumb-1.jpg";
 import Thumb2 from "../assests/img/blog/thumb-2.jpg";
 import Thumb3 from "../assests/img/blog/thumb-3.jpg";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 const ServiceDetails = () => {
+  const { serviceId } = useParams();
+  const [apiDate, setApiData] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetServiceDetails?languageId=1&Id=${serviceId}`
+      )
+      .then((res) => {
+        setApiData(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -72,24 +90,15 @@ const ServiceDetails = () => {
             <div className="row">
               <div className="col-lg-8">
                 <div className="service-details-content">
-                  <img src={BlogThumbnail} alt="" />
+                  <img src={apiDate.photoPath} alt="" />
                   <h3>
                     <i>
                       <img src={ServiceIcon} alt="" />
                     </i>
-                    Software Development
+                    {apiDate.title}
                   </h3>
-                  <p>
-                    Interdum et malesuada fames ac ante ipsum primis in
-                    faucibus. Etiam eu nibh elementum, accumsan ona neque ac,
-                    aliquet nunc. In eu ipsum fringilla, accumsan purus vel,
-                    pellentesque risus. Vivamus vehicula nlpurus at eros
-                    interdum, in dignissim nulla vestibulum. Nunc sit amet
-                    finibus felis, ut egestas lacus. Sedanpellentesque quis
-                    magna eu vestibulum. Ut sed commodo neque. Morbi erat nisi,
-                    vehicula quis faucibus il
-                  </p>
-                  <p>
+                  <p>{apiDate.description}</p>
+                  {/* <p>
                     ut, hendrerit vel tortor. In pharetra lectus luctus ornare
                     sollicitudin. Pellentesque at neque nec justo sokal
                     porttitor egestas nec eget ex.Etiam suscipit neque elit,
@@ -102,7 +111,7 @@ const ServiceDetails = () => {
                     vitae urna tincidunt hendrerit at ut est. Sed eget feugiat
                     felis. Integer sed ornare sem, eget porttitor nisi. Nunc
                     erat sapien, porta laoreet gravida ac,
-                  </p>
+                  </p> */}
                 </div>
               </div>
               <div className="col-lg-4">

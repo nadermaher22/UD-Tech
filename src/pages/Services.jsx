@@ -104,7 +104,6 @@ const Services = () => {
                   return (
                     <div
                       className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                      data-wow-delay="200ms"
                       data-wow-duration="1500ms"
                       key={e.id}
                     >
@@ -118,7 +117,7 @@ const Services = () => {
                           dangerouslySetInnerHTML={{ __html: e.description }}
                         ></p>
                         <div className="read-btn">
-                          <a href="/service-details">Read More</a>
+                          <a href={`/service-details/${e.id}`}>Read More</a>
                         </div>
                       </div>
                     </div>

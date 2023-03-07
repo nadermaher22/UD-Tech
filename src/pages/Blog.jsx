@@ -220,11 +220,8 @@ const Blog = () => {
                                   <img src={e.photoPath} alt="" />
                                 </Link>
                                 <div className="tag">
-                                  <Link
-                                    to={`/blog-details/`}
-                                    state={{ data: e.id }}
-                                  >
-                                    {e.title}
+                                  <Link to={`/blog-details/${e.id}`}>
+                                    {e.category}
                                   </Link>
                                 </div>
                               </div>

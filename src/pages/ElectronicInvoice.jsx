@@ -5,11 +5,35 @@ import Newsletter from "../components/Newsletter";
 import { BsArrowRight } from "react-icons/bs";
 import { FaPlay } from "react-icons/fa";
 import VideoImg from "../assests/img/breadcrumb-video.jpg";
+import axios from "axios";
 
 const ElectronicInvoice = () => {
+  const [getInvoice, setGetInvoice] = useState([]);
+  const [invoiceImg, setInvoiceImg] = useState([]);
+  let temp = [];
+  const gg = async () => {
+    temp = getInvoice.find((e) => {
+      return e.id === 74;
+    });
+    console.log("ddddddd", temp);
+    return temp.photoPath;
+  };
   useEffect(() => {
-    window.scrollTo(0, 0);
-  });
+    axios
+      .get(
+        "http://apiv2.udtech-sa.com/api/WebSite/GetElectronicInvoice?languageId=1"
+      )
+      .then((res) => {
+        setGetInvoice(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // });
 
   useEffect(() => {
     new WOW.WOW({
@@ -83,124 +107,83 @@ const ElectronicInvoice = () => {
             <div className="container">
               <div className="row">
                 <div className="single-history">
-                  <div className="col-12 col-md-6">
-                    <div
-                      className="about-left py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
-                      data-wow-delay="300ms"
-                      data-wow-duration="1500ms"
-                    >
-                      <h3>What is an electronic invoice?</h3>
-                      <p>
-                        An electronic invoice is a tax invoice that is issued
-                        electronically through an electronic means, and is
-                        issued by each taxpayer subject to VAT. A handwritten or
-                        scanned invoice is not considered an electronic bill.
-                        Our Odoo system complies with the technical requirements
-                        of the electronic invoice that have been published so
-                        far.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="col-12 col-md-6">
-                    <div
-                      className="about-left py-2 pe-4 ps-4 wow animate animate__fadeInRight"
-                      data-wow-delay="300ms"
-                      data-wow-duration="1500ms"
-                    >
-                      <h3>
-                        Does Our Odoo System support electronic invoice
-                        requirements?
-                      </h3>
-                      <p>
-                        Our Odoo ERP System Support the electronic invoice
-                        requirements.
-                      </p>
-                    </div>
-                  </div>
+                  {getInvoice.slice(0, 2).map((first) => {
+                    return (
+                      <div className="col-12 col-md-6" key={first.id}>
+                        <div
+                          className="about-left py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
+                          data-wow-duration="1500ms"
+                        >
+                          <h3>{first.title}</h3>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: first.description,
+                            }}
+                          ></p>
+                        </div>
+                      </div>
+                    );
+                  })}
                 </div>
                 <div className="single-history">
                   <div className="col-12 col-md-6">
-                    <div
-                      className="about-left py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
-                      data-wow-delay="300ms"
-                      data-wow-duration="1500ms"
-                    >
-                      <h3>
-                        What are the requirements for the first stage of the
-                        electronic invoice?
-                      </h3>
-                      <p>1.Stop issuing manual bills</p>
-                      <p>2. Print the QR-Code for bills.</p>
-                      <p>
-                        3. Add the buyer's tax number if it is an organization
-                        and not an individual.
-                      </p>
-                    </div>
-                    <div
-                      className="about-left py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
-                      data-wow-delay="300ms"
-                      data-wow-duration="1500ms"
-                    >
-                      <h3>
-                        What should the facility do to comply with the
-                        requirements of the electronic invoice?
-                      </h3>
-                      <p>
-                        An electronic system compatible with e-invoice
-                        requirements is required. Our Odoo system is one of the
-                        systems that are compatible with the requirements of the
-                        electronic bill. With regard to the technical
-                        requirements for the second stage that were published by
-                        the Zakat, Income and Customs Authority, the greatest
-                        burden falls on the system providers in implementing
-                        them. Based on the technical requirements that have been
-                        published on the website of the Zakat, Income and
-                        Customs Authority, our company has started preparing for
-                        the technical requirements for the second phase of the
-                        application of the electronic invoice.
-                      </p>
-                    </div>
+                    {getInvoice.slice(2, 3).map((second) => {
+                      return (
+                        <div
+                          className="about-left py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
+                          data-wow-duration="1500ms"
+                          key={second.id}
+                        >
+                          <h3>{second.title}</h3>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: second.description,
+                            }}
+                          ></p>
+                        </div>
+                      );
+                    })}
                   </div>
                   <div className="col-12 col-md-6">
-                    <div
-                      className="item-img single-item py-2 pe-4 ps-4 wow animate animate__fadeInRight"
-                      data-wow-delay="300ms"
-                      data-wow-duration="1500ms"
-                    >
-                      <img
-                        className="m-0 border"
-                        src="http://udtech-sa.com/assets/inv.e67c71d2.png"
-                      />
-                    </div>
+                    {getInvoice.slice(3, 4).map((third) => {
+                      return (
+                        <div
+                          className="item-img single-item py-2 pe-4 ps-4 wow animate animate__fadeInRight"
+                          data-wow-duration="1500ms"
+                          key={third.id}
+                        >
+                          <img
+                            className="m-0 border"
+                            src={third.photoPath}
+                            alt=""
+                          />
+                        </div>
+                      );
+                    })}
                   </div>
                 </div>
 
                 <div className="single-history">
-                  <div className="col-12 col-md-6">
-                    <div
-                      className="about-left  py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
-                      data-wow-delay="300ms"
-                      data-wow-duration="1500ms"
-                    >
-                      <h3>
-                        Does the system print the QR-Code according to the
-                        requirements of the electronic invoice?
-                      </h3>
-                      <p>
-                        This feature has been added to our Odoo system to comply
-                        with the requirements of the first stage of the
-                        Tax-invoice. The system prints the code as shown in the
-                        image. The code contains the following data as per the
-                        requirements of the first stage:
-                      </p>
-                      <p>1. The name of the Organization.</p>
-                      <p>2. The Organization tax number</p>
-                      <p>3. The date and time of the invoice</p>
-                      <p>4. Total bill</p>
-                      <p>5. Total tax</p>
-                    </div>
-                  </div>
+                  {getInvoice.slice(4).map((fourth) => {
+                    return (
+                      <div className="col-12 col-md-6" key={fourth.id}>
+                        <div
+                          className="about-left  py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
+                          data-wow-duration="1500ms"
+                        >
+                          <h3>{fourth.title}</h3>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: fourth.description,
+                            }}
+                          ></p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
 
+                {/* 
                   <div className="col-12 col-md-6">
                     <div
                       className="about-left  py-2 pe-4 ps-4 wow animate animate__fadeInRight"
@@ -227,10 +210,9 @@ const ElectronicInvoice = () => {
                       </p>
                       <p>5. Allowing you more than one billing sequence</p>
                     </div>
-                  </div>
-                </div>
+                  </div> */}
 
-                <div className="single-history">
+                {/* <div className="single-history">
                   <div className="col-12 col-md-6">
                     <div
                       className="about-left  py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
@@ -304,7 +286,7 @@ const ElectronicInvoice = () => {
                       </p>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </section>

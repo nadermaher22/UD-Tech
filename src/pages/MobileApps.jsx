@@ -13,17 +13,7 @@ import Project1 from "../assests/img/project/project-1.jpg";
 import { BsArrowRight, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import VideoImg from "../assests/img/breadcrumb-video.jpg";
 import { FaPlay } from "react-icons/fa";
-import Project2 from "../assests/img/project/project-2.jpg";
-import Project3 from "../assests/img/project/project-3.jpg";
-import Project4 from "../assests/img/project/project-4.jpg";
-import Project5 from "../assests/img/project/project-5.jpg";
-import Project6 from "../assests/img/project/project-6.jpg";
-import Project7 from "../assests/img/project/project-7.jpg";
-import Project8 from "../assests/img/project/project-8.jpg";
-import Project9 from "../assests/img/project/project-9.jpg";
-import Project10 from "../assests/img/project/project-10.jpg";
-import Project11 from "../assests/img/project/project-11.jpg";
-import Project12 from "../assests/img/project/project-12.jpg";
+
 import JavaImg from "../assests/img/java.png";
 import ProjectBtn from "../components/ProjectBtn";
 import ProjectCard from "../components/ProjectCard";

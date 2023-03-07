@@ -1784,10 +1784,13 @@ header {
   color: #272727;
   -webkit-transition: all 0.5s ease-out 0s;
   transition: all 0.5s ease-out 0s;
+  margin-bottom: 2rem;
 }
 
 .single-service .read-btn {
-  text-align: right;
+  position: absolute;
+  bottom: 17px;
+  right: 24px;
 }
 
 .single-service .read-btn a {

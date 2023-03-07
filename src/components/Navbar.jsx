@@ -7,6 +7,16 @@ import { BsPlus, BsPlusLg } from "react-icons/bs";
 const Navbar = () => {
   // navbar scroll
   const [onScroll, setOnScroll] = useState(false);
+  const [sideBar, setSideBar] = useState(false);
+
+  
+  const showSideBar = () => {
+    setSideBar(true);
+  };
+
+
+
+
   const addStickyClass = () => {
     if (window.scrollY >= 200) {
       setOnScroll(true);
@@ -26,7 +36,7 @@ const Navbar = () => {
     setAddClass(!addClass);
   };
   return (
-    <div>
+    <div >
       <header
         className={
           onScroll
@@ -51,7 +61,7 @@ const Navbar = () => {
                 <BsPlus />
               </div>
             </div>
-            <ul>
+            <ul onClick={showSideBar}>
               <li>
                 <Link to="/" className={url === "/" ? " active" : ""}>
                   Home

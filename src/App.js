@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import "./assests/css/style.css";
 import "./assests/css/bootstrap.min.css";
@@ -42,7 +42,7 @@ const App = () => {
   };
   return (
     <div className="App">
-      <BrowserRouter>
+      <Router>
         {preLoader && (
           <div className="preloader">
             <div className="loader">
@@ -102,7 +102,7 @@ const App = () => {
             }}
             innerSize={0.001}
             trailingSpeed={30}
-            outerSize={30}
+            outerSize={28}
             color="255, 255 ,255"
             outerAlpha={0.8}
             outerScale={1}
@@ -137,7 +137,10 @@ const App = () => {
           <Route path="/blog-standard" element={<BlogStandard />} />
           <Route path="/faq" element={<Faq />} />
           <Route path="/pricing" element={<Pricing />} />
-          <Route path="/service-details" element={<ServiceDetails />} />
+          <Route
+            path="/service-details/:serviceId"
+            element={<ServiceDetails />}
+          />
           <Route path="/team" element={<Team />} />
           <Route
             path="/project-details/:projectId"
@@ -145,8 +148,8 @@ const App = () => {
           />
           <Route path="/*" element={<Error />} />
         </Routes>
-        <Footer />
-      </BrowserRouter>
+      </Router>
+      <Footer />
     </div>
   );
 };

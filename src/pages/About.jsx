@@ -6,8 +6,6 @@ import Banner2 from "../assests/img/why-2.jpg";
 import Banner3 from "../assests/img/why-3.jpg";
 import CountUp from "react-countup";
 import ReactVisibilitySensor from "react-visibility-sensor";
-import Logo from "../assests/img/logo-dark.svg";
-import AboutBanner from "../assests/img/about-baner-1.jpg";
 import { FaPlay } from "react-icons/fa";
 import Features from "../components/Features";
 import TimeLine1 from "../assests/img/timeline-1.jpg";
@@ -15,17 +13,26 @@ import TimeLine2 from "../assests/img/timeline-2.jpg";
 import TimeLine3 from "../assests/img/timeline-3.jpg";
 import TimeLine4 from "../assests/img/timeline-4.jpg";
 import Testimonials from "../components/Testimonials";
-import Blog1 from "../assests/img/blog/blog-1.jpg";
-import Blog2 from "../assests/img/blog/blog-1.jpg";
-import Blog3 from "../assests/img/blog/blog-1.jpg";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
-import { Modal } from "bootstrap";
 import axios from "axios";
-
 const About = () => {
   const [apiData, setApiData] = useState([]);
+  const [getBlogsHome, setGetBlogsHome] = useState([]);
+  const [getHistory, setGetHistory] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=1")
+      .then((res) => {
+        setGetBlogsHome(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     axios
       .get("http://apiv2.udtech-sa.com/api/WebSite/GetAboutUs?languageId=1")
@@ -36,6 +43,20 @@ const About = () => {
         console.log(err);
       });
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(
+        "http://apiv2.udtech-sa.com/api/WebSite/GetCompanyHistory?languageId=1"
+      )
+      .then((res) => {
+        setGetHistory(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
   useEffect(() => {
     new WOW.WOW({
       live: false,
@@ -266,10 +287,78 @@ const About = () => {
                   <h2>Creasoft History</h2>
                 </div>
               </div>
-              <div className="single-history">
+              {getHistory.map((post, id) =>
+                id % 2 ? (
+                  <div className="single-history" key={post.id}>
+                    <div
+                      className="history wow animate animate__fadeInLeft"
+                      data-wow-duration="1500ms"
+                    >
+                      <div className="circle">
+                        <div className="inner"></div>
+                      </div>
+                      <div className="history-thumb">
+                        <img src={post.photoPath} alt="" />
+                      </div>
+                    </div>
+                    <div
+                      className="history wow animate animate__fadeInRight"
+                      data-wow-duration="1500ms"
+                    >
+                      <div className="circle">
+                        <div className="inner"></div>
+                      </div>
+                      <div className="history-cnt">
+                        <div className="history-cnt-inner">
+                          <span>{post.year}</span>
+                          <h4>{post.title}</h4>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: post.description,
+                            }}
+                          ></p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ) : (
+                  <div className="single-history" key={post.id}>
+                    <div
+                      className="history wow animate animate__fadeInLeft"
+                      data-wow-duration="1500ms"
+                    >
+                      <div className="circle">
+                        <div className="inner"></div>
+                      </div>
+                      <div className="history-cnt">
+                        <div className="history-cnt-inner">
+                          <span>{post.year}</span>
+                          <h4>{post.title}</h4>
+                          <p
+                            dangerouslySetInnerHTML={{
+                              __html: post.description,
+                            }}
+                          ></p>
+                        </div>
+                      </div>
+                    </div>
+                    <div
+                      className="history wow animate animate__fadeInRight"
+                      data-wow-duration="1500ms"
+                    >
+                      <div className="circle">
+                        <div className="inner"></div>
+                      </div>
+                      <div className="history-thumb">
+                        <img src={post.photoPath} alt="" />
+                      </div>
+                    </div>
+                  </div>
+                )
+              )}
+              {/* <div className="single-history">
                 <div
                   className="history wow animate animate__fadeInLeft"
-                  data-wow-delay="200ms"
                   data-wow-duration="1500ms"
                 >
                   <div className="circle">
@@ -281,7 +370,6 @@ const About = () => {
                 </div>
                 <div
                   className="history wow animate animate__fadeInRight"
-                  data-wow-delay="200ms"
                   data-wow-duration="1500ms"
                 >
                   <div className="circle">
@@ -310,7 +398,6 @@ const About = () => {
               <div className="single-history">
                 <div
                   className="history wow animate animate__fadeInLeft"
-                  data-wow-delay="300ms"
                   data-wow-duration="1500ms"
                 >
                   <div className="circle">
@@ -337,7 +424,6 @@ const About = () => {
                 </div>
                 <div
                   className="history wow animate animate__fadeInRight"
-                  data-wow-delay="300ms"
                   data-wow-duration="1500ms"
                 >
                   <div className="circle">
@@ -429,7 +515,7 @@ const About = () => {
                     <img src={TimeLine4} alt="" />
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </section>
           {/* Testimonials */}
@@ -452,7 +538,39 @@ const About = () => {
                 </div>
               </div>
               <div className="row gy-4">
-                <div
+                {getBlogsHome.slice(0, 3).map((blog) => {
+                  return (
+                    <div
+                      className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
+                      data-wow-delay="200ms"
+                      data-wow-duration="1500ms"
+                      key={blog.id}
+                    >
+                      <div className="single-blog layout2">
+                        <div className="blog-thumb">
+                          <a href={`/blog-details/${blog.id}`}>
+                            <img src={blog.photoPath} alt="" />
+                          </a>
+                          <div className="tag">
+                            <a href="/projects">UI/UX</a>
+                          </div>
+                        </div>
+                        <div className="blog-inner">
+                          <div className="author-date">
+                            <a href="/">By, Admin</a>
+                            <a href="/">22.02.2022</a>
+                          </div>
+                          <h4>
+                            <a href={`/blog-details/${blog.id}`}>
+                              {blog.title}
+                            </a>
+                          </h4>
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+                {/* <div
                   className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
                   data-wow-delay="200ms"
                   data-wow-duration="1500ms"
@@ -533,7 +651,7 @@ const About = () => {
                       </h4>
                     </div>
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </section>

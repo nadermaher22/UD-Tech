@@ -17,6 +17,7 @@ const ProjectBtn = ({ setItem, menuItems, filterItem }) => {
   }, []);
 
   const filterFunction = (Val) => {
+    console.log("filtered Data", Val);
     filterItem(Val);
     setActive(Val);
   };

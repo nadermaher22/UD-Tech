@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation } from "swiper";
+import { Autoplay, Navigation } from "swiper";
 import { FaQuoteRight, FaStar } from "react-icons/fa";
 import axios from "axios";
 
@@ -61,14 +61,32 @@ const Testimonials = () => {
               slidesPerView={1.9}
               centeredSlides={true}
               navigation={true}
-              modules={[Navigation]}
+              modules={[Navigation, Autoplay]}
               className="mySwiper"
               scrollbar={{ draggable: true }}
               loop={true}
               autoplay={{
-                delay: 2500,
+                delay: 4000,
               }}
               onSwiper={(swiper) => setSwiperRef(swiper)}
+              breakpoints={{
+                0: {
+                  spaceBetween: 50,
+                  slidesPerView: 1,
+                },
+                480: {
+                  slidesPerView: 1,
+                  spaceBetween: 30,
+                },
+                768: {
+                  slidesPerView: 3,
+                  spaceBetween: 50,
+                },
+                1204: {
+                  slidesPerView: 1.7,
+                  spaceBetween: 50,
+                },
+              }}
             >
               {apiData.map((testimonial) => {
                 return (
