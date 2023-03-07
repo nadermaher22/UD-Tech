@@ -2249,7 +2249,7 @@ header {
 
 .isotope-menu li.active {
   color: #fff;
-  background-color: #2d60a2;
+  background-color: #2d60a2 !important;
 }
 
 .isotope-menu li:hover {

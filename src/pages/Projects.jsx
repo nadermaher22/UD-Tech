@@ -11,18 +11,20 @@ import axios from "axios";
 
 const Projects = () => {
   const [apiData, setApiData] = useState([]);
+  const [item, setItem] = useState([]);
   useEffect(() => {
     axios
       .get("http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=1")
       .then((res) => {
         setApiData(res.data);
+        setItem(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
   }, []);
 
-  const [item, setItem] = useState(apiData);
+
   const menuItems = [...new Set(apiData.map((Val) => Val.category))];
   const [swiperRef, setSwiperRef] = useState(null);
   const filterItem = (curcat) => {
@@ -117,6 +119,7 @@ const Projects = () => {
                 setItem={setItem}
                 menuItems={menuItems}
                 filterItem={filterItem}
+                item={apiData}
               />
               <ProjectCard item={item} />
             </div>
