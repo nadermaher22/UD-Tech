@@ -7,15 +7,6 @@ import { BsPlus, BsPlusLg } from "react-icons/bs";
 const Navbar = () => {
   // navbar scroll
   const [onScroll, setOnScroll] = useState(false);
-  const [sideBar, setSideBar] = useState(false);
-
-  
-  const showSideBar = () => {
-    setSideBar(true);
-  };
-
-
-
 
   const addStickyClass = () => {
     if (window.scrollY >= 200) {
@@ -31,12 +22,14 @@ const Navbar = () => {
   useEffect(() => {
     setUrl(location.pathname);
   }, [location]);
+
   const [addClass, setAddClass] = useState(false);
   const AddClassSlide = () => {
     setAddClass(!addClass);
   };
+
   return (
-    <div >
+    <div>
       <header
         className={
           onScroll
@@ -58,10 +51,10 @@ const Navbar = () => {
                 <img src={LogoDarkMob} alt="logo" />
               </Link>
               <div className="remove">
-                <BsPlus />
+                <BsPlus onClick={AddClassSlide} />
               </div>
             </div>
-            <ul onClick={showSideBar}>
+            <ul onClick={AddClassSlide}>
               <li>
                 <Link to="/" className={url === "/" ? " active" : ""}>
                   Home
@@ -130,12 +123,16 @@ const Navbar = () => {
               <div className="cmn-btn">
                 <div className="line-1"></div>
                 <div className="line-2"></div>
-                <Link to="/contact">Company Profile</Link>
+                <Link to="/contact" onClick={AddClassSlide}>
+                  Company Profile
+                </Link>
               </div>
               <div className="cmn-btn">
                 <div className="line-1"></div>
                 <div className="line-2"></div>
-                <Link to="/contact">Call Us</Link>
+                <Link to="/contact" onClick={AddClassSlide}>
+                  Call Us
+                </Link>
               </div>
             </div>
           </nav>
@@ -153,7 +150,7 @@ const Navbar = () => {
               <Link to="/contact">Call Us</Link>
             </div>
           </div>
-          <div className="mobile-menu" onClick={() => AddClassSlide()}>
+          <div className="mobile-menu" onClick={AddClassSlide}>
             <div to="" className="cross-btn">
               <span className="cross-top"></span>
               <span className="cross-middle"></span>

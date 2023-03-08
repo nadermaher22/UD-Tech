@@ -24,9 +24,7 @@ const Projects = () => {
       });
   }, []);
 
-
   const menuItems = [...new Set(apiData.map((Val) => Val.category))];
-  const [swiperRef, setSwiperRef] = useState(null);
   const filterItem = (curcat) => {
     const newItem = apiData.filter((newVal) => {
       return newVal.category === curcat;
@@ -102,7 +100,7 @@ const Projects = () => {
               </div>
             </div>
           </section>
-          <section className="project-area sec-mar">
+          <section className="projectsPage project-area sec-mar">
             <div className="container">
               <div className="title-wrap">
                 <div className="sec-title">

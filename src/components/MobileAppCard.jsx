@@ -19,7 +19,6 @@ const ProjectCard = ({ item }) => {
             return (
               <div
                 className="col-md-6 col-lg-4 single-item wow animate animate__fadeInUp"
-                data-wow-delay="0ms"
                 data-wow-duration="500ms"
                 key={Val.id}
               >

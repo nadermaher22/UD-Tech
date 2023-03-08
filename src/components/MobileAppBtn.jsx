@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 
 const ProjectBtn = ({ setItem, menuItems, filterItem, item }) => {
   const [active, setActive] = useState("All");

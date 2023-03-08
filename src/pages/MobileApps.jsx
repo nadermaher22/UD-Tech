@@ -15,16 +15,29 @@ import VideoImg from "../assests/img/breadcrumb-video.jpg";
 import { FaPlay } from "react-icons/fa";
 
 import JavaImg from "../assests/img/java.png";
-import ProjectBtn from "../components/ProjectBtn";
-import ProjectCard from "../components/ProjectCard";
-import Data from "../components/Data.js";
+import MobileAppBtn from "../components/MobileAppBtn";
+import MobileAppCard from "../components/MobileAppCard";
+import axios from "axios";
 
 const MobileApps = () => {
-  const [item, setItem] = useState(Data);
-  const menuItems = [...new Set(Data.map((Val) => Val.category))];
+  const [apiData, setApiData] = useState([]);
+  const [item, setItem] = useState([]);
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetMobileApps?languageId=1")
+      .then((res) => {
+        setApiData(res.data);
+        setItem(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  const menuItems = [...new Set(apiData.map((Val) => Val.category))];
   // const [swiperRef, setSwiperRef] = useState(null);
   const filterItem = (curcat) => {
-    const newItem = Data.filter((newVal) => {
+    const newItem = apiData.filter((newVal) => {
       return newVal.category === curcat;
       // comparing category for displaying data
     });
@@ -108,22 +121,11 @@ const MobileApps = () => {
           </div>
         </section>
 
-        {/* <section>
-          <div className="container">
-            <div className="title-wrap">
-              <div className="sec-title">
-                <h2></h2>
-                <p></p>
-              </div>
-            </div>
-          </div>
-        </section> */}
 
-        <section className="project-area sec-mar ">
+        <section className="projectsPage project-area sec-mar ">
           <div className="container">
             <div
               className="wow animate slideInUp"
-              data-wow-delay="400ms"
               data-wow-duration="1500ms"
             >
               <div className="title-wrap">
@@ -138,195 +140,13 @@ const MobileApps = () => {
                   </p>
                 </div>
               </div>
-              <ProjectBtn
+              <MobileAppBtn
                 setItem={setItem}
                 menuItems={menuItems}
                 filterItem={filterItem}
+                item={apiData}
               />
-              <ProjectCard item={item} />
-              {/* <div className="row">
-                <div className="col-12">
-                  <ul className="isotope-menu">
-                    <li className="active" data-filter="*">
-                      All
-                    </li>
-                    <li data-filter=".ui">UI/UX</li>
-                    <li data-filter=".web">Web Design</li>
-                    <li data-filter=".developing">Developing</li>
-                    <li data-filter=".graphic">Graphic Design</li>
-                  </ul>
-                </div>
-              </div>
-              <div className="row g-4 project-items">
-                <div className="col-md-6 col-lg-4 single-item graphic ui">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project1} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>Software</span>
-                    <h4>Desktop Mockup</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item developing web">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project2} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>Template</span>
-                    <h4>Creative Agency</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item developing">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project3} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>App</span>
-                    <h4>Mobile Crypto Wallet</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item graphic">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project4} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>UI Kit</span>
-                    <h4>E-Shop Ecommerce</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item ui">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project5} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>Graphic</span>
-                    <h4>Art Deco Cocktails</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item web">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project6} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>3D Design</span>
-                    <h4>Low poly Base mesh</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item developping">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project7} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>Video</span>
-                    <h4>Animation Studio</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item ui">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project8} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>Motion</span>
-                    <h4>Motion Graphics</h4>
-                    <div className="view-btn">
-                      <a href="/projects">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item developing">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project9} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>App</span>
-                    <h4>Mobile Crypto Wallet</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item web">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project10} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>UI/UX</span>
-                    <h4>Design Demo</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item graphic">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project11} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>Graphic</span>
-                    <h4>Art Deco Cocktails</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-                <div className="col-md-6 col-lg-4 single-item ui">
-                  <div className="item-img">
-                    <a href="/project-details">
-                      <img src={Project12} alt="" />
-                    </a>
-                  </div>
-                  <div className="item-inner-cnt">
-                    <span>UI Kit</span>
-                    <h4>E-Shop Ecommerce</h4>
-                    <div className="view-btn">
-                      <a href="/project-details">view details</a>
-                    </div>
-                  </div>
-                </div>
-              </div> */}
+              <MobileAppCard item={item} />
               <div className="row text-center">
                 <div className="MobApp buttons">
                   <div className="cmn-btn">

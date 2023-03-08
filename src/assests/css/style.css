@@ -2249,9 +2249,11 @@ header {
 
 .isotope-menu li.active {
   color: #fff;
+  background-color: #2d60a2;
+}
+.projectsPage .isotope-menu li.active {
   background-color: #2d60a2 !important;
 }
-
 .isotope-menu li:hover {
   color: #fff;
   background-color: #2d60a2;
@@ -2263,7 +2265,7 @@ header {
 
 .single-item .item-img a img,
 .single-item .item-img img {
-  width: 100%;
+  max-width: 100%;
   border-radius: 10px;
 }
 
@@ -4715,7 +4717,7 @@ footer.error {
 }
 
 .project-thumb img {
-  width: 100%;
+  max-width: 100%;
 }
 
 .project-thumb .tag {

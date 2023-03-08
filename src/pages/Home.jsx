@@ -18,7 +18,6 @@ import { motion, useMotionValue } from "framer-motion";
 import ProjectCard from "../components/ProjectCard";
 import ProjectBtn from "../components/ProjectBtn";
 import axios from "axios";
-import Data from "../components/Data.js";
 const Home = () => {
   const [servicesApiData, setServicesApiData] = useState([]);
   const [aboutData, setAboutData] = useState([]);
@@ -78,11 +77,23 @@ const Home = () => {
         console.log(err);
       });
   }, []);
-  const [item, setItem] = useState(Data);
-  const menuItems = [...new Set(Data.map((Val) => Val.category))];
+  useEffect(() => {
+    axios
+      .get("http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=1")
+      .then((res) => {
+        setGetProjects(res.data);
+        setItem(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+  const [getProjects, setGetProjects] = useState([]);
+  const [item, setItem] = useState([]);
+  const menuItems = [...new Set(getProjects.map((Val) => Val.category))];
   const [swiperRef, setSwiperRef] = useState(null);
   const filterItem = (curcat) => {
-    const newItem = Data.filter((newVal) => {
+    const newItem = getProjects.filter((newVal) => {
       return newVal.category === curcat;
       // comparing category for displaying data
     });
@@ -272,7 +283,6 @@ const Home = () => {
             </div>
           </section>
         </div>
-
         <section className="about-area sec-mar-bottom">
           <div className="container">
             <div className="row">
@@ -332,6 +342,7 @@ const Home = () => {
         </section>
         {/* Features section */}
         <Features />
+        
         <section className="project-area sec-mar">
           <div className="container">
             <div className="title-wrap">
@@ -349,11 +360,11 @@ const Home = () => {
               setItem={setItem}
               menuItems={menuItems}
               filterItem={filterItem}
+              item={getProjects}
             />
             <ProjectCard item={item} />
           </div>
         </section>
-
         <section className="our-partner">
           <div className="container">
             <div className="row align-items-center">
