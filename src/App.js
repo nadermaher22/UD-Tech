@@ -34,7 +34,7 @@ const App = () => {
   useEffect(() => {
     setTimeout(function () {
       setPreLoader(false);
-    }, 2000);
+    }, 5000);
   }, []);
 
   const handleClick = (event) => {

@@ -539,6 +539,19 @@
   animation-iteration-count: infinite;
 }
 
+#smallScreen {
+  display: none;
+}
+
+@media only screen and (max-width: 767px) {
+  #smallScreen {
+    display: block;
+  }
+  #bigScreen {
+    display: none;
+  }
+}
+
 /*Section title*/
 .title-wrap {
   max-width: 630px;
@@ -1326,7 +1339,7 @@ header {
 }
 
 .hero-wrapper .first-slide {
-  min-width: 100%;
+  max-width: 100%;
   min-height: 100%;
   width: auto;
   height: auto;

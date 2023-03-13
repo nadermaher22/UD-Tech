@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
-import IntroVideo from "../assests/img/video/ocean.webm";
+import IntroVideo from "../assests/img/video/UDT_PromoVideo.mp4";
+import IntroVideoMob from "../assests/img/video/UDT_PromoVideo-Mobile.mp4";
 import Logo from "../assests/img/logo-dark.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay } from "swiper";
@@ -14,7 +15,7 @@ import "swiper/css";
 import Newsletter from "../components/Newsletter";
 import Testimonials from "../components/Testimonials";
 import Features from "../components/Features";
-import { motion, useMotionValue } from "framer-motion";
+import { useMotionValue } from "framer-motion";
 import ProjectCard from "../components/ProjectCard";
 import ProjectBtn from "../components/ProjectBtn";
 import axios from "axios";
@@ -175,10 +176,9 @@ const Home = () => {
           <div className="hero-wrapper">
             <div className="container">
               <video
-                poster="video/ocean.jpg"
+                id="bigScreen"
                 className="first-slide"
                 autoPlay="autoplay"
-                source={IntroVideo}
                 loop="loop"
                 muted="muted"
               >
@@ -186,15 +186,18 @@ const Home = () => {
                   src={IntroVideo}
                   type='video/webm; codecs="vp8, vorbis"'
                 />
+              </video>
+              <video
+                id="smallScreen"
+                className="first-slide"
+                autoPlay="autoplay"
+                loop="loop"
+                muted="muted"
+              >
                 <source
-                  src="assets/img/video/ocean.mp4"
-                  type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"'
+                  src={IntroVideoMob}
+                  type='video/webm; codecs="vp8, vorbis"'
                 />
-                <source
-                  src="assets/img/video/ocean.ogv"
-                  type='video/ogg; codecs="theora, vorbis"'
-                />
-                Video tag not supported.
               </video>
             </div>
           </div>
@@ -342,7 +345,7 @@ const Home = () => {
         </section>
         {/* Features section */}
         <Features />
-        
+
         <section className="project-area sec-mar">
           <div className="container">
             <div className="title-wrap">
