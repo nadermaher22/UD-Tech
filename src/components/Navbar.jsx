@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import LogoDark from "../assests/img/logo.svg";
 import LogoDarkMob from "../assests/img/logo-dark.svg";
-import { BsPlus, BsPlusLg } from "react-icons/bs";
+import { BsPlus } from "react-icons/bs";
+import { useTranslation } from "react-i18next";
 
 const Navbar = () => {
+  const [t, i18n] = useTranslation();
   // navbar scroll
   const [onScroll, setOnScroll] = useState(false);
 
@@ -57,12 +59,12 @@ const Navbar = () => {
             <ul onClick={AddClassSlide}>
               <li>
                 <Link to="/" className={url === "/" ? " active" : ""}>
-                  Home
+                  {t("home")}
                 </Link>
               </li>
               <li>
                 <Link to="/about" className={url === "/about" ? " active" : ""}>
-                  About Us
+                  {t("about_us")}
                 </Link>
               </li>
               <li>
@@ -70,7 +72,7 @@ const Navbar = () => {
                   to="/services"
                   className={url === "/services" ? " active" : ""}
                 >
-                  Service
+                  {t("services")}
                 </Link>
               </li>
               <li>
@@ -78,7 +80,7 @@ const Navbar = () => {
                   to="/projects"
                   className={url === "/projects" ? " active" : ""}
                 >
-                  Project
+                  {t("our_projects")}
                 </Link>
               </li>
               <li>
@@ -86,7 +88,7 @@ const Navbar = () => {
                   to="/clients"
                   className={url === "/clients" ? " active" : ""}
                 >
-                  Clients
+                  {t("clients")}
                 </Link>
               </li>
               <li>
@@ -94,7 +96,7 @@ const Navbar = () => {
                   to="/mobile"
                   className={url === "/mobile" ? " active" : ""}
                 >
-                  Mobile Apps
+                  {t("mobile_apps")}
                 </Link>
               </li>
               <li>
@@ -102,12 +104,12 @@ const Navbar = () => {
                   to="/electronic"
                   className={url === "/electronic" ? " active" : ""}
                 >
-                  electronic invoice
+                  {t("electronic_invoice")}
                 </Link>
               </li>
               <li>
                 <Link to="/blog" className={url === "/blog" ? " active" : ""}>
-                  Blog
+                  {t("blog")}
                 </Link>
               </li>
               <li>
@@ -115,8 +117,32 @@ const Navbar = () => {
                   to="/contact"
                   className={url === "/contact" ? " active" : ""}
                 >
-                  Contact Us
+                  {t("contact_us")}
                 </Link>
+              </li>
+              <li>
+                {i18n.language === "en" && (
+                  <Link
+                    onClick={() => {
+                      i18n.changeLanguage("ar");
+                      window.location.reload();
+                    }}
+                  >
+                    العربية
+                  </Link>
+                )}
+              </li>
+              <li>
+                {i18n.language === "ar" && (
+                  <Link
+                    onClick={() => {
+                      i18n.changeLanguage("en");
+                      window.location.reload();
+                    }}
+                  >
+                    English
+                  </Link>
+                )}
               </li>
             </ul>
             <div className="get-qoute d-flex justify-content-center d-lg-none d-block pt-50">
@@ -124,14 +150,14 @@ const Navbar = () => {
                 <div className="line-1"></div>
                 <div className="line-2"></div>
                 <Link to="/contact" onClick={AddClassSlide}>
-                  Company Profile
+                  {t("company_profile")}
                 </Link>
               </div>
               <div className="cmn-btn">
                 <div className="line-1"></div>
                 <div className="line-2"></div>
                 <Link to="/contact" onClick={AddClassSlide}>
-                  Call Us
+                  {t("call_us")}
                 </Link>
               </div>
             </div>
@@ -142,12 +168,13 @@ const Navbar = () => {
             <div className="cmn-btn">
               <div className="line-1"></div>
               <div className="line-2"></div>
-              <Link to="/about">Company Profile</Link>
+              <Link to="/about">{t("company_profile")}</Link>
             </div>
+
             <div className="cmn-btn">
               <div className="line-1"></div>
               <div className="line-2"></div>
-              <Link to="/contact">Call Us</Link>
+              <Link to="/contact"> {t("call_us")}</Link>
             </div>
           </div>
           <div className="mobile-menu" onClick={AddClassSlide}>

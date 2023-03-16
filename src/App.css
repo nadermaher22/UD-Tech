@@ -23,3 +23,6 @@
 * input[type="submit"] {
   cursor: pointer !important;
 }
+.site-logo .logo img {
+  cursor: pointer;
+}

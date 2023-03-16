@@ -17,11 +17,12 @@ import axios from "axios";
 const ServiceDetails = () => {
   const { serviceId } = useParams();
   const [apiDate, setApiData] = useState([]);
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
 
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetServiceDetails?languageId=1&Id=${serviceId}`
+        `http://apiv2.udtech-sa.com/api/WebSite/GetServiceDetails?languageId=${lang}&Id=${serviceId}`
       )
       .then((res) => {
         setApiData(res.data);
@@ -29,7 +30,7 @@ const ServiceDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

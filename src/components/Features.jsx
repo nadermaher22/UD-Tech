@@ -2,37 +2,36 @@ import React, { useEffect, useState } from "react";
 import CountUp from "react-countup";
 import ReactVisibilitySensor from "react-visibility-sensor";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Features = () => {
   const [apiData, setApiData] = useState([]);
+  const [t] = useTranslation();
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
 
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetFeatures?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetFeatures?languageId=${lang}`
+      )
       .then((res) => {
         setApiData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
   return (
     <>
       <section className="features-area">
         <div className="container">
           <div
             className="title-wrap wow animate__animated animate__fadeInUp"
-            data-wow-delay="200ms"
             data-wow-duration="1500ms"
           >
             <div className="sec-title white">
-              <span>Care Study</span>
-              <h2>Features</h2>
-              <p>
-                Curabitur sed facilisis erat. Vestibulum pharetra eros eget
-                fringilla porttitor. on Duis a orci nunc. Suspendisse ac
-                convallis sapien, quis commodo libero.
-              </p>
+              <span>{t("features_care_study")}</span>
+              <h2>{t("features_our_numbers")}</h2>
             </div>
           </div>
           <div className="row g-4">
@@ -40,7 +39,6 @@ const Features = () => {
               return (
                 <div
                   className="col-md-6 col-lg-4 wow animate__animated animate__fadeInUp"
-                  data-wow-delay="200ms"
                   data-wow-duration="1500ms"
                   key={feature.id}
                 >

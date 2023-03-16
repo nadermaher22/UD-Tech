@@ -17,17 +17,19 @@ import Auther1 from "../assests/img/author-1.jpg";
 import Auther2 from "../assests/img/author-2.jpg";
 import WidgetBanner from "../assests/img/widget-banner-bg.jpg";
 import axios from "axios";
+import i18next from "i18next";
+import { useTranslation } from "react-i18next";
 
 const BlogDetails = () => {
   const [apiData, setApiData] = useState([]);
-  const [blogDetailsData, setBlogDetailsData] = useState([]);
-  const [dataId, setDataId] = useState("");
   const { blogId } = useParams();
+  const [t, i18n] = useTranslation();
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
 
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetBlogDetails?languageId=1&Id=${blogId}`
+        `http://apiv2.udtech-sa.com/api/WebSite/GetBlogDetails?languageId=${lang}&Id=${blogId}`
       )
       .then((res) => {
         setApiData(res.data);
@@ -35,7 +37,9 @@ const BlogDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
+
+  console.log(setApiData);
 
   // useEffect(() => {
   //   window.scrollTo(0, 0);
@@ -82,11 +86,11 @@ const BlogDetails = () => {
                 <div className="col-12">
                   <div className="breadcrumb-wrapper">
                     <div className="breadcrumb-cnt">
-                      <h1>Blog Details</h1>
+                      <h1>{t("blog_details")}</h1>
                       <span>
-                        <Link to="/">Home</Link>
+                        <Link to="/">{t("home")}</Link>
                         <BsArrowRight className="m-1" />
-                        Blog details
+                        {t("blog_details")}
                       </span>
                       <div className="breadcrumb-video">
                         <img src={VideoImg} alt="" />
@@ -112,16 +116,18 @@ const BlogDetails = () => {
                   <div className="blog-details-content">
                     <h3>{apiData.title}</h3>
                     <div className="author-date layout2">
-                      <Link to="/">By, Admin</Link>
-                      <Link to="/">Comment (02)</Link>
-                      <Link to="/">22.02.2022</Link>
+                      <Link to="/">
+                        {t("by")}, {apiData.blogAuthor}
+                      </Link>
+                      <Link to="/">{t("comment")} (02)</Link>
+                      <Link to="/">{apiData.blogDate}</Link>
                     </div>
                     <div className="details-thumb">
                       <img src={apiData.photoPath} alt="" />
                     </div>
-                    <p dangerouslySetInnerHTML={{ __html: apiData.description }}>
-                      
-                    </p>
+                    <p
+                      dangerouslySetInnerHTML={{ __html: apiData.description }}
+                    ></p>
                     <div className="tag-share">
                       <div className="line-tag">
                         <span>Tag:</span>
@@ -132,7 +138,7 @@ const BlogDetails = () => {
                         <Link to="/projects">plugin</Link>
                       </div>
                       <div className="share-blog">
-                        <span>Share On:</span>
+                        <span>{t("share_on")}</span>
                         <ul className="social-share-blog">
                           <li>
                             <Link to="https://www.facebook.com/">
@@ -158,7 +164,7 @@ const BlogDetails = () => {
                       </div>
                     </div>
                     <div className="comments">
-                      <h3>2 Comment</h3>
+                      <h3>2 {t("comment")}</h3>
                       <div className="single-comment">
                         <div className="author-post">
                           <div className="reply">

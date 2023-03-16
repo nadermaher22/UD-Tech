@@ -3,8 +3,12 @@ import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import "./assests/css/style.css";
-import "./assests/css/bootstrap.min.css";
+// import "./assests/css/bootstrap.min.css";
+// import "./assests/css/style-rtl.css";
+// import "./assests/css/style-rtl.css.map";
+// import "./assests/css/bootstrap-rtl.min.css";
 import "./assests/css/fontawesome.min.css";
+import "./assests/css/magnific-popup.css";
 import "animate.css/animate.css";
 import Navbar from "./components/Navbar";
 import About from "./pages/About";
@@ -26,8 +30,19 @@ import ProjectDetails from "./pages/ProjectDetails";
 import Team from "./pages/Team";
 import "../src/assests/css/bootstrap-icons.css";
 import AnimatedCursor from "react-animated-cursor";
+import { useTranslation } from "react-i18next";
+
+if (window.localStorage.i18nextLng === "en") {
+  require("./assests/css/bootstrap.min.css");
+  require("./assests/css/style.css");
+} else {
+  require("./assests/css/bootstrap-rtl.min.css");
+  require("./assests/css/style.css");
+  require("./assests/css/style-rtl.css");
+}
 
 const App = () => {
+  const [t] = useTranslation();
   const [isShown, setIsShown] = useState(false);
   const [preLoader, setPreLoader] = useState(true);
 
@@ -40,6 +55,7 @@ const App = () => {
   const handleClick = (event) => {
     setIsShown((current) => !current);
   };
+
   return (
     <div className="App">
       <Router>
@@ -54,17 +70,13 @@ const App = () => {
           </div>
         )}
         {/* Ask for cookies */}
-
         <div className={isShown ? "d-none" : ""}>
           <div className="cookies sc-breuTD gPIury aos-init aos-animate">
             <div className="container">
               <div className="row my-2">
                 <div className="col-12 col-md-8 ">
-                  <p className="m-0">WE USE COOKIES</p>
-                  <p className="m-0">
-                    THIS WEBSITE USES COOKIES TO ENSURE YOU GET THE BEST
-                    EXPERIENCE ON OUR WEBSITE
-                  </p>
+                  <p className="m-0">{t("we_use_cookie")}</p>
+                  <p className="m-0">{t("cookie_paragraph")}</p>
                 </div>
                 <div className="col-12 col-md-4 d-flex gap-3 align-items-center">
                   <div className="buttons mt-3">
@@ -74,7 +86,13 @@ const App = () => {
                     >
                       <div className="line-1"></div>
                       <div className="line-2"></div>
-                      <span>Refuse</span>
+                      <span
+                        onClick={() =>
+                          localStorage.setItem("cookieAccept", false)
+                        }
+                      >
+                        {t("refuse")}
+                      </span>
                     </div>
                   </div>
                   <div className="buttons mt-3">
@@ -84,7 +102,13 @@ const App = () => {
                     >
                       <div className="line-1"></div>
                       <div className="line-2"></div>
-                      <span>Accept</span>
+                      <span
+                        onClick={() =>
+                          localStorage.setItem("cookieAccept", true)
+                        }
+                      >
+                        {t("accept")}
+                      </span>
                     </div>
                   </div>
                 </div>

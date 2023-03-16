@@ -112,7 +112,6 @@ const Pricing = () => {
                 <div className="row g-4">
                   <div
                     className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                    data-wow-delay="200ms"
                     data-wow-duration="1500ms"
                   >
                     <div className="price-box">
@@ -150,7 +149,6 @@ const Pricing = () => {
                   </div>
                   <div
                     className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                    data-wow-delay="400ms"
                     data-wow-duration="1500ms"
                   >
                     <div className="price-box">
@@ -188,7 +186,6 @@ const Pricing = () => {
                   </div>
                   <div
                     className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                    data-wow-delay="600ms"
                     data-wow-duration="1500ms"
                   >
                     <div className="price-box">
@@ -235,7 +232,7 @@ const Pricing = () => {
                 <div className="row g-4">
                   <div
                     className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                    data-wow-delay="200ms"
+
                     data-wow-duration="1500ms"
                   >
                     <div className="price-box">
@@ -273,7 +270,7 @@ const Pricing = () => {
                   </div>
                   <div
                     className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                    data-wow-delay="400ms"
+
                     data-wow-duration="1500ms"
                   >
                     <div className="price-box">
@@ -311,7 +308,7 @@ const Pricing = () => {
                   </div>
                   <div
                     className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                    data-wow-delay="600ms"
+
                     data-wow-duration="1500ms"
                   >
                     <div className="price-box">
@@ -358,7 +355,7 @@ const Pricing = () => {
               <div className="row align-items-center">
                 <div
                   className="col-lg-6 wow animate animate__fadeInLeft"
-                  data-wow-delay="200ms"
+
                   data-wow-duration="1500ms"
                 >
                   <div className="subscribe-cnt">
@@ -369,7 +366,7 @@ const Pricing = () => {
                 </div>
                 <div
                   className="col-lg-6 wow animate animate__fadeInRight"
-                  data-wow-delay="200ms"
+
                   data-wow-duration="1500ms"
                 >
                   <div className="subscribe-form">

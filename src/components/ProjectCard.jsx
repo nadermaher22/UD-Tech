@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import WOW from "wowjs";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const ProjectCard = ({ item }) => {
-
+  const [t, i18n] = useTranslation();
   useEffect(() => {
     new WOW.WOW({
       live: false,
     }).init();
   });
-
 
   return (
     <section className="">
@@ -19,7 +20,6 @@ const ProjectCard = ({ item }) => {
             return (
               <div
                 className="col-md-6 col-lg-4 single-item wow animate animate__fadeInUp"
-                data-wow-delay="0ms"
                 data-wow-duration="500ms"
                 key={Val.id}
               >
@@ -32,7 +32,9 @@ const ProjectCard = ({ item }) => {
                   <span>{Val.title}</span>
                   <h4>{Val.project}</h4>
                   <div className="view-btn">
-                    <a href={`/project-details/${Val.id}`}>view details</a>
+                    <a href={`/project-details/${Val.id}`}>
+                      {t("view_details")}
+                    </a>
                   </div>
                 </div>
               </div>

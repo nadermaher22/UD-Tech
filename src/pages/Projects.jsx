@@ -8,13 +8,19 @@ import Newsletter from "../components/Newsletter";
 import ProjectBtn from "../components/ProjectBtn";
 import ProjectCard from "../components/ProjectCard";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Projects = () => {
+  const [t, i18n] = useTranslation();
   const [apiData, setApiData] = useState([]);
   const [item, setItem] = useState([]);
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=${lang}`
+      )
       .then((res) => {
         setApiData(res.data);
         setItem(res.data);
@@ -22,7 +28,7 @@ const Projects = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   const menuItems = [...new Set(apiData.map((Val) => Val.category))];
   const filterItem = (curcat) => {
@@ -77,11 +83,11 @@ const Projects = () => {
                 <div className="col-12">
                   <div className="breadcrumb-wrapper">
                     <div className="breadcrumb-cnt">
-                      <h1>Project</h1>
+                      <h1>{t("our_projects")}</h1>
                       <span>
-                        <a href="/">Home</a>
+                        <a href="/">{t("home")}</a>
                         <BsArrowRight className="m-1" />
-                        Project
+                        {t("our_projects")}
                       </span>
                       <div className="breadcrumb-video">
                         <img src={VideoImg} alt="" />
@@ -104,13 +110,9 @@ const Projects = () => {
             <div className="container">
               <div className="title-wrap">
                 <div className="sec-title">
-                  <span>Case Study</span>
-                  <h2>Project</h2>
-                  <p>
-                    Curabitur sed facilisis erat. Vestibulum pharetra eros eget
-                    fringilla porttitor. on Duis a orci nunc. Suspendisse ac
-                    convallis sapien, quis commodo libero.
-                  </p>
+                  <span>{t("project_page_case_study")}</span>
+                  <h2>{t("project_page_project")}</h2>
+                  <p>{t("project_page_paragraph")}</p>
                 </div>
               </div>
               <ProjectBtn

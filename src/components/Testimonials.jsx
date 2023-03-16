@@ -3,13 +3,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Navigation } from "swiper";
 import { FaQuoteRight, FaStar } from "react-icons/fa";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Testimonials = () => {
   const [apiData, setApiData] = useState([]);
+  const [t, i18n] = useTranslation();
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+
   useEffect(() => {
     axios
       .get(
-        "http://apiv2.udtech-sa.com/api/WebSite/GetTestimonials?languageId=1"
+        `http://apiv2.udtech-sa.com/api/WebSite/GetTestimonials?languageId=${lang}`
       )
       .then((res) => {
         setApiData(res.data);
@@ -17,7 +21,7 @@ const Testimonials = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
   function starsCounter(stars) {
     const rows = [];
     for (let i = 0; i < stars; i++) {
@@ -38,7 +42,6 @@ const Testimonials = () => {
   const nextHandler = () => {
     swiperRef.slideNext();
   };
-  const [isActive, setIsActive] = useState(false);
 
   return (
     <>
@@ -46,13 +49,9 @@ const Testimonials = () => {
         <div className="container-fluid p-0">
           <div className="title-wrap">
             <div className="sec-title white">
-              <span>Testimonial</span>
-              <h2>Client Say About Us</h2>
-              <p>
-                Curabitur sed facilisis erat. Vestibulum pharetra eros eget
-                fringilla porttitor. on Duis a orci nunc. Suspendisse ac
-                convallis sapien, quis commodo libero.
-              </p>
+              <span>{t("testimonial_title")}</span>
+              <h2>{t("testimonial_client_say")}</h2>
+              <p>{t("testimonial_paragraph")}</p>
             </div>
           </div>
           <div className="swiper testimonial-slider">
@@ -109,21 +108,6 @@ const Testimonials = () => {
                           <div className="stars">
                             {/* ToDo: map stars */}
                             {starsCounter(testimonial.starsCount)}
-                            {/* <a href="/">
-                              <FaStar />
-                            </a>
-                            <a href="/">
-                              <FaStar />
-                            </a>
-                            <a href="/">
-                              <FaStar />
-                            </a>
-                            <a href="/">
-                              <FaStar />
-                            </a>
-                            <a href="/">
-                              <FaStar />
-                            </a> */}
                           </div>
                           <p
                             dangerouslySetInnerHTML={{

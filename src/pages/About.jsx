@@ -8,46 +8,50 @@ import CountUp from "react-countup";
 import ReactVisibilitySensor from "react-visibility-sensor";
 import { FaPlay } from "react-icons/fa";
 import Features from "../components/Features";
-import TimeLine1 from "../assests/img/timeline-1.jpg";
-import TimeLine2 from "../assests/img/timeline-2.jpg";
-import TimeLine3 from "../assests/img/timeline-3.jpg";
-import TimeLine4 from "../assests/img/timeline-4.jpg";
 import Testimonials from "../components/Testimonials";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
+
 const About = () => {
+  const [t, i18n] = useTranslation();
   const [apiData, setApiData] = useState([]);
   const [getBlogsHome, setGetBlogsHome] = useState([]);
   const [getHistory, setGetHistory] = useState([]);
+  const [preLoader, setPreLoader] = useState(true);
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
 
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=1")
+      .get(`http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
       .then((res) => {
         setGetBlogsHome(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetAboutUs?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetAboutUs?languageId=${lang}`
+      )
       .then((res) => {
         setApiData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     axios
       .get(
-        "http://apiv2.udtech-sa.com/api/WebSite/GetCompanyHistory?languageId=1"
+        `http://apiv2.udtech-sa.com/api/WebSite/GetCompanyHistory?languageId=${lang}`
       )
       .then((res) => {
         setGetHistory(res.data);
@@ -55,14 +59,13 @@ const About = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     new WOW.WOW({
       live: false,
     }).init();
   });
-  const [preLoader, setPreLoader] = useState(true);
 
   useEffect(() => {
     setTimeout(function () {
@@ -72,7 +75,6 @@ const About = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   });
-  const [lgShow, setLgShow] = useState(false);
   return (
     <>
       <div className="about">
@@ -100,11 +102,11 @@ const About = () => {
                 <div className="col-12">
                   <div className="breadcrumb-wrapper">
                     <div className="breadcrumb-cnt">
-                      <h1>About us</h1>
+                      <h1>{t("about_page_about_us")}</h1>
                       <span>
-                        <a href="/">Home</a>
+                        <a href="/">{t("home")}</a>
                         <BsArrowRight className="m-1" />
-                        About us
+                        {t("about_page_about_us")}
                       </span>
                       <div className="breadcrumb-video">
                         <div className="video-inner">
@@ -134,7 +136,6 @@ const About = () => {
           </section>
           <section
             className="why-choose sec-mar wow animate animate__fadeIn"
-            data-wow-delay="200ms"
             data-wow-duration="1500ms"
           >
             <div className="container">
@@ -150,21 +151,19 @@ const About = () => {
                     </div>
                     <div className="years">
                       <h5>20+</h5>
-                      <span>Years</span>
+                      <span>{t("about_page_years")}</span>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-6">
                   <div className="why-choose-right">
                     <div className="sec-title layout2">
-                      <span>Why Choose</span>
-                      <h2>
-                        Phasellus tristique a nisi etal tristique Cras interdum.
-                      </h2>
+                      <span>{t("about_page_why_choose")}</span>
+                      <h2>{t("about_page_title1")}</h2>
                     </div>
                     <div className="counter-boxes">
                       <div className="count-box">
-                        <CountUp className="counter" end={150}>
+                        <CountUp className="counter" end={100}>
                           {({ countUpRef, start }) => (
                             <ReactVisibilitySensor onChange={start} delayedCall>
                               <span ref={countUpRef} />
@@ -172,10 +171,10 @@ const About = () => {
                           )}
                         </CountUp>
                         <sup>+</sup>
-                        <h5>Project Completed</h5>
+                        <h5>{t("about_page_projects_completed")}</h5>
                       </div>
                       <div className="count-box">
-                        <CountUp className="counter" end={250}>
+                        <CountUp className="counter" end={70}>
                           {({ countUpRef, start }) => (
                             <ReactVisibilitySensor onChange={start} delayedCall>
                               <span ref={countUpRef} />
@@ -183,10 +182,10 @@ const About = () => {
                           )}
                         </CountUp>
                         <sup>+</sup>
-                        <h5>Satisfied Clients</h5>
+                        <h5>{t("about_page_satisfied_customers")}</h5>
                       </div>
                       <div className="count-box">
-                        <CountUp className="counter" end={50}>
+                        <CountUp className="counter" end={38}>
                           {({ countUpRef, start }) => (
                             <ReactVisibilitySensor onChange={start} delayedCall>
                               <span ref={countUpRef} />
@@ -194,23 +193,14 @@ const About = () => {
                           )}
                         </CountUp>
                         <sup>+</sup>
-                        <h5>Expert Teams</h5>
+                        <h5>{t("about_page_experts")}</h5>
                       </div>
                     </div>
-                    <p>
-                      Integer purus odio, placerat nec rhoncus in, ullamcorper
-                      nec dolor. Class onlin aptent taciti sociosqu ad litora
-                      torquent per conubia nostra, per inceptos only himenaeos.
-                      Praesent nec neque at dolor venenatis consectetur eu quis
-                      ex. the Donec lacinia placerat felis non aliquam.Mauris
-                      nec justo vitae ante auctor tol euismod sit amet non
-                      ipsum. Praesent commodo at massa eget suscipit. Utani
-                      vitae enim velit. Ut ut posuere orci, id dapibus odio.
-                    </p>
+                    <p>{t("about_page_paragraph1")}</p>
                     <div className="buttons-group">
-                      <span>24/7 Support</span>
-                      <span>Unique Design</span>
-                      <span>Clean Code Develope</span>
+                      <span>{t("about_page_superior_support")}</span>
+                      <span>{t("about_page_unique_design")}</span>
+                      <span>{t("about_page_clean_code")}</span>
                     </div>
                   </div>
                 </div>
@@ -219,7 +209,6 @@ const About = () => {
           </section>
           <section
             className="about-area sec-mar-bottom wow animate animate__slideInUp"
-            data-wow-delay="200ms"
             data-wow-duration="1500ms"
           >
             <div className="container">
@@ -260,31 +249,21 @@ const About = () => {
                         __html: apiData.visionDescription,
                       }}
                     ></div>
-                    {/* <div className="buttons">
-                      <div className="cmn-btn">
-                        <div className="line-1"></div>
-                        <div className="line-2"></div>
-                        <a href="/contact">Call Us</a>
-                      </div>
-                      <div className="cmn-btn ">
-                        <div className="line-1"></div>
-                        <div className="line-2"></div>
-                        <a href="/team">Company Profile</a>
-                      </div>
-                    </div> */}
                   </div>
                 </div>
               </div>
             </div>
           </section>
           {/* features */}
+
           <Features />
+
           <section className="history-area sec-mar">
             <div className="container">
               <div className="title-wrap">
                 <div className="sec-title">
-                  <span>History</span>
-                  <h2>Creasoft History</h2>
+                  <span>{t("about_page_our_history")}</span>
+                  <h2>{t("about_page_ud_history")}</h2>
                 </div>
               </div>
               {getHistory.map((post, id) =>
@@ -356,166 +335,6 @@ const About = () => {
                   </div>
                 )
               )}
-              {/* <div className="single-history">
-                <div
-                  className="history wow animate animate__fadeInLeft"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="circle">
-                    <div className="inner"></div>
-                  </div>
-                  <div className="history-thumb">
-                    <img src={TimeLine1} alt="" />
-                  </div>
-                </div>
-                <div
-                  className="history wow animate animate__fadeInRight"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="circle">
-                    <div className="inner"></div>
-                  </div>
-                  <div className="history-cnt">
-                    <div className="history-cnt-inner">
-                      <span>2020</span>
-                      <h4>We Are Open Our Office</h4>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec aptent taciti sociosqu ad litora torquent per
-                        conubia nostra, himenaeos. Praesent nec neque at dolor
-                        venenatis thoseaol Donec lacinia placerat felis non
-                        aliquam.Mauris nec justo ag euismod sit amet non ipsum.
-                        Praesent commodo at massa vitae enim velit. Ut ut
-                        posuere orci, id dapibus odio. himenaeos. Praesent nec
-                        neque at dolor venenatis thoseaol Donec lacinia placerat
-                        felis non aliquam.Mauris nec justo ag euismod sit amet
-                        non ipsum. Praesent commodo at massa
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="single-history">
-                <div
-                  className="history wow animate animate__fadeInLeft"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="circle">
-                    <div className="inner"></div>
-                  </div>
-                  <div className="history-cnt">
-                    <div className="history-cnt-inner">
-                      <span>2021</span>
-                      <h4>We Work Hard for design</h4>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec aptent taciti sociosqu ad litora torquent per
-                        conubia nostra, himenaeos. Praesent nec neque at dolor
-                        venenatis thoseaol Donec lacinia placerat felis non
-                        aliquam.Mauris nec justo ag euismod sit amet non ipsum.
-                        Praesent commodo at massa vitae enim velit. Ut ut
-                        posuere orci, id dapibus odio. himenaeos. Praesent nec
-                        neque at dolor venenatis thoseaol Donec lacinia placerat
-                        felis non aliquam.Mauris nec justo ag euismod sit amet
-                        non ipsum. Praesent commodo at massa
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="history wow animate animate__fadeInRight"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="circle">
-                    <div className="inner"></div>
-                  </div>
-                  <div className="history-thumb">
-                    <img src={TimeLine2} alt="" />
-                  </div>
-                </div>
-              </div>
-              <div className="single-history">
-                <div
-                  className="history wow animate animate__fadeInLeft"
-                  data-wow-delay="400ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="circle">
-                    <div className="inner"></div>
-                  </div>
-                  <div className="history-thumb">
-                    <img src={TimeLine3} alt="" />
-                  </div>
-                </div>
-                <div
-                  className="history wow animate animate__fadeInRight"
-                  data-wow-delay="400ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="circle">
-                    <div className="inner"></div>
-                  </div>
-                  <div className="history-cnt">
-                    <div className="history-cnt-inner">
-                      <span>2022</span>
-                      <h4>We Are Success And Win</h4>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec aptent taciti sociosqu ad litora torquent per
-                        conubia nostra, himenaeos. Praesent nec neque at dolor
-                        venenatis thoseaol Donec lacinia placerat felis non
-                        aliquam.Mauris nec justo ag euismod sit amet non ipsum.
-                        Praesent commodo at massa vitae enim velit. Ut ut
-                        posuere orci, id dapibus odio. himenaeos. Praesent nec
-                        neque at dolor venenatis thoseaol Donec lacinia placerat
-                        felis non aliquam.Mauris nec justo ag euismod sit amet
-                        non ipsum. Praesent commodo at massa
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <div className="single-history">
-                <div
-                  className="history wow animate animate__fadeInLeft"
-                  data-wow-delay="500ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="circle">
-                    <div className="inner"></div>
-                  </div>
-                  <div className="history-cnt">
-                    <div className="history-cnt-inner">
-                      <span>2023</span>
-                      <h4>Many Award Win</h4>
-                      <p>
-                        Integer purus odio, placerat nec rhoncus in, ullamcorper
-                        nec aptent taciti sociosqu ad litora torquent per
-                        conubia nostra, himenaeos. Praesent nec neque at dolor
-                        venenatis thoseaol Donec lacinia placerat felis non
-                        aliquam.Mauris nec justo ag euismod sit amet non ipsum.
-                        Praesent commodo at massa vitae enim velit. Ut ut
-                        posuere orci, id dapibus odio. himenaeos. Praesent nec
-                        neque at dolor venenatis thoseaol Donec lacinia placerat
-                        felis non aliquam.Mauris nec justo ag euismod sit amet
-                        non ipsum. Praesent commodo at massa
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="history wow animate animate__fadeInRight"
-                  data-wow-delay="500ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="circle">
-                    <div className="inner"></div>
-                  </div>
-                  <div className="history-thumb">
-                    <img src={TimeLine4} alt="" />
-                  </div>
-                </div>
-              </div> */}
             </div>
           </section>
           {/* Testimonials */}
@@ -524,17 +343,12 @@ const About = () => {
             <div className="container">
               <div
                 className="title-wrap wow animate animate__fadeInUp"
-                data-wow-delay="200ms"
                 data-wow-duration="1500ms"
               >
                 <div className="sec-title">
-                  <span>All Blog</span>
-                  <h2>Latest Post</h2>
-                  <p>
-                    Curabitur sed facilisis erat. Vestibulum pharetra eros eget
-                    fringilla porttitor. on Duis a orci nunc. Suspendisse ac
-                    convallis sapien, quis commodo libero.
-                  </p>
+                  <span>{t("home_blog_all")}</span>
+                  <h2>{t("home_blog_latest")}</h2>
+                  <p>{t("home_blog_paragraph")}</p>
                 </div>
               </div>
               <div className="row gy-4">
@@ -542,7 +356,6 @@ const About = () => {
                   return (
                     <div
                       className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                      data-wow-delay="200ms"
                       data-wow-duration="1500ms"
                       key={blog.id}
                     >
@@ -552,13 +365,13 @@ const About = () => {
                             <img src={blog.photoPath} alt="" />
                           </a>
                           <div className="tag">
-                            <a href="/projects">UI/UX</a>
+                            <a href="/projects">{blog.category}</a>
                           </div>
                         </div>
                         <div className="blog-inner">
                           <div className="author-date">
-                            <a href="/">By, Admin</a>
-                            <a href="/">22.02.2022</a>
+                            <a href="/">By, {blog.blogAuthor}</a>
+                            <a href="/">{blog.blogDate}</a>
                           </div>
                           <h4>
                             <a href={`/blog-details/${blog.id}`}>
@@ -570,88 +383,6 @@ const About = () => {
                     </div>
                   );
                 })}
-                {/* <div
-                  className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                  data-wow-delay="200ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="single-blog">
-                    <div className="blog-thumb">
-                      <a href="/blog-details">
-                        <img src={Blog1} alt="" />
-                      </a>
-                      <div className="tag">
-                        <a href="/blog-details">UI/UX</a>
-                      </div>
-                    </div>
-                    <div className="blog-inner">
-                      <div className="author-date">
-                        <a href="/">By, Admin</a>
-                        <a href="/">22.02.2022</a>
-                      </div>
-                      <h4>
-                        <a href="/blog-details">
-                          Quisque malesuada sapien and Donec sed nunc.
-                        </a>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                  data-wow-delay="400ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="single-blog">
-                    <div className="blog-thumb">
-                      <a href="/blog-details">
-                        <img src={Blog2} alt="" />
-                      </a>
-                      <div className="tag">
-                        <a href="/blog-details">Software</a>
-                      </div>
-                    </div>
-                    <div className="blog-inner">
-                      <div className="author-date">
-                        <a href="/">By, Admin</a>
-                        <a href="/">22.02.2022</a>
-                      </div>
-                      <h4>
-                        <a href="/blog-details">
-                          Suspendisse pretium magna qu nisl egestas porttitor.
-                        </a>
-                      </h4>
-                    </div>
-                  </div>
-                </div>
-                <div
-                  className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                  data-wow-delay="600ms"
-                  data-wow-duration="1500ms"
-                >
-                  <div className="single-blog">
-                    <div className="blog-thumb">
-                      <a href="/blog-details">
-                        <img src={Blog3} alt="" />
-                      </a>
-                      <div className="tag">
-                        <a href="/blog-details">Dashbord</a>
-                      </div>
-                    </div>
-                    <div className="blog-inner">
-                      <div className="author-date">
-                        <a href="/">By, Admin</a>
-                        <a href="/">22.02.2022</a>
-                      </div>
-                      <h4>
-                        <a href="/blog-details">
-                          In a augue sit amet erat Suspel eleifend suscipit
-                          issen.
-                        </a>
-                      </h4>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
           </section>

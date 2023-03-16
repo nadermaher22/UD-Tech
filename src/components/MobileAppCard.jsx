@@ -1,15 +1,16 @@
 import React, { useEffect } from "react";
 import WOW from "wowjs";
 import "bootstrap/dist/css/bootstrap.min.css";
+import { useTranslation } from "react-i18next";
 
 const ProjectCard = ({ item }) => {
+  const [t, i18n] = useTranslation();
 
   useEffect(() => {
     new WOW.WOW({
       live: false,
     }).init();
   });
-
 
   return (
     <section className="">
@@ -31,7 +32,9 @@ const ProjectCard = ({ item }) => {
                   <span>{Val.title}</span>
                   <h4>{Val.project}</h4>
                   <div className="view-btn">
-                    <a href={`/project-details/${Val.id}`}>view details</a>
+                    <a href={`/project-details/${Val.id}`}>
+                      {t("services_page_read_more")}
+                    </a>
                   </div>
                 </div>
               </div>

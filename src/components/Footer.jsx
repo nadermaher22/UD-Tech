@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import Logo from "../assests/img/logo.svg";
-
 import {
   FaTwitter,
   FaInstagram,
@@ -12,19 +11,26 @@ import {
   FaGoogleDrive,
 } from "react-icons/fa";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const Footer = () => {
+  const [t, i18n] = useTranslation();
   const [apiData, setApiData] = useState([]);
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
+      )
       .then((res) => {
         setApiData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
   return (
     <>
       <footer>
@@ -38,10 +44,7 @@ const Footer = () => {
                       <img src={Logo} alt="" />
                     </a>
                   </div>
-                  <p>
-                    Integer purus odio, placerat nec ande rhoncus in,
-                    ullamcorper nec dolor. on aptent taciti sociosqu.
-                  </p>
+                  <p>{t("footer_paragraph1")}</p>
                   <ul className="social-media-icons p-0">
                     <li>
                       <a href={apiData.lurl}>
@@ -68,57 +71,57 @@ const Footer = () => {
               </div>
               <div className="col-md-3 col-lg-3 col-xl-3">
                 <div className="footer-widget">
-                  <h4>Our Services</h4>
+                  <h4>{t("footer_our_services")}</h4>
                   <ul className="footer-menu p-0">
                     <li>
-                      <a href="/services">Strategy &amp; Research</a>
+                      <a href="/services">{t("footer_our_ui_ux")}</a>
                     </li>
                     <li>
-                      <a href="/services">Web Development</a>
+                      <a href="/services">{t("footer_our_mobile_apps")}</a>
                     </li>
                     <li>
-                      <a href="/services">Web Solution</a>
+                      <a href="/services">{t("footer_our_websites")}</a>
                     </li>
                     <li>
-                      <a href="/services">Digital Merketing</a>
+                      <a href="/services">{t("footer_our_ecommerce")}</a>
                     </li>
                     <li>
-                      <a href="/services">App Design</a>
+                      <a href="/services">{t("footer_our_ERP_by_odoo")}</a>
                     </li>
                     <li>
-                      <a href="/services">App Development</a>
+                      <a href="/services">{t("footer_our_customized")}</a>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="col-md-3 col-lg-3 col-xl-3">
                 <div className="footer-widget">
-                  <h4>Quick Links</h4>
+                  <h4>{t("footer_our_quick_links")}</h4>
                   <ul className="footer-menu p-0">
                     <li>
-                      <a href="/about">About Us</a>
+                      <a href="/about">{t("about_us")}</a>
                     </li>
                     <li>
-                      <a href="/services">Services</a>
+                      <a href="/services">{t("services")}</a>
                     </li>
                     <li>
-                      <a href="/projects">Project</a>
+                      <a href="/projects">{t("our_projects")}</a>
                     </li>
                     <li>
-                      <a href="/blog">Blog</a>
+                      <a href="/blog">{t("blog")}</a>
                     </li>
                     <li>
-                      <a href="/contact">Career</a>
+                      <a href="/contact">{t("contact_us")}</a>
                     </li>
                     <li>
-                      <a href="/services">services</a>
+                      <a href="/services">{t("services")}</a>
                     </li>
                   </ul>
                 </div>
               </div>
               <div className="col-md-3 col-lg-3 col-xl-3">
                 <div className="footer-widget">
-                  <h4>Contacts</h4>
+                  <h4>{t("footer_our_contacts")}</h4>
                   <div className="number">
                     <div className="num-icon">
                       <FaPhoneAlt />
@@ -157,10 +160,10 @@ const Footer = () => {
               <div className="col-12 col-md-8 col-lg-8 col-xl-7">
                 <ul className="footer-bottom-menu">
                   <li>
-                    <a href="/">Privacy Policy</a>
+                    <a href="/">{t("footer_privacy")}</a>
                   </li>
                   <li>
-                    <a href="/">Terms of Use</a>
+                    <a href="/">{t("footer_terms")}</a>
                   </li>
                 </ul>
               </div>

@@ -73,7 +73,6 @@ const Team = () => {
           <div className="container">
             <div
               className="title-wrap  wow animate animate__fadeInUp"
-              data-wow-delay="200ms"
               data-wow-duration="1500ms"
             >
               <div className="sec-title">
@@ -102,7 +101,6 @@ const Team = () => {
                   <SwiperSlide>
                     <div
                       className="swiper-slide wow animate animate__fadeInUp"
-                      data-wow-delay="200ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="single-team">
@@ -155,7 +153,6 @@ const Team = () => {
                   <SwiperSlide>
                     <div
                       className="swiper-slide wow animate animate__fadeInUp"
-                      data-wow-delay="400ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="single-team">
@@ -208,7 +205,6 @@ const Team = () => {
                   <SwiperSlide>
                     <div
                       className="swiper-slide wow animate animate__fadeInUp"
-                      data-wow-delay="600ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="single-team">
@@ -261,7 +257,6 @@ const Team = () => {
                   <SwiperSlide>
                     <div
                       className="swiper-slide wow animate animate__fadeInUp"
-                      data-wow-delay="600ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="single-team">
@@ -314,7 +309,6 @@ const Team = () => {
                   <SwiperSlide>
                     <div
                       className="swiper-slide wow animate animate__fadeInUp"
-                      data-wow-delay="600ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="single-team">

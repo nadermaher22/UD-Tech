@@ -23,11 +23,12 @@ import { useParams } from "react-router-dom";
 const ProjectDetails = () => {
   const [apiData, setApiData] = useState([]);
   const { projectId } = useParams();
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
 
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetProjectDetails?languageId=1&Id=${projectId}`
+        `http://apiv2.udtech-sa.com/api/WebSite/GetProjectDetails?languageId=${lang}&Id=${projectId}`
       )
       .then((res) => {
         setApiData(res.data);
@@ -35,7 +36,7 @@ const ProjectDetails = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     window.scrollTo(0, 0);

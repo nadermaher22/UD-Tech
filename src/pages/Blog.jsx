@@ -9,23 +9,48 @@ import Newsletter from "../components/Newsletter";
 import WidgetBanner from "../assests/img/widget-banner-bg.jpg";
 import ArrowAngle from "../assests/img/arrow-angle.png";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Blog = () => {
   const [apiData, setApiData] = useState([]);
+  const [t, i18n] = useTranslation();
+  const [getContact, setGetContact] = useState([]);
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
 
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=1")
+      .get(`http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
       .then((res) => {
         setApiData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-  useEffect(() => {
-    window.scrollTo(0, 0);
   });
+  useEffect(() => {
+    const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+
+    axios
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`,
+        {
+          params: {
+            languageId: lang,
+            // languageId: 1,
+          },
+        }
+      )
+      .then((res) => {
+        setGetContact(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  });
+
+  // useEffect(() => {
+  //   window.scrollTo(0, 0);
+  // });
   useEffect(() => {
     new WOW.WOW({
       live: false,
@@ -66,11 +91,11 @@ const Blog = () => {
                 <div className="col-12">
                   <div className="breadcrumb-wrapper">
                     <div className="breadcrumb-cnt">
-                      <h1>Blog sidebar</h1>
+                      <h1>{t("blog")}</h1>
                       <span>
-                        <a href="/">Home</a>
+                        <a href="/">{t("home")}</a>
                         <BsArrowRight className="m-1" />
-                        Blog sidebar
+                        {t("blog")}
                       </span>
                       <div className="breadcrumb-video">
                         <img src={VideoImg} alt="" />
@@ -99,7 +124,7 @@ const Blog = () => {
                         <input
                           type="text"
                           name="search"
-                          placeholder="Search Here"
+                          placeholder={t("blog_page_search")}
                         />
                         <button type="submit">
                           <BsSearch />
@@ -108,43 +133,43 @@ const Blog = () => {
                     </div>
                   </div>
                   <div className="sidebar-widget">
-                    <h4>Category</h4>
+                    <h4>{t("blog_page_category")}</h4>
                     <ul className="category">
                       <li>
                         <a href="/projects">
-                          Web Design
+                          {t("blog_page_web")}
                           <BsArrowRight />
                         </a>
                       </li>
                       <li>
                         <a href="/projects">
-                          Apps Development <BsArrowRight />
+                          {t("blog_page_app")} <BsArrowRight />
                         </a>
                       </li>
                       <li>
                         <a href="/projects">
-                          Software Development <BsArrowRight />
+                          {t("blog_page_software")} <BsArrowRight />
                         </a>
                       </li>
                       <li>
                         <a href="/projects">
-                          Motion Graphics <BsArrowRight />
+                          {t("blog_page_motion")} <BsArrowRight />
                         </a>
                       </li>
                       <li>
                         <a href="/projects">
-                          UI/UX Design <BsArrowRight />
+                          {t("blog_page_ui_ux")} <BsArrowRight />
                         </a>
                       </li>
                       <li>
                         <a href="/projects">
-                          Graphic Design <BsArrowRight />
+                          {t("blog_page_graphic")} <BsArrowRight />
                         </a>
                       </li>
                     </ul>
                   </div>
                   <div className="sidebar-widget">
-                    <h4>Newest Post</h4>
+                    <h4>{t("blog_page_new_post")}</h4>
                     {apiData.slice(0, 3).map((tinyBlog) => {
                       return (
                         <div className="recent-post">
@@ -154,7 +179,7 @@ const Blog = () => {
                             </a>
                           </div>
                           <div className="recent-post-cnt">
-                            <span>11.12.22</span>
+                            <span>{apiData.blogDate}</span>
                             <h5>
                               <a href={`/blog-details/${tinyBlog.id}`}>
                                 {tinyBlog.title}
@@ -166,7 +191,7 @@ const Blog = () => {
                     })}
                   </div>
                   <div className="sidebar-widget">
-                    <h4>Post Tag</h4>
+                    <h4>{t("blog_page_hashtag")}</h4>
                     <ul className="tag-list">
                       <li>
                         <Link to="/projects">Website</Link>
@@ -201,10 +226,13 @@ const Blog = () => {
                     <img src={WidgetBanner} alt="" />
                     <div className="banner-inner">
                       <h3>
-                        Any Project <span>Call Now.</span>
+                        {t("blog_page_any_project")}
+                        <span>{t("blog_page_call_now")}</span>
                         <img className="angle" src={ArrowAngle} alt="" />
                       </h3>
-                      <a href="tel:11231231234">+1-123-123-1234</a>
+                      <a href={`tel:${getContact.mobile}`}>
+                        {getContact.mobile}
+                      </a>
                     </div>
                   </div>
                 </div>
@@ -228,10 +256,10 @@ const Blog = () => {
                               <div className="blog-inner">
                                 <div className="author-date">
                                   <Link to={"/blog-details/" + e.id}>
-                                    By, Admin
+                                    By, d{e.blogAuthor}
                                   </Link>
                                   <Link to={`/blog-details/${e.id}`}>
-                                    23.02.2022
+                                    {e.blogDate}
                                   </Link>
                                 </div>
                                 <h4>
@@ -276,7 +304,6 @@ const Blog = () => {
               </div>
             </div>
           </section>
-          <Newsletter />
         </main>
       </div>
     </>

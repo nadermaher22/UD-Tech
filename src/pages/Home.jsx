@@ -19,68 +19,83 @@ import { useMotionValue } from "framer-motion";
 import ProjectCard from "../components/ProjectCard";
 import ProjectBtn from "../components/ProjectBtn";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+
 const Home = () => {
+  const [t] = useTranslation();
   const [servicesApiData, setServicesApiData] = useState([]);
   const [aboutData, setAboutData] = useState([]);
   const [getClients, setGetClients] = useState([]);
   const [getBlogsHome, setGetBlogsHome] = useState([]);
   const [getContact, setGetcontact] = useState([]);
+  const [preLoader, setPreLoader] = useState(true);
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
 
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
+      )
       .then((res) => {
         setGetcontact(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetClients?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`
+      )
       .then((res) => {
         setGetClients(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=1")
+      .get(`http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
       .then((res) => {
         setGetBlogsHome(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetServices?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetServices?languageId=${lang}`
+      )
       .then((res) => {
         setServicesApiData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetAboutUs?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetAboutUs?languageId=${lang}`
+      )
       .then((res) => {
         setAboutData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=${lang}`
+      )
       .then((res) => {
         setGetProjects(res.data);
         setItem(res.data);
@@ -88,7 +103,7 @@ const Home = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
   const [getProjects, setGetProjects] = useState([]);
   const [item, setItem] = useState([]);
   const menuItems = [...new Set(getProjects.map((Val) => Val.category))];
@@ -117,7 +132,6 @@ const Home = () => {
       live: false,
     }).init();
   });
-  const [preLoader, setPreLoader] = useState(true);
 
   useEffect(() => {
     setTimeout(function () {
@@ -151,6 +165,16 @@ const Home = () => {
   });
   return (
     <>
+      {preLoader && (
+        <div className="preloader">
+          <div className="loader">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+          </div>
+        </div>
+      )}
       <main className="creasoft-wrap layout2">
         <div className="line_wrap layout2">
           <div className="line_item"></div>
@@ -207,17 +231,14 @@ const Home = () => {
             <div className="container">
               <div
                 className="title-wrap wow animate animate__fadeInUp"
-                // data-wow-delay="200ms"
                 data-wow-duration="1500ms"
               >
                 <div className="sec-title white">
-                  <span>Our Solutions</span>
-                  <h2>Services</h2>
+                  <span>{t("services_page_our_solutions")}</span>
+                  <h2>{t("services_page_services")}</h2>
 
                   <p data-aos="flip-left">
-                    Curabitur sed facilisis erat. Vestibulum pharetra eros eget
-                    fringilla porttitor. on Duis a orci nunc. Suspendisse ac
-                    convallis sapien, quis commodo libero.
+                    {t("services_page_home_paragraph")}
                   </p>
                 </div>
               </div>
@@ -228,10 +249,10 @@ const Home = () => {
                 centeredSlides={true}
                 scrollbar={{ draggable: true }}
                 loop={true}
-                autoplay={{
-                  delay: 5000,
-                  disableOnInteraction: false,
-                }}
+                // autoplay={{
+                //   delay: 5000,
+                //   disableOnInteraction: false,
+                // }}
                 breakpoints={{
                   0: {
                     spaceBetween: 50,
@@ -256,7 +277,6 @@ const Home = () => {
                     <SwiperSlide key={service.id}>
                       <div
                         className="swiper-slide wow animate animate__fadeInUp "
-                        data-wow-delay="200ms"
                         data-wow-duration="1500ms"
                       >
                         <div className="single-service layout2">
@@ -274,7 +294,7 @@ const Home = () => {
                           ></p>
                           <div className="read-btn">
                             <a href={`/service-details/${service.id}`}>
-                              Read More
+                              {t("services_page_read_more")}
                             </a>
                           </div>
                         </div>
@@ -291,7 +311,6 @@ const Home = () => {
             <div className="row">
               <div
                 className="col-lg-6 or-2 wow animate animate__fadeIn text-left"
-                data-wow-delay="200ms"
                 data-wow-duration="1500ms"
               >
                 <div className="sec-title white layout2">
@@ -319,7 +338,6 @@ const Home = () => {
               </div>
               <div
                 className="col-lg-6 or-1 wow animate animate__fadeIn"
-                data-wow-delay="200ms"
                 data-wow-duration="1500ms"
               >
                 <div className="about-right layout2">
@@ -330,12 +348,12 @@ const Home = () => {
                     <div className="cmn-btn">
                       <div className="line-1"></div>
                       <div className="line-2"></div>
-                      <a href="/contact">Call Us</a>
+                      <a href="/contact">{t("call_us")}</a>
                     </div>
                     <div className="cmn-btn ">
                       <div className="line-1"></div>
                       <div className="line-2"></div>
-                      <a href="/contact">Company Profile</a>
+                      <a href="/contact">{t("company_profile")}</a>
                     </div>
                   </div>
                 </div>
@@ -350,13 +368,9 @@ const Home = () => {
           <div className="container">
             <div className="title-wrap">
               <div className="sec-title white">
-                <span>Case Study</span>
-                <h2>Project</h2>
-                <p>
-                  Curabitur sed facilisis erat. Vestibulum pharetra eros eget
-                  fringilla porttitor. on Duis a orci nunc. Suspendisse ac
-                  convallis sapien, quis commodo libero.
-                </p>
+                <span>{t("project_page_case_study")}</span>
+                <h2>{t("project_page_project")}</h2>
+                <p>{t("home_project_paragraph")}</p>
               </div>
             </div>
             <ProjectBtn
@@ -373,8 +387,8 @@ const Home = () => {
             <div className="row align-items-center">
               <div className="col-lg-3">
                 <div className="sec-title white layout2">
-                  <span>Satisfied Client</span>
-                  <h2>Our Partner</h2>
+                  <span>{t("about_page_satisfied_customers")}</span>
+                  <h2>{t("mobileApps_page_our_partners")}</h2>
                   <div className="-partnerslider-navigator d-flex">
                     <div className="swiper-button-prev-c" onClick={prevHandler}>
                       <BsChevronLeft />
@@ -423,14 +437,14 @@ const Home = () => {
                           <SwiperSlide>
                             <div className="single-partner single-item graphic ui">
                               <div className="item-img">
-                                <a href="/">
+                                <a href="/clients">
                                   <img src={client.photoPath} alt="" />
                                 </a>
                               </div>
                               <div className="item-inner-cnt">
                                 <h4 className="d-flex">{client.name}</h4>
                                 <div className="view-btn">
-                                  <a href="/">View Website</a>
+                                  {/* <a href="/">View Website</a> */}
                                 </div>
                               </div>
                             </div>
@@ -450,7 +464,7 @@ const Home = () => {
                     <div className="cmn-btn">
                       <div className="line-1"></div>
                       <div className="line-2"></div>
-                      <a href="/clients">More Clients</a>
+                      <a href="/clients">{t("mobileApps_page_more_clients")}</a>
                     </div>
                   </div>
                 </div>
@@ -464,17 +478,12 @@ const Home = () => {
           <div className="container">
             <div
               className="title-wrap wow animate animate__fadeInUp"
-              data-wow-delay="200ms"
               data-wow-duration="1500ms"
             >
               <div className="sec-title white">
-                <span>All Blog</span>
-                <h2>Latest Post</h2>
-                <p>
-                  Curabitur sed facilisis erat. Vestibulum pharetra eros eget
-                  fringilla porttitor. on Duis a orci nunc. Suspendisse ac
-                  convallis sapien, quis commodo libero.
-                </p>
+                <span>{t("home_blog_all")}</span>
+                <h2>{t("home_blog_latest")}</h2>
+                <p>{t("home_blog_paragraph")}</p>
               </div>
             </div>
             <div className="row gy-4">
@@ -482,7 +491,6 @@ const Home = () => {
                 return (
                   <div
                     className="col-md-6 col-lg-4 wow animate animate__fadeInUp"
-                    data-wow-delay="200ms"
                     data-wow-duration="1500ms"
                     key={blog.id}
                   >
@@ -492,13 +500,15 @@ const Home = () => {
                           <img src={blog.photoPath} alt="" />
                         </a>
                         <div className="tag">
-                          <a href="/projects">UI/UX</a>
+                          <a href="/projects">{blog.category}</a>
                         </div>
                       </div>
                       <div className="blog-inner">
                         <div className="author-date">
-                          <a href="/">By, Admin</a>
-                          <a href="/">22.02.2022</a>
+                          <a href="/">
+                            {t("by")}, {blog.blogAuthor}
+                          </a>
+                          <a href="/">{blog.blogDate}</a>
                         </div>
                         <h4>
                           <a href={`/blog-details/${blog.id}`}>{blog.title}</a>

@@ -7,19 +7,26 @@ import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
 import Testimonials from "../components/Testimonials";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const Services = () => {
+  const [t, i18n] = useTranslation();
+  const [apiData, setApiData] = useState([]);
+  const [preLoader, setPreLoader] = useState(true);
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetServices?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetServices?languageId=${lang}`
+      )
       .then((res) => {
         setApiData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
-  const [apiData, setApiData] = useState([]);
+  }, [lang]);
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -28,7 +35,6 @@ const Services = () => {
       live: false,
     }).init();
   });
-  const [preLoader, setPreLoader] = useState(true);
 
   useEffect(() => {
     setTimeout(function () {
@@ -63,11 +69,11 @@ const Services = () => {
                 <div className="col-12">
                   <div className="breadcrumb-wrapper">
                     <div className="breadcrumb-cnt">
-                      <h1>Service</h1>
+                      <h1>{t("services_page_services")}</h1>
                       <span>
-                        <a href="/">Home</a>
+                        <a href="/">{t("home")}</a>
                         <BsArrowRight className="m-1" />
-                        Service
+                        {t("services_page_services")}
                       </span>
                       <div className="breadcrumb-video">
                         <img src={VideoImg} alt="" />
@@ -90,13 +96,9 @@ const Services = () => {
             <div className="container">
               <div className="title-wrap">
                 <div className="sec-title">
-                  <span>Our Solutions</span>
-                  <h2>Services</h2>
-                  <p>
-                    Curabitur sed facilisis erat. Vestibulum pharetra eros eget
-                    fringilla porttitor. on Duis a orci nunc. Suspendisse ac
-                    convallis sapien, quis commodo libero.
-                  </p>
+                  <span>{t("services_page_our_solutions")}</span>
+                  <h2>{t("services_page_services")}</h2>
+                  <p>{t("services_page_paragraph")}</p>
                 </div>
               </div>
               <div className="row g-4">
@@ -117,7 +119,9 @@ const Services = () => {
                           dangerouslySetInnerHTML={{ __html: e.description }}
                         ></p>
                         <div className="read-btn">
-                          <a href={`/service-details/${e.id}`}>Read More</a>
+                          <a href={`/service-details/${e.id}`}>
+                            {t("services_page_read_more")}
+                          </a>
                         </div>
                       </div>
                     </div>

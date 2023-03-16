@@ -9,22 +9,27 @@ import "swiper/css/bundle";
 import Newsletter from "../components/Newsletter";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
-import Project1 from "../assests/img/project/project-1.jpg";
 import { BsArrowRight, BsChevronLeft, BsChevronRight } from "react-icons/bs";
 import VideoImg from "../assests/img/breadcrumb-video.jpg";
 import { FaPlay } from "react-icons/fa";
-
 import JavaImg from "../assests/img/java.png";
 import MobileAppBtn from "../components/MobileAppBtn";
 import MobileAppCard from "../components/MobileAppCard";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 
 const MobileApps = () => {
+  const [t] = useTranslation();
   const [apiData, setApiData] = useState([]);
   const [item, setItem] = useState([]);
+  const [getClients, setGetClients] = useState([]);
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetMobileApps?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetMobileApps?languageId=${lang}`
+      )
       .then((res) => {
         setApiData(res.data);
         setItem(res.data);
@@ -32,7 +37,19 @@ const MobileApps = () => {
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
+  useEffect(() => {
+    axios
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`
+      )
+      .then((res) => {
+        setGetClients(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [lang]);
 
   const menuItems = [...new Set(apiData.map((Val) => Val.category))];
   // const [swiperRef, setSwiperRef] = useState(null);
@@ -97,11 +114,11 @@ const MobileApps = () => {
               <div className="col-12">
                 <div className="breadcrumb-wrapper">
                   <div className="breadcrumb-cnt">
-                    <h1>Mobile Apps</h1>
+                    <h1>{t("mobile_apps")}</h1>
                     <span>
-                      <a href="/">Home</a>
+                      <a href="/">{t("home")}</a>
                       <BsArrowRight className="m-1" />
-                      Mobile Apps
+                      {t("mobile_apps")}
                     </span>
                     <div className="breadcrumb-video">
                       <img src={VideoImg} alt="" />
@@ -121,23 +138,13 @@ const MobileApps = () => {
           </div>
         </section>
 
-
         <section className="projectsPage project-area sec-mar ">
           <div className="container">
-            <div
-              className="wow animate slideInUp"
-              data-wow-duration="1500ms"
-            >
+            <div className="wow animate slideInUp" data-wow-duration="1500ms">
               <div className="title-wrap">
                 <div className="sec-title">
-                  <h2>MOBILE APPS & WEBSITES</h2>
-                  <p>
-                    We are able to customize applications and websites – per the
-                    client's needs and requests, starting from the IOS &
-                    Android, flutter, .Net core , Backend, and 14 other
-                    programming language , please contact us for more
-                    information and download our company profile
-                  </p>
+                  <h2>{t("mobileApps_page_title1")}</h2>
+                  <p>{t("mobileApps_page_paragraph1")}</p>
                 </div>
               </div>
               <MobileAppBtn
@@ -152,17 +159,17 @@ const MobileApps = () => {
                   <div className="cmn-btn">
                     <div className="line-1"></div>
                     <div className="line-2"></div>
-                    <a href="/contact">Send us email</a>
+                    <a href="/contact">{t("mobileApps_page_send_mail")}</a>
                   </div>
                   <div className="cmn-btn layout-two">
                     <div className="line-1"></div>
                     <div className="line-2"></div>
-                    <a href="/">Company Profile</a>
+                    <a href="/">{t("company_profile")}</a>
                   </div>
                   <div className="cmn-btn">
                     <div className="line-1"></div>
                     <div className="line-2"></div>
-                    <a href="https://wa.me/+9660599209361">call us now</a>
+                    <a href="https://wa.me/+9660599209361">{t("call_us")}</a>
                   </div>
                 </div>
               </div>
@@ -171,14 +178,12 @@ const MobileApps = () => {
               <div className="col-md-12">
                 <div
                   className="about-left wow animate animate__slideInUp"
-                  data-wow-delay="400ms"
                   data-wow-duration="1500ms"
                 >
-                  <h3>technologies that we use </h3>
+                  <h3>{t("mobileApps_page_tech_use")}</h3>
                   <div className="row g-4">
                     <div
                       className="col-12 col-md-3 single-item wow animate fadeInLeft"
-                      data-wow-delay="300ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="item-img">
@@ -190,7 +195,6 @@ const MobileApps = () => {
                     </div>
                     <div
                       className="col-12 col-md-3 single-item wow animate animate__fadeInLeft"
-                      data-wow-delay="300ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="item-img">
@@ -202,7 +206,6 @@ const MobileApps = () => {
                     </div>
                     <div
                       className="col-12 col-md-3 single-item wow animate animate__fadeInRight"
-                      data-wow-delay="300ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="item-img">
@@ -214,7 +217,6 @@ const MobileApps = () => {
                     </div>
                     <div
                       className="col-12 col-md-3 single-item wow animate animate__fadeInRight"
-                      data-wow-delay="300ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="item-img">
@@ -226,7 +228,6 @@ const MobileApps = () => {
                     </div>
                     <div
                       className="col-12 col-md-3 single-item wow animate animate__fadeInLeft"
-                      data-wow-delay="300ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="item-img">
@@ -238,7 +239,6 @@ const MobileApps = () => {
                     </div>
                     <div
                       className="col-12 col-md-3 single-item wow animate animate__fadeInLeft"
-                      data-wow-delay="300ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="item-img">
@@ -250,7 +250,6 @@ const MobileApps = () => {
                     </div>
                     <div
                       className="col-12 col-md-3 single-item wow animate animate__fadeInRight"
-                      data-wow-delay="300ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="item-img">
@@ -262,7 +261,6 @@ const MobileApps = () => {
                     </div>
                     <div
                       className="col-12 col-md-3 single-item wow animate animate__fadeInRight"
-                      data-wow-delay="300ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="item-img">
@@ -274,7 +272,6 @@ const MobileApps = () => {
                     </div>
                     <div
                       className="col-12 col-md-3 single-item wow animate animate__fadeInLeft"
-                      data-wow-delay="300ms"
                       data-wow-duration="1500ms"
                     >
                       <div className="item-img">
@@ -287,64 +284,31 @@ const MobileApps = () => {
               <div className="single-history">
                 <div
                   className="col-12 col-md-6 py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
-                  data-wow-delay="200ms"
                   data-wow-duration="1500ms"
                 >
                   <div className="about-left mt-5">
-                    <h3>Grow your business with the right mobile solutions </h3>
-                    <p>
-                      Whether you’re transforming internal business processes,
-                      working on an idea that will change the world, or simply
-                      increasing your company’s presence in the market, custom
-                      mobile application development lets you achieve your goals
-                      quickly and efficiently. Trusted design methodologies and
-                      high-quality processes help you maximize the value of your
-                      mobile app while ensuring you receive a feature-rich,
-                      intuitive product that users love.{" "}
-                    </p>
+                    <h3>{t("mobileApps_page_title2")} </h3>
+                    <p>{t("mobileApps_page_paragraph2")}</p>
                   </div>
                 </div>
                 <div
                   className="col-12 col-md-6 py-2 pe-4 ps-4 wow animanimate animate__fadeInRight"
-                  data-wow-delay="200ms"
                   data-wow-duration="1500ms"
                 >
                   <div className="about-left mt-5">
-                    <h3>Meet users’ increasingly demanding expectations</h3>
-                    <p>
-                      To create a top mobile solution, you need a combination of
-                      well-crafted system architecture and high-quality code.
-                      Our experts help you select the most appropriate
-                      technologies to speed up the mobile application
-                      development process and ensure your users receive the
-                      outstanding experience they expect.
-                    </p>
+                    <h3>{t("mobileApps_page_title3")}</h3>
+                    <p>{t("mobileApps_page_paragraph3")}</p>
                   </div>
                 </div>
               </div>
               <div className="single-history">
                 <div
                   className="col-12 col-md-6 py-2 pe-4 ps-4 wow animate animate__fadeInLeft"
-                  data-wow-delay="200ms"
                   data-wow-duration="1500ms"
                 >
                   <div className="about-left mt-5">
-                    <h3>How to choose the technology for the application?</h3>
-                    <p>
-                      Choosing the right technology for your mobile app is a key
-                      decision that will significantly influence its success.
-                      When planning a cross-platform mobile app, you need to
-                      make sure that the underlying tech ensures stable
-                      performance and adequate user-friendliness. On top of
-                      that, it must enable you to create a beautiful, intuitive
-                      UI Although there are many cases where it’s better to
-                      stick with native development, cross-platform mobile app
-                      development is worth considering as it significantly
-                      decreases the time and cost of development. For relatively
-                      small custom mobile applications without specific platform
-                      requirements, React Native or a similar framework can be a
-                      perfect match.
-                    </p>
+                    <h3>{t("mobileApps_page_title4")}</h3>
+                    <p>{t("mobileApps_page_paragraph4")}</p>
                   </div>
                 </div>
               </div>
@@ -357,8 +321,8 @@ const MobileApps = () => {
             <div className="row align-items-center">
               <div className="col-lg-3">
                 <div className="sec-title white layout2">
-                  <span>Satisfied Client</span>
-                  <h2>Our Partner</h2>
+                  <span>{t("about_page_satisfied_customers")}</span>
+                  <h2>{t("mobileApps_page_our_partners")}</h2>
                   <div className="-partnerslider-navigator d-flex">
                     <div className="swiper-button-prev-c" onClick={prevHandler}>
                       <BsChevronLeft />
@@ -371,6 +335,9 @@ const MobileApps = () => {
               </div>
               <div className="col-lg-9">
                 <Swiper
+                  spaceBetween={20}
+                  slidesPerView={2.7}
+                  centeredSlides={true}
                   navigation={false}
                   modules={[Navigation]}
                   className="mySwiper"
@@ -388,109 +355,38 @@ const MobileApps = () => {
                       spaceBetween: 30,
                     },
                     768: {
-                      slidesPerView: 1,
-                      spaceBetween: 20,
+                      slidesPerView: 3,
+                      spaceBetween: 50,
                     },
                     1204: {
-                      slidesPerView: 3,
-                      spaceBetween: 20,
+                      slidesPerView: 2.7,
+                      spaceBetween: 50,
                     },
                   }}
                 >
-                  <div className="swiper partner-slider">
-                    <div className="swiper-wrapper">
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
+                  {getClients.map((client) => {
+                    return (
+                      <div className="swiper partner-slider" key={client.id}>
+                        <div className="swiper-wrapper">
+                          <SwiperSlide>
+                            <div className="single-partner single-item graphic ui">
+                              <div className="item-img">
+                                <a href="/">
+                                  <img src={client.photoPath} alt="" />
+                                </a>
+                              </div>
+                              <div className="item-inner-cnt">
+                                <h4 className="d-flex">{client.name}</h4>
+                                <div className="view-btn">
+                                  {/* <a href="/">View Website</a> */}
+                                </div>
+                              </div>
                             </div>
-                          </div>
+                          </SwiperSlide>
                         </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                      <SwiperSlide>
-                        <div className="single-partner single-item graphic ui">
-                          <div className="item-img">
-                            <a href="/">
-                              <img src={Project1} alt="" />
-                            </a>
-                          </div>
-                          <div className="item-inner-cnt">
-                            <h4 className="d-flex">Client Name</h4>
-                            <div className="view-btn">
-                              <a href="/">View Website</a>
-                            </div>
-                          </div>
-                        </div>
-                      </SwiperSlide>
-                    </div>
-                  </div>
+                      </div>
+                    );
+                  })}
                 </Swiper>
               </div>
             </div>
@@ -502,7 +398,7 @@ const MobileApps = () => {
                     <div className="cmn-btn">
                       <div className="line-1"></div>
                       <div className="line-2"></div>
-                      <a href="/clients">More Clients</a>
+                      <a href="/clients">{t("mobileApps_page_more_clients")}</a>
                     </div>
                   </div>
                 </div>

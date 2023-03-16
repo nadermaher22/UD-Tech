@@ -15,8 +15,11 @@ import {
 import "bootstrap/dist/css/bootstrap.min.css";
 import Newsletter from "../components/Newsletter";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
+import i18next from "i18next";
 
 const ContactUs = () => {
+  const [t] = useTranslation();
   const [preLoader, setPreLoader] = useState(true);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -25,17 +28,20 @@ const ContactUs = () => {
   const [apiData, setApiData] = useState([]);
   const [messagesSubmit, setMessageSubmit] = useState("");
   const [errorMessagesSubmit, setErrorMessageSubmit] = useState("");
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
 
   useEffect(() => {
     axios
-      .get("http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=1")
+      .get(
+        `http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
+      )
       .then((res) => {
         setApiData(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, []);
+  }, [lang]);
 
   const PostMessage = (e) => {
     e.preventDefault();
@@ -86,11 +92,11 @@ const ContactUs = () => {
                 <div className="col-12">
                   <div className="breadcrumb-wrapper">
                     <div className="breadcrumb-cnt">
-                      <h1>Contact us</h1>
+                      <h1>{t("contact_us")}</h1>
                       <span>
-                        <a href="/">Home</a>
+                        <a href="/">{t("home")}</a>
                         <BsArrowRight className="m-1" />
-                        Contact us
+                        {t("contact_us")}
                       </span>
                       <div className="breadcrumb-video">
                         <img src={VideoImg} alt="/" />
@@ -115,8 +121,8 @@ const ContactUs = () => {
                 <div className="col-md-6 col-lg-5">
                   <div className="contact-left">
                     <div className="sec-title layout2">
-                      <span>Get in touch</span>
-                      <h2>Contact us if you have more questions.</h2>
+                      <span>{t("contact_page_get_in_touch")}</span>
+                      <h2>{t("contact_page_contact_us")}</h2>
                     </div>
                     <ul className="social-follow">
                       <li>
@@ -146,7 +152,7 @@ const ContactUs = () => {
                           <FaMapMarkerAlt />
                         </div>
                         <div className="info">
-                          <h3>Location</h3>
+                          <h3>{t("contact_page_location")}</h3>
                           <p>{apiData.address}</p>
                         </div>
                       </div>
@@ -155,7 +161,7 @@ const ContactUs = () => {
                           <FaPhoneAlt />
                         </div>
                         <div className="info">
-                          <h3>Phone</h3>
+                          <h3>{t("contact_page_phone")}</h3>
                           <a href={`tel:${apiData.mobile}`}>{apiData.mobile}</a>
                         </div>
                       </div>
@@ -164,7 +170,7 @@ const ContactUs = () => {
                           <FaRegEnvelope />
                         </div>
                         <div className="info">
-                          <h3>Email</h3>
+                          <h3>{t("contact_page_email")}</h3>
                           <a href={apiData.email}>{apiData.email}</a>
                         </div>
                       </div>
@@ -184,16 +190,15 @@ const ContactUs = () => {
                   <div className="col-md-6 col-lg-7">
                     <div
                       className="contact-form wow animate animate__fadeInUp"
-                      data-wow-delay="200ms"
                       data-wow-duration="1500ms"
                     >
-                      <h3>Have Any Questions</h3>
+                      <h3>{t("contact_page_questions")}</h3>
                       <form method="post" onSubmit={PostMessage}>
                         <div className="row">
                           <div className="col-12">
                             <input
                               type="text"
-                              placeholder="Enter your name"
+                              placeholder={t("contact_page_enter_name")}
                               value={name}
                               onChange={(e) => setName(e.target.value)}
                             />
@@ -201,7 +206,7 @@ const ContactUs = () => {
                           <div className="col-md-6">
                             <input
                               type="email"
-                              placeholder="Enter your email"
+                              placeholder={t("contact_page_email")}
                               value={email}
                               onChange={(e) => setEmail(e.target.value)}
                             />
@@ -209,7 +214,7 @@ const ContactUs = () => {
                           <div className="col-md-6">
                             <input
                               type="text"
-                              placeholder="Subject"
+                              placeholder={t("contact_page_subject")}
                               value={subject}
                               onChange={(e) => setSubject(e.target.value)}
                             />
@@ -218,11 +223,14 @@ const ContactUs = () => {
                             <textarea
                               cols="30"
                               rows="10"
-                              placeholder="Your message"
+                              placeholder={t("contact_page_message")}
                               value={message}
                               onChange={(e) => setMessage(e.target.value)}
                             ></textarea>
-                            <input type="submit" />
+                            <input
+                              type="submit"
+                              value={t("contact_page_submit")}
+                            />
                           </div>
                         </div>
                       </form>
@@ -234,7 +242,6 @@ const ContactUs = () => {
                   </div>
                   <div
                     className="col-md-6 col-lg-5 wow animate animate__fadeInUp"
-                    data-wow-delay="300ms"
                     data-wow-duration="1500ms"
                   >
                     <div className="call-banner">
