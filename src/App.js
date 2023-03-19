@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  Navigate,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import "./assests/css/style.css";
 // import "./assests/css/bootstrap.min.css";
@@ -45,6 +50,8 @@ const App = () => {
   const [t] = useTranslation();
   const [isShown, setIsShown] = useState(false);
   const [preLoader, setPreLoader] = useState(true);
+  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const pageLang = localStorage.i18nextLng === "en" ? "en" : "ar";
 
   useEffect(() => {
     setTimeout(function () {

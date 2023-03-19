@@ -31,7 +31,11 @@ const Navbar = () => {
   };
 
   return (
-    <div>
+    <div
+      className={
+        window.localStorage.i18nextLng === "en" ? "directionEN" : "directionAR"
+      }
+    >
       <header
         className={
           onScroll

@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.e36a9776.css",
-    "main.js": "/static/js/main.fda1860d.js",
+    "main.css": "/static/css/main.51d15ad2.css",
+    "main.js": "/static/js/main.20eba39a.js",
     "static/media/UDT_PromoVideo.mp4": "/static/media/UDT_PromoVideo.24e1caaef78ed3fc33cb.mp4",
     "static/media/UDT_PromoVideo-Mobile.mp4": "/static/media/UDT_PromoVideo-Mobile.9956442422f903a8d067.mp4",
     "static/media/bg.png": "/static/media/bg.19bfdc4e473c5997188d.png",
@@ -19,11 +19,11 @@
     "static/media/logo.svg": "/static/media/logo.72aa11ebf74f502ac7badf4a42fcae43.svg",
     "index.html": "/index.html",
     "static/media/check.svg": "/static/media/check.62161559ccbd3c139ce347c088baa829.svg",
-    "main.e36a9776.css.map": "/static/css/main.e36a9776.css.map",
-    "main.fda1860d.js.map": "/static/js/main.fda1860d.js.map"
+    "main.51d15ad2.css.map": "/static/css/main.51d15ad2.css.map",
+    "main.20eba39a.js.map": "/static/js/main.20eba39a.js.map"
   },
   "entrypoints": [
-    "static/css/main.e36a9776.css",
-    "static/js/main.fda1860d.js"
+    "static/css/main.51d15ad2.css",
+    "static/js/main.20eba39a.js"
   ]
 }

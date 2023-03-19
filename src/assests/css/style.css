@@ -780,7 +780,7 @@
   header .main-nav {
     position: fixed;
     top: 0;
-    left: 0;
+    left: 0 !important;
     width: 300px;
     padding: 10px 0 !important;
     z-index: 99999;
@@ -807,7 +807,7 @@
 
   header .main-nav ul {
     float: none;
-    text-align: left;
+    text-align: left !important;
     padding: 0;
   }
 
@@ -860,6 +860,7 @@
   header .main-nav.slidenav {
     -webkit-transform: translateX(0);
     transform: translateX(0);
+    left: 0 !important;
   }
 
   header .main-nav ul li .bi {
@@ -961,6 +962,12 @@
 /*===========================
      02.Header css 
 ===========================*/
+.directionEN {
+  direction: ltr !important;
+}
+.directionAR {
+  direction: rtl !important;
+}
 header {
   position: absolute;
   top: 0;
