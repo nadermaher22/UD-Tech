@@ -4,7 +4,6 @@ const ProjectBtn = ({ setItem, menuItems, filterItem, item }) => {
   const [active, setActive] = useState("All");
 
   const filterFunction = (Val) => {
-    console.log("filtered Data", Val);
     filterItem(Val);
     setActive(Val);
   };

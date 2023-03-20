@@ -39,7 +39,6 @@ const BlogDetails = () => {
       });
   }, [lang]);
 
-  console.log(setApiData);
 
   // useEffect(() => {
   //   window.scrollTo(0, 0);

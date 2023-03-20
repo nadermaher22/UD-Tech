@@ -1,11 +1,6 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import "./assests/css/style.css";
 // import "./assests/css/bootstrap.min.css";
@@ -37,7 +32,7 @@ import "../src/assests/css/bootstrap-icons.css";
 import AnimatedCursor from "react-animated-cursor";
 import { useTranslation } from "react-i18next";
 
-if (window.localStorage.i18nextLng === "en") {
+if (localStorage.getItem("i18nextLng") === "en") {
   require("./assests/css/bootstrap.min.css");
   require("./assests/css/style.css");
 } else {
@@ -64,7 +59,13 @@ const App = () => {
   };
 
   return (
-    <div className="App">
+    <div
+      className={
+        localStorage.getItem("i18nextLng") === "en"
+          ? "App directionEN"
+          : "App directionAR"
+      }
+    >
       <Router>
         {preLoader && (
           <div className="preloader">
@@ -77,7 +78,95 @@ const App = () => {
           </div>
         )}
         {/* Ask for cookies */}
-        <div className={isShown ? "d-none" : ""}>
+        {localStorage.getItem("cookieAccept") === "true" ? (
+          <div className="d-none">
+            <div className="cookies sc-breuTD gPIury aos-init aos-animate">
+              <div className="container">
+                <div className="row my-2">
+                  <div className="col-12 col-md-8 ">
+                    <p className="m-0">{t("we_use_cookie")}</p>
+                    <p className="m-0">{t("cookie_paragraph")}</p>
+                  </div>
+                  <div className="col-12 col-md-4 d-flex gap-3 align-items-center">
+                    <div className="buttons mt-3">
+                      <div
+
+                      //                        onClick={handleClick}
+                      >
+                        <div className="line-1"></div>
+                        <div className="line-2"></div>
+                        <span
+                          onClick={() =>
+                            localStorage.setItem("cookieAccept", false)
+                          }
+                        >
+                          {t("refuse")}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="buttons mt-3">
+                      <div
+                      // onClick={handleClick}
+                      >
+                        <div className="line-1"></div>
+                        <div className="line-2"></div>
+                        <span
+                          onClick={() =>
+                            localStorage.setItem("cookieAccept", true)
+                          }
+                        >
+                          {t("accept")}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        ) : (
+          <div>
+            <div className="cookies sc-breuTD gPIury aos-init aos-animate">
+              <div className="container">
+                <div className="row my-2">
+                  <div className="col-12 col-md-8 ">
+                    <p className="m-0">{t("we_use_cookie")}</p>
+                    <p className="m-0">{t("cookie_paragraph")}</p>
+                  </div>
+                  <div className="col-12 col-md-4 d-flex gap-3 align-items-center">
+                    <div className="buttons mt-3">
+                      <div className="cmn-btn" onClick={handleClick}>
+                        <div className="line-1"></div>
+                        <div className="line-2"></div>
+                        <span
+                          onClick={() =>
+                            localStorage.setItem("cookieAccept", false)
+                          }
+                        >
+                          {t("refuse")}
+                        </span>
+                      </div>
+                    </div>
+                    <div className="buttons mt-3">
+                      <div className="cmn-btn" onClick={handleClick}>
+                        <div className="line-1"></div>
+                        <div className="line-2"></div>
+                        <span
+                          onClick={() =>
+                            localStorage.setItem("cookieAccept", true)
+                          }
+                        >
+                          {t("accept")}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+        {/* <div className={isShown ? "d-none" : ""}>
           <div className="cookies sc-breuTD gPIury aos-init aos-animate">
             <div className="container">
               <div className="row my-2">
@@ -122,7 +211,7 @@ const App = () => {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* animated-cursor-react */}
         <div>

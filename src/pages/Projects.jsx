@@ -35,7 +35,6 @@ const Projects = () => {
     const newItem = apiData.filter((newVal) => {
       return newVal.category === curcat;
     });
-    console.log(newItem);
 
     setItem(newItem);
   };
