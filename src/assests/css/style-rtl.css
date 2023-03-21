@@ -435,7 +435,7 @@ video {
 }
 .breadcrumb-cnt .breadcrumb-video {
   position: absolute;
-  right: 0;
+  left: 0;
   top: 0;
 }
 @media (max-width: 767px) {
@@ -871,7 +871,9 @@ body {
     border-left: 1px solid rgba(0, 0, 0, 0.03);
   }
 }
-
+.breadcrumb-cnt svg {
+  transform: rotate(180deg);
+}
 .breadcrumbs:before {
   left: auto;
   right: 0;
@@ -1127,6 +1129,10 @@ header {
 .single-item .item-inner-cnt {
   right: 5%;
   left: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
 }
 .single-item .item-inner-cnt .view-btn {
   text-align: left;

@@ -5,7 +5,6 @@ import { BsArrowLeft, BsArrowRight, BsSearch } from "react-icons/bs";
 import { FaPlay } from "react-icons/fa";
 import "bootstrap/dist/css/bootstrap.min.css";
 import WOW from "wowjs";
-import Newsletter from "../components/Newsletter";
 import WidgetBanner from "../assests/img/widget-banner-bg.jpg";
 import ArrowAngle from "../assests/img/arrow-angle.png";
 import axios from "axios";
@@ -256,7 +255,7 @@ const Blog = () => {
                               <div className="blog-inner">
                                 <div className="author-date">
                                   <Link to={"/blog-details/" + e.id}>
-                                    By, d{e.blogAuthor}
+                                    {t("by")}, {e.blogAuthor}
                                   </Link>
                                   <Link to={`/blog-details/${e.id}`}>
                                     {e.blogDate}

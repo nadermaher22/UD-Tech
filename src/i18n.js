@@ -77,7 +77,7 @@ i18n
           about_page_superior_support: "Superior Support",
           about_page_unique_design: "Unique Designs",
           about_page_clean_code: "Clean Code Develop",
-          "about_page_ud-history": "UD-Tech  History",
+          about_page_ud_history: "UD-Tech  History",
           about_page_our_history: "Our History",
           about_page_projects_completed: "Projects Completed",
           about_page_satisfied_customers: "Satisfied Customers",
@@ -295,7 +295,7 @@ i18n
       },
     },
 
-    fallbackLng: localStorage.getItem("i18nextLng"),
+    fallbackLng: "en",
     detection: options,
 
     interpolation: {
