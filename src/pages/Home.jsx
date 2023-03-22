@@ -240,6 +240,14 @@ const Home = () => {
                   <p data-aos="flip-left">
                     {t("services_page_home_paragraph")}
                   </p>
+                  <div className="-partnerslider-navigator d-flex">
+                    <div className="swiper-button-prev-c" onClick={prevHandler}>
+                      <BsChevronLeft />
+                    </div>
+                    <div className="swiper-button-next-c" onClick={nextHandler}>
+                      <BsChevronRight />
+                    </div>
+                  </div>
                 </div>
               </div>
               <Swiper
@@ -361,6 +369,7 @@ const Home = () => {
             </div>
           </div>
         </section>
+
         {/* Features section */}
         <Features />
 
