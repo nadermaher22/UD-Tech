@@ -1,12 +1,17 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Routes,
+  Route,
+  useParams,
+} from "react-router-dom";
 import Home from "./pages/Home";
 import "./assests/css/style.css";
 // import "./assests/css/bootstrap.min.css";
 // import "./assests/css/style-rtl.css";
 // import "./assests/css/style-rtl.css.map";
-// import "./assests/css/bootstrap-rtl.min.css";
+import "./assests/css/bootstrap-rtl.min.css";
 import "./assests/css/fontawesome.min.css";
 import "./assests/css/magnific-popup.css";
 import "animate.css/animate.css";
@@ -32,22 +37,23 @@ import "../src/assests/css/bootstrap-icons.css";
 import AnimatedCursor from "react-animated-cursor";
 import { useTranslation } from "react-i18next";
 
-if (localStorage.getItem("i18nextLng") === "en") {
-  require("./assests/css/bootstrap.min.css");
-  require("./assests/css/style.css");
-} else {
-  require("./assests/css/bootstrap-rtl.min.css");
-  require("./assests/css/style.css");
-  require("./assests/css/style-rtl.css");
-}
+// if (localStorage.getItem("i18nextLng") === "en") {
+//   alert("en");
+//   require("./assests/css/bootstrap.min.css");
+//   require("./assests/css/style.css");
+// } else {
+//   alert("ar");
+//   require("./assests/css/bootstrap-rtl.min.css");
+//   require("./assests/css/style.css");
+//   require("./assests/css/style-rtl.css");
+// }
 
 const App = () => {
   const [t] = useTranslation();
   const [isShown, setIsShown] = useState(false);
   const [preLoader, setPreLoader] = useState(true);
   const lang = localStorage.i18nextLng === "en" ? 1 : 2;
-  const pageLang = localStorage.i18nextLng === "en" ? "en" : "ar";
-
+  const { userLang } = useParams();
   useEffect(() => {
     setTimeout(function () {
       setPreLoader(false);
@@ -166,52 +172,6 @@ const App = () => {
             </div>
           </div>
         )}
-        {/* <div className={isShown ? "d-none" : ""}>
-          <div className="cookies sc-breuTD gPIury aos-init aos-animate">
-            <div className="container">
-              <div className="row my-2">
-                <div className="col-12 col-md-8 ">
-                  <p className="m-0">{t("we_use_cookie")}</p>
-                  <p className="m-0">{t("cookie_paragraph")}</p>
-                </div>
-                <div className="col-12 col-md-4 d-flex gap-3 align-items-center">
-                  <div className="buttons mt-3">
-                    <div
-                      className={isShown ? "d-none" : "cmn-btn"}
-                      onClick={handleClick}
-                    >
-                      <div className="line-1"></div>
-                      <div className="line-2"></div>
-                      <span
-                        onClick={() =>
-                          localStorage.setItem("cookieAccept", false)
-                        }
-                      >
-                        {t("refuse")}
-                      </span>
-                    </div>
-                  </div>
-                  <div className="buttons mt-3">
-                    <div
-                      className={isShown ? "d-none" : "cmn-btn"}
-                      onClick={handleClick}
-                    >
-                      <div className="line-1"></div>
-                      <div className="line-2"></div>
-                      <span
-                        onClick={() =>
-                          localStorage.setItem("cookieAccept", true)
-                        }
-                      >
-                        {t("accept")}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div> */}
 
         {/* animated-cursor-react */}
         <div>

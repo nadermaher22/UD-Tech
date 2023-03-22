@@ -3,7 +3,7 @@ import IntroVideo from "../assests/img/video/UDT_PromoVideo.mp4";
 import IntroVideoMob from "../assests/img/video/UDT_PromoVideo-Mobile.mp4";
 import Logo from "../assests/img/logo-dark.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Navigation, Autoplay } from "swiper";
+import { Navigation, Autoplay, Pagination } from "swiper";
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/navigation";
@@ -249,10 +249,10 @@ const Home = () => {
                 centeredSlides={true}
                 scrollbar={{ draggable: true }}
                 loop={true}
-                // autoplay={{
-                //   delay: 5000,
-                //   disableOnInteraction: false,
-                // }}
+                autoplay={{
+                  delay: 5000,
+                  disableOnInteraction: false,
+                }}
                 breakpoints={{
                   0: {
                     spaceBetween: 50,
@@ -405,11 +405,14 @@ const Home = () => {
                   slidesPerView={2.7}
                   centeredSlides={true}
                   navigation={false}
-                  modules={[Navigation]}
+                  modules={[Navigation, Autoplay, Pagination]}
                   className="mySwiper"
                   scrollbar={{ draggable: true }}
                   loop={true}
-                  autoplay={true}
+                  autoplay={{
+                    delay: 5000,
+                    disableOnInteraction: false,
+                  }}
                   onSwiper={(swiper) => setSwiperRef(swiper)}
                   breakpoints={{
                     0: {
@@ -423,6 +426,7 @@ const Home = () => {
                     768: {
                       slidesPerView: 3,
                       spaceBetween: 50,
+                      pagination: true,
                     },
                     1204: {
                       slidesPerView: 2.7,

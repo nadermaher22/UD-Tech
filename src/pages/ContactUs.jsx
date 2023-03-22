@@ -16,7 +16,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Newsletter from "../components/Newsletter";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 
 const ContactUs = () => {
   const [t] = useTranslation();
@@ -37,11 +36,12 @@ const ContactUs = () => {
       )
       .then((res) => {
         setApiData(res.data);
+        console.log(apiData);
       })
       .catch((err) => {
         console.log(err);
       });
-  }, [lang]);
+  }, [apiData, lang]);
 
   const PostMessage = (e) => {
     e.preventDefault();

@@ -12,7 +12,7 @@ import { useTranslation } from "react-i18next";
 
 const Blog = () => {
   const [apiData, setApiData] = useState([]);
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
   const [getContact, setGetContact] = useState([]);
   const lang = localStorage.i18nextLng === "en" ? 1 : 2;
 
@@ -27,8 +27,6 @@ const Blog = () => {
       });
   });
   useEffect(() => {
-    const lang = localStorage.i18nextLng === "en" ? 1 : 2;
-
     axios
       .get(
         `http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`,
@@ -135,35 +133,28 @@ const Blog = () => {
                     <h4>{t("blog_page_category")}</h4>
                     <ul className="category">
                       <li>
-                        <a href="/projects">
-                          {t("blog_page_web")}
-                          <BsArrowRight />
-                        </a>
+                        <BsArrowRight />
+                        <a href="/projects">{t("blog_page_web")}</a>
                       </li>
                       <li>
-                        <a href="/projects">
-                          {t("blog_page_app")} <BsArrowRight />
-                        </a>
+                        <BsArrowRight />
+                        <a href="/projects">{t("blog_page_app")}</a>
                       </li>
                       <li>
-                        <a href="/projects">
-                          {t("blog_page_software")} <BsArrowRight />
-                        </a>
+                        <BsArrowRight />
+                        <a href="/projects">{t("blog_page_software")}</a>
                       </li>
                       <li>
-                        <a href="/projects">
-                          {t("blog_page_motion")} <BsArrowRight />
-                        </a>
+                        <BsArrowRight />
+                        <a href="/projects">{t("blog_page_motion")}</a>
                       </li>
                       <li>
-                        <a href="/projects">
-                          {t("blog_page_ui_ux")} <BsArrowRight />
-                        </a>
+                        <BsArrowRight />
+                        <a href="/projects">{t("blog_page_ui_ux")}</a>
                       </li>
                       <li>
-                        <a href="/projects">
-                          {t("blog_page_graphic")} <BsArrowRight />
-                        </a>
+                        <BsArrowRight />
+                        <a href="/projects">{t("blog_page_graphic")}</a>
                       </li>
                     </ul>
                   </div>

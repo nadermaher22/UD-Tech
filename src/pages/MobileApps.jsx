@@ -164,7 +164,7 @@ const MobileApps = () => {
                   <div className="cmn-btn layout-two">
                     <div className="line-1"></div>
                     <div className="line-2"></div>
-                    <a href="/">{t("company_profile")}</a>
+                    <a href="/about">{t("company_profile")}</a>
                   </div>
                   <div className="cmn-btn">
                     <div className="line-1"></div>

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useParams } from "react-router-dom";
 import LogoDark from "../assests/img/logo.svg";
 import LogoDarkMob from "../assests/img/logo-dark.svg";
 import { BsPlus } from "react-icons/bs";
@@ -9,6 +9,7 @@ const Navbar = () => {
   const [t, i18n] = useTranslation();
   // navbar scroll
   const [onScroll, setOnScroll] = useState(false);
+  const { userLang } = useParams();
 
   const addStickyClass = () => {
     if (window.scrollY >= 200) {
@@ -128,8 +129,8 @@ const Navbar = () => {
                 {i18n.language === "en" && (
                   <Link
                     onClick={() => {
-                      i18n.changeLanguage("ar");
                       window.location.reload();
+                      i18n.changeLanguage("ar");
                     }}
                   >
                     العربية
@@ -140,8 +141,8 @@ const Navbar = () => {
                 {i18n.language === "ar" && (
                   <Link
                     onClick={() => {
-                      i18n.changeLanguage("en");
                       window.location.reload();
+                      i18n.changeLanguage("en");
                     }}
                   >
                     English
