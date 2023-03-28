@@ -22,7 +22,7 @@ const Footer = () => {
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
+        `http://api.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
       )
       .then((res) => {
         setApiData(res.data);

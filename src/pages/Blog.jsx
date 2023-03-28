@@ -18,7 +18,7 @@ const Blog = () => {
 
   useEffect(() => {
     axios
-      .get(`http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
+      .get(`http://api.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
       .then((res) => {
         setApiData(res.data);
       })
@@ -29,7 +29,7 @@ const Blog = () => {
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`,
+        `http://api.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`,
         {
           params: {
             languageId: lang,

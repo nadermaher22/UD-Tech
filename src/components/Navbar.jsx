@@ -9,7 +9,7 @@ const Navbar = () => {
   const [t, i18n] = useTranslation();
   // navbar scroll
   const [onScroll, setOnScroll] = useState(false);
-  const { userLang } = useParams();
+  const userLang1 = localStorage.getItem("i18nextLng");
 
   const addStickyClass = () => {
     if (window.scrollY >= 200) {
@@ -30,6 +30,10 @@ const Navbar = () => {
   const AddClassSlide = () => {
     setAddClass(!addClass);
   };
+
+  // useEffect(() => {
+  //   window.location.reload()
+  // }, [userLang]);
 
   return (
     <div

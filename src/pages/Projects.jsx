@@ -19,7 +19,7 @@ const Projects = () => {
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=${lang}`
+        `http://api.udtech-sa.com/api/WebSite/GetProjects?languageId=${lang}`
       )
       .then((res) => {
         setApiData(res.data);

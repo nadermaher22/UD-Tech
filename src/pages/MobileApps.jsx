@@ -28,7 +28,7 @@ const MobileApps = () => {
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetMobileApps?languageId=${lang}`
+        `http://api.udtech-sa.com/api/WebSite/GetMobileApps?languageId=${lang}`
       )
       .then((res) => {
         setApiData(res.data);
@@ -40,9 +40,7 @@ const MobileApps = () => {
   }, [lang]);
   useEffect(() => {
     axios
-      .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`
-      )
+      .get(`http://api.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`)
       .then((res) => {
         setGetClients(res.data);
       })

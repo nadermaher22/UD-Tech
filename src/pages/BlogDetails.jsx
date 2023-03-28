@@ -29,7 +29,7 @@ const BlogDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetBlogDetails?languageId=${lang}&Id=${blogId}`
+        `http://api.udtech-sa.com/api/WebSite/GetBlogDetails?languageId=${lang}&Id=${blogId}`
       )
       .then((res) => {
         setApiData(res.data);
@@ -38,7 +38,6 @@ const BlogDetails = () => {
         console.log(err);
       });
   }, [lang]);
-
 
   // useEffect(() => {
   //   window.scrollTo(0, 0);

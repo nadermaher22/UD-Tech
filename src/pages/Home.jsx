@@ -34,7 +34,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
+        `http://api.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
       )
       .then((res) => {
         setGetcontact(res.data);
@@ -46,9 +46,7 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`
-      )
+      .get(`http://api.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`)
       .then((res) => {
         setGetClients(res.data);
       })
@@ -58,7 +56,7 @@ const Home = () => {
   }, [lang]);
   useEffect(() => {
     axios
-      .get(`http://apiv2.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
+      .get(`http://api.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
       .then((res) => {
         setGetBlogsHome(res.data);
       })
@@ -70,7 +68,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetServices?languageId=${lang}`
+        `http://api.udtech-sa.com/api/WebSite/GetServices?languageId=${lang}`
       )
       .then((res) => {
         setServicesApiData(res.data);
@@ -81,9 +79,7 @@ const Home = () => {
   }, [lang]);
   useEffect(() => {
     axios
-      .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetAboutUs?languageId=${lang}`
-      )
+      .get(`http://api.udtech-sa.com/api/WebSite/GetAboutUs?languageId=${lang}`)
       .then((res) => {
         setAboutData(res.data);
       })
@@ -94,7 +90,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        `http://apiv2.udtech-sa.com/api/WebSite/GetProjects?languageId=${lang}`
+        `http://api.udtech-sa.com/api/WebSite/GetProjects?languageId=${lang}`
       )
       .then((res) => {
         setGetProjects(res.data);
@@ -240,14 +236,14 @@ const Home = () => {
                   <p data-aos="flip-left">
                     {t("services_page_home_paragraph")}
                   </p>
-                  <div className="-partnerslider-navigator d-flex">
+                  {/* <div className="-partnerslider-navi.gator d-flex">
                     <div className="swiper-button-prev-c" onClick={prevHandler}>
                       <BsChevronLeft />
                     </div>
                     <div className="swiper-button-next-c" onClick={nextHandler}>
                       <BsChevronRight />
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
               <Swiper

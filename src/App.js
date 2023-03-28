@@ -1,16 +1,8 @@
 import React, { useEffect, useState } from "react";
 import "./App.css";
-import {
-  BrowserRouter as Router,
-  Routes,
-  Route,
-  useParams,
-} from "react-router-dom";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Home from "./pages/Home";
 import "./assests/css/style.css";
-// import "./assests/css/bootstrap.min.css";
-// import "./assests/css/style-rtl.css";
-// import "./assests/css/style-rtl.css.map";
 import "./assests/css/bootstrap-rtl.min.css";
 import "./assests/css/fontawesome.min.css";
 import "./assests/css/magnific-popup.css";
@@ -37,23 +29,14 @@ import "../src/assests/css/bootstrap-icons.css";
 import AnimatedCursor from "react-animated-cursor";
 import { useTranslation } from "react-i18next";
 
-// if (localStorage.getItem("i18nextLng") === "en") {
-//   alert("en");
-//   require("./assests/css/bootstrap.min.css");
-//   require("./assests/css/style.css");
-// } else {
-//   alert("ar");
-//   require("./assests/css/bootstrap-rtl.min.css");
-//   require("./assests/css/style.css");
-//   require("./assests/css/style-rtl.css");
-// }
-
 const App = () => {
   const [t] = useTranslation();
   const [isShown, setIsShown] = useState(false);
   const [preLoader, setPreLoader] = useState(true);
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
-  const { userLang } = useParams();
+  const userLang1 = localStorage.getItem("i18nextLng");
+
+  // const { userLang } = useParams();
+
   useEffect(() => {
     setTimeout(function () {
       setPreLoader(false);
