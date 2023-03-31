@@ -26,7 +26,7 @@ const About = () => {
 
   useEffect(() => {
     axios
-      .get(`http://api.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
+      .get(`https://api.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
       .then((res) => {
         setGetBlogsHome(res.data);
       })
@@ -37,7 +37,9 @@ const About = () => {
 
   useEffect(() => {
     axios
-      .get(`http://api.udtech-sa.com/api/WebSite/GetAboutUs?languageId=${lang}`)
+      .get(
+        `https://api.udtech-sa.com/api/WebSite/GetAboutUs?languageId=${lang}`
+      )
       .then((res) => {
         setApiData(res.data);
       })
@@ -49,7 +51,7 @@ const About = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetCompanyHistory?languageId=${lang}`
+        `https://api.udtech-sa.com/api/WebSite/GetCompanyHistory?languageId=${lang}`
       )
       .then((res) => {
         setGetHistory(res.data);

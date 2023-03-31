@@ -13,7 +13,7 @@ const Testimonials = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetTestimonials?languageId=${lang}`
+        `https://api.udtech-sa.com/api/WebSite/GetTestimonials?languageId=${lang}`
       )
       .then((res) => {
         setApiData(res.data);

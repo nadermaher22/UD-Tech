@@ -16,7 +16,9 @@ const Clients = () => {
 
   useEffect(() => {
     axios
-      .get(`http://api.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`)
+      .get(
+        `https://api.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`
+      )
       .then((res) => {
         setApiData(res.data);
       })

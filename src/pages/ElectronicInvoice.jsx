@@ -16,7 +16,7 @@ const ElectronicInvoice = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetElectronicInvoice?languageId=${lang}`
+        `https://api.udtech-sa.com/api/WebSite/GetElectronicInvoice?languageId=${lang}`
       )
       .then((res) => {
         setGetInvoice(res.data);

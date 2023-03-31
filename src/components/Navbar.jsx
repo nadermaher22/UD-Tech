@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import LogoDark from "../assests/img/logo.svg";
 import LogoDarkMob from "../assests/img/logo-dark.svg";
 import { BsPlus } from "react-icons/bs";
@@ -58,9 +58,9 @@ const Navbar = () => {
         <div className="main-menu">
           <nav className={addClass ? "main-nav slidenav" : "main-nav"}>
             <div className="mobile-menu-logo">
-              <Link to="/">
-                <img src={LogoDarkMob} alt="logo" />
-              </Link>
+              {/* <Link to="/">
+                <img src={LogoDark} alt="Sd" />
+              </Link> */}
               <div className="remove">
                 <BsPlus onClick={AddClassSlide} />
               </div>

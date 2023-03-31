@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import IntroVideo from "../assests/img/video/UDT_PromoVideo.mp4";
 import IntroVideoMob from "../assests/img/video/UDT_PromoVideo-Mobile.mp4";
-import Logo from "../assests/img/logo-dark.svg";
+import Logo from "../assests/img/logo.svg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Autoplay, Pagination } from "swiper";
 // Import Swiper styles
@@ -34,7 +34,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
+        `https://api.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
       )
       .then((res) => {
         setGetcontact(res.data);
@@ -46,7 +46,9 @@ const Home = () => {
 
   useEffect(() => {
     axios
-      .get(`http://api.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`)
+      .get(
+        `https://api.udtech-sa.com/api/WebSite/GetClients?languageId=${lang}`
+      )
       .then((res) => {
         setGetClients(res.data);
       })
@@ -56,7 +58,7 @@ const Home = () => {
   }, [lang]);
   useEffect(() => {
     axios
-      .get(`http://api.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
+      .get(`https://api.udtech-sa.com/api/WebSite/GetBlogs?languageId=${lang}`)
       .then((res) => {
         setGetBlogsHome(res.data);
       })
@@ -68,7 +70,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetServices?languageId=${lang}`
+        `https://api.udtech-sa.com/api/WebSite/GetServices?languageId=${lang}`
       )
       .then((res) => {
         setServicesApiData(res.data);
@@ -79,7 +81,9 @@ const Home = () => {
   }, [lang]);
   useEffect(() => {
     axios
-      .get(`http://api.udtech-sa.com/api/WebSite/GetAboutUs?languageId=${lang}`)
+      .get(
+        `https://api.udtech-sa.com/api/WebSite/GetAboutUs?languageId=${lang}`
+      )
       .then((res) => {
         setAboutData(res.data);
       })
@@ -90,7 +94,7 @@ const Home = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetProjects?languageId=${lang}`
+        `https://api.udtech-sa.com/api/WebSite/GetProjects?languageId=${lang}`
       )
       .then((res) => {
         setGetProjects(res.data);

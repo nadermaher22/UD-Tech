@@ -32,7 +32,7 @@ const ContactUs = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
+        `https://api.udtech-sa.com/api/WebSite/GetContactUs?languageId=${lang}`
       )
       .then((res) => {
         setApiData(res.data);
@@ -46,7 +46,7 @@ const ContactUs = () => {
   const PostMessage = (e) => {
     e.preventDefault();
     axios
-      .post("http://api.udtech-sa.com/api/WebSite/SendContactUs", {
+      .post("https://api.udtech-sa.com/api/WebSite/SendContactUs", {
         name,
         email,
         subject,

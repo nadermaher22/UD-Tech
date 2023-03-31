@@ -12,7 +12,7 @@ const Features = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetFeatures?languageId=${lang}`
+        `https://api.udtech-sa.com/api/WebSite/GetFeatures?languageId=${lang}`
       )
       .then((res) => {
         setApiData(res.data);

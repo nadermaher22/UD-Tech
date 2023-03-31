@@ -29,7 +29,7 @@ const BlogDetails = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetBlogDetails?languageId=${lang}&Id=${blogId}`
+        `https://api.udtech-sa.com/api/WebSite/GetBlogDetails?languageId=${lang}&Id=${blogId}`
       )
       .then((res) => {
         setApiData(res.data);

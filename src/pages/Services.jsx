@@ -18,7 +18,7 @@ const Services = () => {
   useEffect(() => {
     axios
       .get(
-        `http://api.udtech-sa.com/api/WebSite/GetServices?languageId=${lang}`
+        `https://api.udtech-sa.com/api/WebSite/GetServices?languageId=${lang}`
       )
       .then((res) => {
         setApiData(res.data);
