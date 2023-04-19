@@ -23,7 +23,7 @@ import { useParams } from "react-router-dom";
 const ProjectDetails = () => {
   const [apiData, setApiData] = useState([]);
   const { projectId } = useParams();
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios
@@ -97,14 +97,15 @@ const ProjectDetails = () => {
                   <div className="project-thumb">
                     <img src={apiData.photoPath} alt="" />
                     <div className="tag">
-                      <a href="/project-details">Software</a>
+                      <a href="/project-details">{apiData.category}</a>
                     </div>
                   </div>
-                  <h3>Desktop Mockup</h3>
+                  <h1 className="mt-4">{apiData.project}</h1>
+                  <h3>{apiData.title}</h3>
                   <p
                     dangerouslySetInnerHTML={{ __html: apiData.description }}
                   ></p>
-                  <div className="clinet-need">
+                  {/* <div className="clinet-need">
                     <h4>Client Needs</h4>
                     <p>
                       The style and theme should match the current website
@@ -123,7 +124,7 @@ const ProjectDetails = () => {
                       heavy for those wanting to learn more before clicking to
                       complete the contact form.
                     </p>
-                  </div>
+                  </div> */}
                   <div className="working-process">
                     <h4>Working Process</h4>
                     <div className="swiper work-process-slide">
@@ -172,7 +173,7 @@ const ProjectDetails = () => {
                         </div>
                       </div>
                     </div>
-                    <p>
+                    {/* <p>
                       Interdum et malesuada fames ac ante ipsum primis in
                       faucibus. Etiam eu nibh elementum, accumsan ona neque ac,
                       aliquet nunc. In eu ipsum fringilla, accumsan purus vel,
@@ -180,9 +181,9 @@ const ProjectDetails = () => {
                       interdum, in dignissim nulla vestibulum. Nunc sit amet
                       finibus felis, ut egestas lacus. Sedan pellentesque quis
                       magna eu vestibulum. Ut sed commodo neque. Morbi erat nis
-                    </p>
+                    </p> */}
                   </div>
-                  <div className="check-lunch">
+                  {/* <div className="check-lunch">
                     <h4>Check & Launch</h4>
                     <div className="row">
                       <div className="col-lg-6">
@@ -239,10 +240,10 @@ const ProjectDetails = () => {
                         </p>
                       </div>
                     </div>
-                  </div>
+                  </div> */}
                 </div>
               </div>
-              <div className="col-lg-4">
+              {/* <div className="col-lg-4">
                 <div className="sidebar-widget">
                   <div className="client-box">
                     <span>Client:</span>
@@ -306,8 +307,8 @@ const ProjectDetails = () => {
                     </div>
                   </div>
                 </div>
-              </div>
-              <div className="project-slider">
+              </div> */}
+              {/* <div className="project-slider">
                 <h4>Related Project</h4>
                 <div className="arrow">
                   <div className="review-swiper2-button-next">
@@ -459,7 +460,7 @@ const ProjectDetails = () => {
                     </Swiper>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
           </div>
         </section>

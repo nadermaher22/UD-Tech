@@ -295,7 +295,7 @@ i18n
       },
     },
 
-    fallbackLng: "en",
+    fallbackLng: "en-US",
     detection: options,
 
     interpolation: {
@@ -308,7 +308,6 @@ i18n
 
 function App() {
   const { t } = useTranslation();
-
   return <h2>{t("")}</h2>;
 }
 

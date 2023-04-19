@@ -7,7 +7,7 @@ import { useTranslation } from "react-i18next";
 const Features = () => {
   const [apiData, setApiData] = useState([]);
   const [t] = useTranslation();
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios

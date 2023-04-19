@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
+import "../assests/css/style.css";
 import { Link, useLocation } from "react-router-dom";
 import LogoDark from "../assests/img/logo.svg";
-import LogoDarkMob from "../assests/img/logo-dark.svg";
 import { BsPlus } from "react-icons/bs";
 import { useTranslation } from "react-i18next";
 
@@ -9,7 +9,6 @@ const Navbar = () => {
   const [t, i18n] = useTranslation();
   // navbar scroll
   const [onScroll, setOnScroll] = useState(false);
-  const userLang1 = localStorage.getItem("i18nextLng");
 
   const addStickyClass = () => {
     if (window.scrollY >= 200) {
@@ -38,7 +37,9 @@ const Navbar = () => {
   return (
     <div
       className={
-        window.localStorage.i18nextLng === "en" ? "directionEN" : "directionAR"
+        window.localStorage.i18nextLng === "en-US"
+          ? "directionEN"
+          : "directionAR"
       }
     >
       <header
@@ -130,7 +131,7 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                {i18n.language === "en" && (
+                {i18n.language === "en-US" && (
                   <Link
                     onClick={() => {
                       window.location.reload();
@@ -146,7 +147,7 @@ const Navbar = () => {
                   <Link
                     onClick={() => {
                       window.location.reload();
-                      i18n.changeLanguage("en");
+                      i18n.changeLanguage("en-US");
                     }}
                   >
                     English

@@ -11,7 +11,7 @@ import { useTranslation } from "react-i18next";
 const Clients = () => {
   const [apiData, setApiData] = useState([]);
   const [t, i18n] = useTranslation();
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
   const [preLoader, setPreLoader] = useState(true);
 
   useEffect(() => {

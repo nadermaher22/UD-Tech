@@ -50,7 +50,7 @@ const App = () => {
   return (
     <div
       className={
-        localStorage.getItem("i18nextLng") === "en"
+        localStorage.getItem("i18nextLng") === "en-US"
           ? "App directionEN"
           : "App directionAR"
       }

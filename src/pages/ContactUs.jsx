@@ -27,7 +27,7 @@ const ContactUs = () => {
   const [apiData, setApiData] = useState([]);
   const [messagesSubmit, setMessageSubmit] = useState("");
   const [errorMessagesSubmit, setErrorMessageSubmit] = useState("");
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios
@@ -160,7 +160,7 @@ const ContactUs = () => {
                         <div className="icon">
                           <FaPhoneAlt />
                         </div>
-                        <div className="info">
+                        <div className="info arabicMob">
                           <h3>{t("contact_page_phone")}</h3>
                           <a href={`tel:${apiData.mobile}`}>{apiData.mobile}</a>
                         </div>
@@ -205,6 +205,7 @@ const ContactUs = () => {
                           </div>
                           <div className="col-md-6">
                             <input
+                              className="text-AR"
                               type="email"
                               placeholder={t("contact_page_email")}
                               value={email}

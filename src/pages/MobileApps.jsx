@@ -23,7 +23,7 @@ const MobileApps = () => {
   const [apiData, setApiData] = useState([]);
   const [item, setItem] = useState([]);
   const [getClients, setGetClients] = useState([]);
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios

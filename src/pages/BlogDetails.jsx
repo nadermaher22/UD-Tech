@@ -24,7 +24,7 @@ const BlogDetails = () => {
   const [apiData, setApiData] = useState([]);
   const { blogId } = useParams();
   const [t, i18n] = useTranslation();
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios
@@ -271,7 +271,7 @@ const BlogDetails = () => {
                       </form>
                     </div>
                   </div>
-                  <div className="sidebar-widget">
+                  {/* <div className="sidebar-widget">
                     <h4>Category</h4>
                     <ul className="category">
                       <li>
@@ -391,7 +391,7 @@ const BlogDetails = () => {
                         <Link to="/projects">3d Design</Link>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                   <div className="sidebar-banner">
                     <img src={WidgetBanner} alt="" />
                     <div className="banner-inner">

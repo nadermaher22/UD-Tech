@@ -8,7 +8,7 @@ import { useTranslation } from "react-i18next";
 const Testimonials = () => {
   const [apiData, setApiData] = useState([]);
   const [t, i18n] = useTranslation();
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios
@@ -89,10 +89,9 @@ const Testimonials = () => {
             >
               {apiData.map((testimonial) => {
                 return (
-                  <SwiperSlide>
+                  <SwiperSlide key={testimonial.id}>
                     {({ isActive }) => (
                       <div
-                        key={testimonial.id}
                         className={
                           isActive
                             ? "swiper-slide swiper-slide-active"

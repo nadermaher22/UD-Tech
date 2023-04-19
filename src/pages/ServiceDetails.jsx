@@ -17,7 +17,7 @@ import axios from "axios";
 const ServiceDetails = () => {
   const { serviceId } = useParams();
   const [apiDate, setApiData] = useState([]);
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios

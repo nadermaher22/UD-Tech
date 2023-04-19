@@ -29,7 +29,7 @@ const Home = () => {
   const [getBlogsHome, setGetBlogsHome] = useState([]);
   const [getContact, setGetcontact] = useState([]);
   const [preLoader, setPreLoader] = useState(true);
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios
@@ -373,6 +373,7 @@ const Home = () => {
         {/* Features section */}
         <Features />
 
+        {/* projects */}
         <section className="project-area sec-mar">
           <div className="container">
             <div className="title-wrap">
@@ -391,6 +392,7 @@ const Home = () => {
             <ProjectCard item={item} />
           </div>
         </section>
+      {/* partners   */}
         <section className="our-partner">
           <div className="container">
             <div className="row align-items-center">
@@ -416,7 +418,6 @@ const Home = () => {
                   navigation={false}
                   modules={[Navigation, Autoplay, Pagination]}
                   className="mySwiper"
-                  scrollbar={{ draggable: true }}
                   loop={true}
                   autoplay={{
                     delay: 5000,

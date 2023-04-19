@@ -14,7 +14,7 @@ const Projects = () => {
   const [t, i18n] = useTranslation();
   const [apiData, setApiData] = useState([]);
   const [item, setItem] = useState([]);
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios

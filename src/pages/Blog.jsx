@@ -9,12 +9,14 @@ import WidgetBanner from "../assests/img/widget-banner-bg.jpg";
 import ArrowAngle from "../assests/img/arrow-angle.png";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import ReactPaginate from "react-paginate";
 
 const Blog = () => {
   const [apiData, setApiData] = useState([]);
   const [t] = useTranslation();
   const [getContact, setGetContact] = useState([]);
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const [currentPage, setCurrentPage] = useState(0);
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios
@@ -25,7 +27,7 @@ const Blog = () => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
   useEffect(() => {
     axios
       .get(
@@ -43,11 +45,11 @@ const Blog = () => {
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
-  // useEffect(() => {
-  //   window.scrollTo(0, 0);
-  // });
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  });
   useEffect(() => {
     new WOW.WOW({
       live: false,
@@ -129,7 +131,7 @@ const Blog = () => {
                       </form>
                     </div>
                   </div>
-                  <div className="sidebar-widget">
+                  {/* <div className="sidebar-widget">
                     <h4>{t("blog_page_category")}</h4>
                     <ul className="category">
                       <li>
@@ -157,12 +159,12 @@ const Blog = () => {
                         <a href="/projects">{t("blog_page_graphic")}</a>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                   <div className="sidebar-widget">
                     <h4>{t("blog_page_new_post")}</h4>
                     {apiData.slice(0, 3).map((tinyBlog) => {
                       return (
-                        <div className="recent-post">
+                        <div className="recent-post" key={tinyBlog.id}>
                           <div className="recent-thumb">
                             <a href={`/blog-details/${tinyBlog.id}`}>
                               <img src={tinyBlog.photoPath} alt="" />
@@ -180,7 +182,7 @@ const Blog = () => {
                       );
                     })}
                   </div>
-                  <div className="sidebar-widget">
+                  {/* <div className="sidebar-widget">
                     <h4>{t("blog_page_hashtag")}</h4>
                     <ul className="tag-list">
                       <li>
@@ -211,8 +213,8 @@ const Blog = () => {
                         <Link to="/projects">3d Design</Link>
                       </li>
                     </ul>
-                  </div>
-                  <div className="sidebar-banner">
+                  </div> */}
+                  <div className="sidebar-banner mb-5">
                     <img src={WidgetBanner} alt="" />
                     <div className="banner-inner">
                       <h3>
@@ -229,42 +231,57 @@ const Blog = () => {
                 <div className="col-lg-8">
                   <div className="blog-item-grid">
                     <div className="row g-4">
-                      {apiData.map((e) => {
-                        return (
-                          <div className="col-md-6" key={e.id}>
-                            <div className="single-blog h-100">
-                              <div className="blog-thumb">
-                                <Link Link to={`/blog-details/${e.id}`}>
-                                  <img src={e.photoPath} alt="" />
-                                </Link>
-                                <div className="tag">
-                                  <Link to={`/blog-details/${e.id}`}>
-                                    {e.category}
+                      {apiData
+                        .slice(currentPage * 5, currentPage * 5 + 5)
+                        .map((e) => {
+                          return (
+                            <div className="col-md-6" key={e.id}>
+                              <div className="single-blog h-100">
+                                <div className="blog-thumb">
+                                  <Link Link to={`/blog-details/${e.id}`}>
+                                    <img src={e.photoPath} alt="" />
                                   </Link>
+                                  <div className="tag">
+                                    <Link to={`/blog-details/${e.id}`}>
+                                      {e.category}
+                                    </Link>
+                                  </div>
                                 </div>
-                              </div>
-                              <div className="blog-inner">
-                                <div className="author-date">
-                                  <Link to={"/blog-details/" + e.id}>
-                                    {t("by")}, {e.blogAuthor}
-                                  </Link>
-                                  <Link to={`/blog-details/${e.id}`}>
-                                    {e.blogDate}
-                                  </Link>
+                                <div className="blog-inner">
+                                  <div className="author-date">
+                                    <Link to={"/blog-details/" + e.id}>
+                                      {t("by")}, {e.blogAuthor}
+                                    </Link>
+                                    <Link to={`/blog-details/${e.id}`}>
+                                      {e.blogDate}
+                                    </Link>
+                                  </div>
+                                  <h4>
+                                    <Link to={`/blog-details/${e.id}`}>
+                                      {e.title}
+                                    </Link>
+                                  </h4>
                                 </div>
-                                <h4>
-                                  <Link to={`/blog-details/${e.id}`}>
-                                    {e.title}
-                                  </Link>
-                                </h4>
                               </div>
                             </div>
-                          </div>
-                        );
-                      })}
+                          );
+                        })}
                     </div>
                   </div>
-                  <div className="load-more">
+                  <ReactPaginate
+                    pageCount={Math.ceil(apiData.length / 5)}
+                    onPageChange={(data) => setCurrentPage(data.selected)}
+                    containerClassName={"load-more paginations ms-3"}
+                    pageClassName={"page-item"}
+                    pageLinkClassName={"page-link"}
+                    activeClassName={"active"}
+                    previousClassName={"page-item"}
+                    previousLinkClassName={"page-link"}
+                    nextClassName={"page-item"}
+                    nextLinkClassName={"page-link"}
+                    disabledClassName={"disabled"}
+                  />
+                  {/* <div className="load-more">
                     <ul className="paginations">
                       <li>
                         <a href="/">
@@ -289,7 +306,7 @@ const Blog = () => {
                         </a>
                       </li>
                     </ul>
-                  </div>
+                  </div> */}
                 </div>
               </div>
             </div>

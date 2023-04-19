@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/static/css/main.8493de6d.css",
-    "main.js": "/static/js/main.8ccbf893.js",
+    "main.js": "/static/js/main.0eda5d6f.js",
     "static/media/UDT_PromoVideo.mp4": "/static/media/UDT_PromoVideo.24e1caaef78ed3fc33cb.mp4",
     "static/media/UDT_PromoVideo-Mobile.mp4": "/static/media/UDT_PromoVideo-Mobile.9956442422f903a8d067.mp4",
     "static/media/bg.png": "/static/media/bg.19bfdc4e473c5997188d.png",
@@ -20,10 +20,10 @@
     "index.html": "/index.html",
     "static/media/check.svg": "/static/media/check.62161559ccbd3c139ce347c088baa829.svg",
     "main.8493de6d.css.map": "/static/css/main.8493de6d.css.map",
-    "main.8ccbf893.js.map": "/static/js/main.8ccbf893.js.map"
+    "main.0eda5d6f.js.map": "/static/js/main.0eda5d6f.js.map"
   },
   "entrypoints": [
     "static/css/main.8493de6d.css",
-    "static/js/main.8ccbf893.js"
+    "static/js/main.0eda5d6f.js"
   ]
 }

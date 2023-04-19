@@ -803,9 +803,7 @@
     position: relative;
     text-align: left;
     padding: 20px 10px;
-    margin-bottom: 20px;
     display: block;
-    border-bottom: 1px solid #2d60a2;
   }
 
   header .main-nav ul {
@@ -1543,7 +1541,7 @@ header {
   .verticale-social {
     left: 25px;
     top: auto;
-    bottom: 50px;
+    bottom: -0.7rem;
   }
 }
 
@@ -2284,6 +2282,7 @@ header {
 
 .single-item {
   position: relative;
+  margin-bottom: 6rem;
 }
 
 .single-item .item-img a img,
@@ -3995,7 +3994,12 @@ footer.error {
     font-size: 30px;
   }
 }
-
+.single-info .arabicMob a {
+  direction: ltr;
+}
+.directionAR .text-AR {
+  text-align: right;
+}
 .social-follow {
   list-style: none;
 }
@@ -5766,6 +5770,16 @@ footer.error {
 .load-more {
   text-align: center;
   margin-top: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+}
+.load-more .page-item {
+  margin: 0 1rem;
+}
+.load-more .page-item a {
+  padding: 0 1.5rem;
 }
 
 .paginations li {
@@ -5784,8 +5798,8 @@ footer.error {
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   display: inline-block;
-  height: 40px;
-  width: 40px;
+  /* height: 40px;
+  width: 40px; */
   line-height: 40px;
   text-align: center;
   font-size: 16px;
@@ -7219,6 +7233,7 @@ footer.error {
   flex-direction: column;
   justify-content: center;
   align-items: flex-start;
+  bottom: -6rem;
 }
 .directionAR .single-item .item-inner-cnt .view-btn {
   text-align: left;

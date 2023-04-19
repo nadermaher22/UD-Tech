@@ -22,7 +22,7 @@ const About = () => {
   const [getBlogsHome, setGetBlogsHome] = useState([]);
   const [getHistory, setGetHistory] = useState([]);
   const [preLoader, setPreLoader] = useState(true);
-  const lang = localStorage.i18nextLng === "en" ? 1 : 2;
+  const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
     axios
@@ -150,7 +150,7 @@ const About = () => {
                       <img src={Banner3} alt="" />
                     </div>
                     <div className="years">
-                      <h5>20+</h5>
+                      <h5>15+</h5>
                       <span>{t("about_page_years")}</span>
                     </div>
                   </div>
