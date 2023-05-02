@@ -294,10 +294,11 @@ const Home = () => {
                           </div>
                           <h4>{service.title}</h4>
                           <p
+                            className="limit-words limit-words-20"
                             dangerouslySetInnerHTML={{
-                              __html: service.description
-                                .substring(200, 20)
-                                .concat(" ..."),
+                              __html: service.description,
+                              // .substring(200, 20)
+                              // .concat(" ..."),
                             }}
                           ></p>
                           <div className="read-btn">
@@ -392,7 +393,7 @@ const Home = () => {
             <ProjectCard item={item} />
           </div>
         </section>
-      {/* partners   */}
+        {/* partners   */}
         <section className="our-partner">
           <div className="container">
             <div className="row align-items-center">

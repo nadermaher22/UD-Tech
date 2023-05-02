@@ -555,6 +555,18 @@
   }
 }
 
+.limit-words {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.limit-words-20 {
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+}
+
 /*Section title*/
 .title-wrap {
   max-width: 630px;
@@ -1764,7 +1776,7 @@ header {
   padding: 30px;
   -webkit-transition: all 0.5s ease-out 0s;
   transition: all 0.5s ease-out 0s;
-  min-height: 415px;
+  min-height: 200px;
 }
 
 .single-service span {
