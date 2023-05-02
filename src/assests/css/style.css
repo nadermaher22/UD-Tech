@@ -988,7 +988,10 @@ header {
   width: 100%;
   z-index: 2;
 }
-
+.directionAR .services-area .swiper-button-prev,
+.directionAR .services-area .swiper-button-next {
+  display: none;
+}
 .header-area {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -7238,7 +7241,7 @@ footer.error {
   margin-left: 0;
 }
 
-.directionAR .single-item .item-inner-cnt {
+.single-item .item-inner-cnt {
   right: 5%;
   left: auto;
   display: flex;

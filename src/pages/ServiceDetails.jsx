@@ -16,7 +16,7 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 const ServiceDetails = () => {
   const { serviceId } = useParams();
-  const [apiDate, setApiData] = useState([]);
+  const [apiData, setApiData] = useState([]);
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
@@ -91,14 +91,14 @@ const ServiceDetails = () => {
             <div className="row">
               <div className="col-lg-8">
                 <div className="service-details-content">
-                  <img src={apiDate.photoPath} alt="" />
+                  <img src={apiData.photoPath} alt="" />
                   <h3>
-                    <i>
+                    {/* <i>
                       <img src={ServiceIcon} alt="" />
-                    </i>
-                    {apiDate.title}
+                    </i> */}
+                    {apiData.title}
                   </h3>
-                  <p>{apiDate.description}</p>
+                  <p>{apiData.description}</p>
                   {/* <p>
                     ut, hendrerit vel tortor. In pharetra lectus luctus ornare
                     sollicitudin. Pellentesque at neque nec justo sokal
@@ -115,7 +115,7 @@ const ServiceDetails = () => {
                   </p> */}
                 </div>
               </div>
-              <div className="col-lg-4">
+              {/* <div className="col-lg-4">
                 <div className="sidebar-widget">
                   <h4>Category</h4>
                   <ul className="category">
@@ -167,9 +167,9 @@ const ServiceDetails = () => {
                     <a href="tel:11231231234">+1-123-123-1234</a>
                   </div>
                 </div>
-              </div>
+              </div> */}
             </div>
-            <div className="service-items sec-mar-top">
+            {/* <div className="service-items sec-mar-top">
               <div className="service-details-item">
                 <div className="row">
                   <div className="col-lg-6">
@@ -257,7 +257,7 @@ const ServiceDetails = () => {
                   </div>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </section>
         <Newsletter />
