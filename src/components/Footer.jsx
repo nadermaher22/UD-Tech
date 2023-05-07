@@ -47,22 +47,22 @@ const Footer = () => {
                   <p>{t("footer_paragraph1")}</p>
                   <ul className="social-media-icons p-0">
                     <li>
-                      <a href={apiData.lurl}>
+                      <a href={apiData.lurl} target="_blank" rel="noreferrer">
                         <FaLinkedin />
                       </a>
                     </li>
                     <li>
-                      <a href={apiData.turl}>
+                      <a href={apiData.turl} target="_blank" rel="noreferrer">
                         <FaTwitter />
                       </a>
                     </li>
                     <li>
-                      <a href={apiData.wurl}>
+                      <a href={apiData.wurl} target="_blank" rel="noreferrer">
                         <FaGoogleDrive />
                       </a>
                     </li>
                     <li>
-                      <a href={apiData.iurl}>
+                      <a href={apiData.iurl} target="_blank" rel="noreferrer">
                         <FaInstagram />
                       </a>
                     </li>

@@ -103,7 +103,9 @@ const ProjectDetails = () => {
                   <h1 className="mt-4">{apiData.project}</h1>
                   <h3>{apiData.title}</h3>
                   <p
-                    dangerouslySetInnerHTML={{ __html: apiData.description }}
+                    dangerouslySetInnerHTML={{
+                      __html: `<div>${apiData.description}</div>`,
+                    }}
                   ></p>
                   {/* <div className="clinet-need">
                     <h4>Client Needs</h4>

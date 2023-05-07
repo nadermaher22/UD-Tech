@@ -8,11 +8,16 @@ import Newsletter from "../components/Newsletter";
 import Testimonials from "../components/Testimonials";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const Services = () => {
   const [t, i18n] = useTranslation();
   const [apiData, setApiData] = useState([]);
   const [preLoader, setPreLoader] = useState(true);
+  const [video, setVideo] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
@@ -35,6 +40,16 @@ const Services = () => {
       live: false,
     }).init();
   });
+  useEffect(() => {
+    axios
+      .get("https://api.udtech-sa.com/api/WebSite/GetPagesVideo")
+      .then((res) => {
+        setVideo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     setTimeout(function () {
@@ -75,15 +90,21 @@ const Services = () => {
                         <BsArrowRight className="m-1" />
                         {t("services_page_services")}
                       </span>
-                      <div className="breadcrumb-video">
+                      <div
+                        className="breadcrumb-video"
+                        style={{
+                          display: video.video_Services ? "block" : "none",
+                        }}
+                      >
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
-                          <a
+                          <Link
                             className="video-popup"
-                            href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                            href="#"
+                            onClick={() => setShowModal(true)}
                           >
                             <FaPlay />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -92,6 +113,19 @@ const Services = () => {
               </div>
             </div>
           </section>
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Body>
+              <video
+                src={video.video_Services}
+                controls
+                autoPlay
+                className="bread-video"
+              />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={() => setShowModal(false)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
           <section className="services-grid sec-mar">
             <div className="container">
               <div className="title-wrap">
@@ -116,7 +150,9 @@ const Services = () => {
                         </div>
                         <h4>{e.title}</h4>
                         <p
-                          dangerouslySetInnerHTML={{ __html: e.description }}
+                          dangerouslySetInnerHTML={{
+                            __html: `<div>${e.description}</div>`,
+                          }}
                         ></p>
                         <div className="read-btn">
                           <a href={`/service-details/${e.id}`}>

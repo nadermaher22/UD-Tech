@@ -57,7 +57,7 @@ const Faq = () => {
                         <BsArrowRight className="m-1" />
                         FAQ
                       </span>
-                      <div className="breadcrumb-video">
+                      {/* <div className="breadcrumb-video">
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
                           <a
@@ -67,7 +67,7 @@ const Faq = () => {
                             <FaPlay />
                           </a>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

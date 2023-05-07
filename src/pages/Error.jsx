@@ -56,7 +56,7 @@ const Error = () => {
                         <BsArrowRight className="m-1" />
                         Error
                       </span>
-                      <div className="breadcrumb-video">
+                      {/* <div className="breadcrumb-video">
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
                           <a
@@ -66,7 +66,7 @@ const Error = () => {
                             <FaPlay />
                           </a>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

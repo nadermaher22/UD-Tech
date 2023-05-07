@@ -1,7 +1,7 @@
 {
   "files": {
-    "main.css": "/static/css/main.5a58fd65.css",
-    "main.js": "/static/js/main.c5c88bc3.js",
+    "main.css": "/static/css/main.a915ffa8.css",
+    "main.js": "/static/js/main.d9ea0953.js",
     "static/media/UDT_PromoVideo.mp4": "/static/media/UDT_PromoVideo.24e1caaef78ed3fc33cb.mp4",
     "static/media/UDT_PromoVideo-Mobile.mp4": "/static/media/UDT_PromoVideo-Mobile.9956442422f903a8d067.mp4",
     "static/media/bg.png": "/static/media/bg.19bfdc4e473c5997188d.png",
@@ -18,11 +18,11 @@
     "static/media/logo.svg": "/static/media/logo.72aa11ebf74f502ac7badf4a42fcae43.svg",
     "index.html": "/index.html",
     "static/media/check.svg": "/static/media/check.62161559ccbd3c139ce347c088baa829.svg",
-    "main.5a58fd65.css.map": "/static/css/main.5a58fd65.css.map",
-    "main.c5c88bc3.js.map": "/static/js/main.c5c88bc3.js.map"
+    "main.a915ffa8.css.map": "/static/css/main.a915ffa8.css.map",
+    "main.d9ea0953.js.map": "/static/js/main.d9ea0953.js.map"
   },
   "entrypoints": [
-    "static/css/main.5a58fd65.css",
-    "static/js/main.c5c88bc3.js"
+    "static/css/main.a915ffa8.css",
+    "static/js/main.d9ea0953.js"
   ]
 }

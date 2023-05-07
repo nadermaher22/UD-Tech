@@ -83,6 +83,9 @@ i18n
           about_page_satisfied_customers: "Satisfied Customers",
           about_page_years: "Years",
           about_page_experts: "Experts",
+          about_page_best_agency:
+            "Best Creative software company And business Solutions ",
+          about_page_since: "Since 2005.",
           project_page_case_study: "Case Study",
           project_page_project: "Projects",
           project_page_paragraph:
@@ -207,6 +210,8 @@ i18n
           about_page_satisfied_customers: "عملاء راضون",
           about_page_years: "سنين",
           about_page_experts: "عدد الموظفين",
+          about_page_best_agency: "أفضل شركة إبداعية للبرمجيات وحلول الأعمال ",
+          about_page_since: "منذ 2015.",
           project_page_case_study: "مواضيع المشاريع",
           project_page_project: "مشاريعنا",
           project_page_paragraph:

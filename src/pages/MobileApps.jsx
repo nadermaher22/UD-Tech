@@ -17,6 +17,9 @@ import MobileAppBtn from "../components/MobileAppBtn";
 import MobileAppCard from "../components/MobileAppCard";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const MobileApps = () => {
   const [t] = useTranslation();
@@ -24,6 +27,8 @@ const MobileApps = () => {
   const [item, setItem] = useState([]);
   const [getClients, setGetClients] = useState([]);
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
+  const [video, setVideo] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     axios
@@ -50,6 +55,17 @@ const MobileApps = () => {
         console.log(err);
       });
   }, [lang]);
+
+  useEffect(() => {
+    axios
+      .get("https://api.udtech-sa.com/api/WebSite/GetPagesVideo")
+      .then((res) => {
+        setVideo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const menuItems = [...new Set(apiData.map((Val) => Val.category))];
   // const [swiperRef, setSwiperRef] = useState(null);
@@ -120,15 +136,21 @@ const MobileApps = () => {
                       <BsArrowRight className="m-1" />
                       {t("mobile_apps")}
                     </span>
-                    <div className="breadcrumb-video">
+                    <div
+                      className="breadcrumb-video"
+                      style={{
+                        display: video.video_MobileApps ? "block" : "none",
+                      }}
+                    >
                       <img src={VideoImg} alt="" />
                       <div className="video-inner">
-                        <a
+                        <Link
                           className="video-popup"
-                          href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                          href="#"
+                          onClick={() => setShowModal(true)}
                         >
                           <FaPlay />
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -137,7 +159,19 @@ const MobileApps = () => {
             </div>
           </div>
         </section>
-
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Body>
+            <video
+              src={video.video_MobileApps}
+              controls
+              autoPlay
+              className="bread-video"
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => setShowModal(false)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
         <section className="projectsPage project-area sec-mar ">
           <div className="container">
             <div className="wow animate slideInUp" data-wow-duration="1500ms">

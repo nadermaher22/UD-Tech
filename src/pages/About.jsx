@@ -15,12 +15,19 @@ import Newsletter from "../components/Newsletter";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import i18next from "i18next";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
+import Logo from "../assests/img/logo.svg";
 
 const About = () => {
   const [t, i18n] = useTranslation();
   const [apiData, setApiData] = useState([]);
   const [getBlogsHome, setGetBlogsHome] = useState([]);
   const [getHistory, setGetHistory] = useState([]);
+  const [getFeature, setGetFeature] = useState([]);
+  const [video, setVideo] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const [preLoader, setPreLoader] = useState(true);
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
@@ -60,6 +67,30 @@ const About = () => {
         console.log(err);
       });
   }, [lang]);
+
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.udtech-sa.com/api/WebSite/GetFeatures?languageId=${lang}`
+      )
+      .then((res) => {
+        setGetFeature(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [lang]);
+
+  useEffect(() => {
+    axios
+      .get("https://api.udtech-sa.com/api/WebSite/GetPagesVideo")
+      .then((res) => {
+        setVideo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     new WOW.WOW({
@@ -108,24 +139,21 @@ const About = () => {
                         <BsArrowRight className="m-1" />
                         {t("about_page_about_us")}
                       </span>
-                      <div className="breadcrumb-video">
-                        <div className="video-inner">
-                          <a
-                            className="video-popup"
-                            href="http://www.youtube.com/watch?v=0O2aH4XLbto"
-                          >
-                            <FaPlay />
-                          </a>
-                        </div>
-
+                      <div
+                        className="breadcrumb-video"
+                        style={{
+                          display: video.video_About ? "block" : "none",
+                        }}
+                      >
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
-                          <a
+                          <Link
                             className="video-popup"
-                            href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                            href="#"
+                            onClick={() => setShowModal(true)}
                           >
                             <FaPlay />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -134,6 +162,21 @@ const About = () => {
               </div>
             </div>
           </section>
+
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Body>
+              <video
+                src={video.video_About}
+                controls
+                autoPlay
+                className="bread-video"
+              />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={() => setShowModal(false)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+
           <section
             className="why-choose sec-mar wow animate animate__fadeIn"
             data-wow-duration="1500ms"
@@ -143,12 +186,16 @@ const About = () => {
                 <div className="col-lg-6">
                   <div className="why-choose-left">
                     <div className="choose-banner1">
-                      <img src={Banner1} alt="" />
+                      <img
+                        src={apiData.aboutPhotoPath}
+                        alt=""
+                        className="w-100"
+                      />
                     </div>
-                    <div className="choose-banner2">
+                    {/* <div className="choose-banner2">
                       <img src={Banner2} alt="" />
                       <img src={Banner3} alt="" />
-                    </div>
+                    </div> */}
                     <div className="years">
                       <h5>15+</h5>
                       <span>{t("about_page_years")}</span>
@@ -159,44 +206,36 @@ const About = () => {
                   <div className="why-choose-right">
                     <div className="sec-title layout2">
                       <span>{t("about_page_why_choose")}</span>
-                      <h2>{t("about_page_title1")}</h2>
+                      <h2>{apiData.title}</h2>
                     </div>
                     <div className="counter-boxes">
-                      <div className="count-box">
-                        <CountUp className="counter" end={100}>
-                          {({ countUpRef, start }) => (
-                            <ReactVisibilitySensor onChange={start} delayedCall>
-                              <span ref={countUpRef} />
-                            </ReactVisibilitySensor>
-                          )}
-                        </CountUp>
-                        <sup>+</sup>
-                        <h5>{t("about_page_projects_completed")}</h5>
-                      </div>
-                      <div className="count-box">
-                        <CountUp className="counter" end={70}>
-                          {({ countUpRef, start }) => (
-                            <ReactVisibilitySensor onChange={start} delayedCall>
-                              <span ref={countUpRef} />
-                            </ReactVisibilitySensor>
-                          )}
-                        </CountUp>
-                        <sup>+</sup>
-                        <h5>{t("about_page_satisfied_customers")}</h5>
-                      </div>
-                      <div className="count-box">
-                        <CountUp className="counter" end={38}>
-                          {({ countUpRef, start }) => (
-                            <ReactVisibilitySensor onChange={start} delayedCall>
-                              <span ref={countUpRef} />
-                            </ReactVisibilitySensor>
-                          )}
-                        </CountUp>
-                        <sup>+</sup>
-                        <h5>{t("about_page_experts")}</h5>
-                      </div>
+                      {getFeature.map((feature) => {
+                        return (
+                          <div className="count-box" key={feature.id}>
+                            <CountUp
+                              className="counter"
+                              end={`${feature.counter}`}
+                            >
+                              {({ countUpRef, start }) => (
+                                <ReactVisibilitySensor
+                                  onChange={start}
+                                  delayedCall
+                                >
+                                  <span ref={countUpRef} />
+                                </ReactVisibilitySensor>
+                              )}
+                            </CountUp>
+                            <sup>+</sup>
+                            <h5>{feature.title}</h5>
+                          </div>
+                        );
+                      })}
                     </div>
-                    <p>{t("about_page_paragraph1")}</p>
+                    <p
+                      dangerouslySetInnerHTML={{
+                        __html: `<div>${apiData.aboutDescription}</div>`,
+                      }}
+                    ></p>
                     <div className="buttons-group">
                       <span>{t("about_page_superior_support")}</span>
                       <span>{t("about_page_unique_design")}</span>
@@ -207,6 +246,7 @@ const About = () => {
               </div>
             </div>
           </section>
+
           <section
             className="about-area sec-mar-bottom wow animate animate__slideInUp"
             data-wow-duration="1500ms"
@@ -215,40 +255,62 @@ const About = () => {
               <div className="row">
                 <div className="col-lg-6 or-2">
                   <div className="sec-title layout2">
-                    <div
-                      dangerouslySetInnerHTML={{ __html: apiData.title }}
-                    ></div>
+                    <span>{t("about_page_get_to_know")}</span>
+                    <h2>{t("about_page_about_us")}</h2>
                   </div>
                   <div className="about-left">
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: apiData.aboutDescription,
+                        __html: `<div>${apiData.missionDescription}</div>`,
                       }}
                     ></div>
-
+                    <div
+                      dangerouslySetInnerHTML={{
+                        __html: `<div>${apiData.visionDescription}</div>`,
+                      }}
+                    ></div>
+                    {/* 
                     <div className="company-since">
                       <div className="company-logo">
-                        <img src={apiData.missionPhotoPath} alt="" />
+                        <img src={Logo} alt="" />
                       </div>
-                      <div
-                        dangerouslySetInnerHTML={{
-                          __html: apiData.missionDescription,
-                        }}
-                      ></div>
+                      <div>Best creativ</div>
+                    </div> */}
+                    <div className="company-since">
+                      <div className="company-logo">
+                        <img src={Logo} alt="" />
+                      </div>
+                      <strong>#1</strong>
+                      <h4>
+                        {t("about_page_best_agency")}
+                        <span>{t("about_page_since")}</span>
+                      </h4>
                     </div>
                   </div>
                 </div>
                 <div className="col-lg-6 or-1">
                   <div className="about-right">
                     <div className="banner-1">
-                      <img src={apiData.visionPhotoPath} alt="" />
+                      <img src={apiData.missionPhotoPath} alt="" />
                     </div>
-
+                    <div className="buttons">
+                      <div className="cmn-btn">
+                        <div className="line-1"></div>
+                        <div className="line-2"></div>
+                        <Link to="/contact">{t("call_us")}</Link>
+                      </div>
+                      <div className="cmn-btn ">
+                        <div className="line-1"></div>
+                        <div className="line-2"></div>
+                        <Link to="/about">{t("company_profile")}</Link>
+                      </div>
+                    </div>
+                    {/* 
                     <div
                       dangerouslySetInnerHTML={{
-                        __html: apiData.visionDescription,
+                        __html: `<div>${apiData.visionDescription}</div>`,
                       }}
-                    ></div>
+                    ></div> */}
                   </div>
                 </div>
               </div>
@@ -293,7 +355,7 @@ const About = () => {
                           <h4>{post.title}</h4>
                           <p
                             dangerouslySetInnerHTML={{
-                              __html: post.description,
+                              __html: `<div>${post.description}</div>`,
                             }}
                           ></p>
                         </div>
@@ -315,7 +377,7 @@ const About = () => {
                           <h4>{post.title}</h4>
                           <p
                             dangerouslySetInnerHTML={{
-                              __html: post.description,
+                              __html: `<div>${post.description}</div>`,
                             }}
                           ></p>
                         </div>

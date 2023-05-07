@@ -72,10 +72,7 @@ const ServiceDetails = () => {
                     <div className="breadcrumb-video">
                       <img src={VideoImg} alt="" />
                       <div className="video-inner">
-                        <a
-                          className="video-popup"
-                          href="http://www.youtube.com/watch?v=0O2aH4XLbto"
-                        >
+                        <a className="video-popup" href={apiData.videoUrl}>
                           <FaPlay />
                         </a>
                       </div>
@@ -98,7 +95,12 @@ const ServiceDetails = () => {
                     </i> */}
                     {apiData.title}
                   </h3>
-                  <p>{apiData.description}</p>
+                  <p
+                    dangerouslySetInnerHTML={{
+                      __html: `<div>${apiData.description}</div>`,
+                    }}
+                  ></p>
+
                   {/* <p>
                     ut, hendrerit vel tortor. In pharetra lectus luctus ornare
                     sollicitudin. Pellentesque at neque nec justo sokal

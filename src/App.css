@@ -26,3 +26,9 @@
 .site-logo .logo img {
   cursor: pointer;
 }
+button {
+  cursor: pointer !important;
+}
+.footer-logo img {
+  cursor: pointer !important;
+}

@@ -7,12 +7,17 @@ import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const Clients = () => {
   const [apiData, setApiData] = useState([]);
   const [t, i18n] = useTranslation();
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
   const [preLoader, setPreLoader] = useState(true);
+  const [video, setVideo] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     axios
@@ -26,6 +31,16 @@ const Clients = () => {
         console.log(err);
       });
   }, [lang]);
+  useEffect(() => {
+    axios
+      .get("https://api.udtech-sa.com/api/WebSite/GetPagesVideo")
+      .then((res) => {
+        setVideo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
   useEffect(() => {
     window.scrollTo(0, 0);
   });
@@ -74,15 +89,21 @@ const Clients = () => {
                         <BsArrowRight className="m-1" />
                         {t("clients")}
                       </span>
-                      <div className="breadcrumb-video">
+                      <div
+                        className="breadcrumb-video"
+                        style={{
+                          display: video.video_Clients ? "block" : "none",
+                        }}
+                      >
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
-                          <a
+                          <Link
                             className="video-popup"
-                            href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                            href="#"
+                            onClick={() => setShowModal(true)}
                           >
                             <FaPlay />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -91,6 +112,19 @@ const Clients = () => {
               </div>
             </div>
           </section>
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Body>
+              <video
+                src={video.video_Clients}
+                controls
+                autoPlay
+                className="bread-video"
+              />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={() => setShowModal(false)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
           <section
             className="why-choose sec-mar wow animate animate__fadeIn"
             data-wow-duration="1500ms"

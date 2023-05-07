@@ -16,6 +16,9 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Newsletter from "../components/Newsletter";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const ContactUs = () => {
   const [t] = useTranslation();
@@ -28,6 +31,8 @@ const ContactUs = () => {
   const [messagesSubmit, setMessageSubmit] = useState("");
   const [errorMessagesSubmit, setErrorMessageSubmit] = useState("");
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
+  const [video, setVideo] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     axios
@@ -36,12 +41,21 @@ const ContactUs = () => {
       )
       .then((res) => {
         setApiData(res.data);
-        console.log(apiData);
       })
       .catch((err) => {
         console.log(err);
       });
   }, [apiData, lang]);
+  useEffect(() => {
+    axios
+      .get("https://api.udtech-sa.com/api/WebSite/GetPagesVideo")
+      .then((res) => {
+        setVideo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const PostMessage = (e) => {
     e.preventDefault();
@@ -98,15 +112,21 @@ const ContactUs = () => {
                         <BsArrowRight className="m-1" />
                         {t("contact_us")}
                       </span>
-                      <div className="breadcrumb-video">
-                        <img src={VideoImg} alt="/" />
+                      <div
+                        className="breadcrumb-video"
+                        style={{
+                          display: video.video_Contacts ? "block" : "none",
+                        }}
+                      >
+                        <img src={VideoImg} alt="" />
                         <div className="video-inner">
-                          <a
+                          <Link
                             className="video-popup"
-                            href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                            href="#"
+                            onClick={() => setShowModal(true)}
                           >
                             <FaPlay />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -115,6 +135,20 @@ const ContactUs = () => {
               </div>
             </div>
           </section>
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Body>
+              <video
+                src={video.video_Contacts}
+                controls
+                autoPlay
+                className="bread-video"
+              />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={() => setShowModal(false)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
+
           <section className="contact-area sec-mar">
             <div className="container">
               <div className="row">
@@ -126,22 +160,22 @@ const ContactUs = () => {
                     </div>
                     <ul className="social-follow">
                       <li>
-                        <a href={apiData.lurl}>
+                        <a href={apiData.lurl} target="_blank" rel="noreferrer">
                           <FaLinkedin />
                         </a>
                       </li>
                       <li>
-                        <a href={apiData.turl}>
+                        <a href={apiData.turl} target="_blank" rel="noreferrer">
                           <FaTwitter />
                         </a>
                       </li>
                       <li>
-                        <a href={apiData.wurl}>
+                        <a href={apiData.wurl} target="_blank" rel="noreferrer">
                           <FaGoogleDrive />
                         </a>
                       </li>
                       <li>
-                        <a href={apiData.iurl}>
+                        <a href={apiData.iurl} target="_blank" rel="noreferrer">
                           <FaInstagram />
                         </a>
                       </li>
@@ -162,7 +196,9 @@ const ContactUs = () => {
                         </div>
                         <div className="info arabicMob">
                           <h3>{t("contact_page_phone")}</h3>
-                          <a href={`tel:${apiData.mobile}`}>{apiData.mobile}</a>
+                          <Link href={`tel:${apiData.mobile}`}>
+                            {apiData.mobile}
+                          </Link>
                         </div>
                       </div>
                       <div className="single-info">
@@ -171,7 +207,9 @@ const ContactUs = () => {
                         </div>
                         <div className="info">
                           <h3>{t("contact_page_email")}</h3>
-                          <a href={apiData.email}>{apiData.email}</a>
+                          <Link to={`mailto:${apiData.email}`}>
+                            {apiData.email}
+                          </Link>
                         </div>
                       </div>
                     </div>

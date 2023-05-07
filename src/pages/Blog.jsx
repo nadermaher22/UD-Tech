@@ -10,6 +10,9 @@ import ArrowAngle from "../assests/img/arrow-angle.png";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
 import ReactPaginate from "react-paginate";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Newsletter from "../components/Newsletter";
 
 const Blog = () => {
   const [apiData, setApiData] = useState([]);
@@ -17,6 +20,8 @@ const Blog = () => {
   const [getContact, setGetContact] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
+  const [video, setVideo] = useState([]);
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     axios
@@ -41,6 +46,17 @@ const Blog = () => {
       )
       .then((res) => {
         setGetContact(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get("https://api.udtech-sa.com/api/WebSite/GetPagesVideo")
+      .then((res) => {
+        setVideo(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -96,15 +112,21 @@ const Blog = () => {
                         <BsArrowRight className="m-1" />
                         {t("blog")}
                       </span>
-                      <div className="breadcrumb-video">
+                      <div
+                        className="breadcrumb-video"
+                        style={{
+                          display: video.video_Blogs ? "block" : "none",
+                        }}
+                      >
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
-                          <a
+                          <Link
                             className="video-popup"
-                            href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                            href="#"
+                            onClick={() => setShowModal(true)}
                           >
                             <FaPlay />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -113,11 +135,24 @@ const Blog = () => {
               </div>
             </div>
           </section>
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Body>
+              <video
+                src={video.video_Blogs}
+                controls
+                autoPlay
+                className="bread-video"
+              />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={() => setShowModal(false)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
           <section className="blog-grid sec-mar-top">
             <div className="container">
               <div className="row">
                 <div className="col-lg-4">
-                  <div className="sidebar-widget">
+                  {/* <div className="sidebar-widget">
                     <div className="widget-search">
                       <form action="#" method="post">
                         <input
@@ -130,7 +165,7 @@ const Blog = () => {
                         </button>
                       </form>
                     </div>
-                  </div>
+                  </div> */}
                   {/* <div className="sidebar-widget">
                     <h4>{t("blog_page_category")}</h4>
                     <ul className="category">
@@ -281,36 +316,11 @@ const Blog = () => {
                     nextLinkClassName={"page-link"}
                     disabledClassName={"disabled"}
                   />
-                  {/* <div className="load-more">
-                    <ul className="paginations">
-                      <li>
-                        <a href="/">
-                          <BsArrowLeft />
-                        </a>
-                      </li>
-                      <li className="active">
-                        <a href="/">01</a>
-                      </li>
-                      <li>
-                        <a href="/">02</a>
-                      </li>
-                      <li>
-                        <a href="/">03</a>
-                      </li>
-                      <li>
-                        <a href="/">04</a>
-                      </li>
-                      <li>
-                        <a href="/">
-                          <BsArrowRight />
-                        </a>
-                      </li>
-                    </ul>
-                  </div> */}
                 </div>
               </div>
             </div>
           </section>
+          <Newsletter />
         </main>
       </div>
     </>

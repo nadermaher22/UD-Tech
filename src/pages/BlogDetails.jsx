@@ -124,7 +124,9 @@ const BlogDetails = () => {
                       <img src={apiData.photoPath} alt="" />
                     </div>
                     <p
-                      dangerouslySetInnerHTML={{ __html: apiData.description }}
+                      dangerouslySetInnerHTML={{
+                        __html: `<div>${apiData.description}</div>`,
+                      }}
                     ></p>
                     <div className="tag-share">
                       <div className="line-tag">

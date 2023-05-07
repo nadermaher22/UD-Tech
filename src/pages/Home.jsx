@@ -187,13 +187,19 @@ const Home = () => {
           <div className="verticale-social">
             <ul className="vertical-media">
               <li>
-                <a href={getContact.turl}>Twitter</a>
+                <a href={getContact.turl} target="_blank" rel="noreferrer">
+                  Twitter
+                </a>
               </li>
               <li>
-                <a href={getContact.iurl}>Instagram</a>
+                <a href={getContact.iurl} target="_blank" rel="noreferrer">
+                  Instagram
+                </a>
               </li>
               <li>
-                <a href={getContact.lurl}>Linkedin</a>
+                <a href={getContact.lurl} target="_blank" rel="noreferrer">
+                  Linkedin
+                </a>
               </li>
             </ul>
           </div>
@@ -293,12 +299,11 @@ const Home = () => {
                             <img src={service.photoPath} alt={service.title} />
                           </div>
                           <h4>{service.title}</h4>
+
                           <p
                             className="limit-words limit-words-20"
                             dangerouslySetInnerHTML={{
-                              __html: service.description,
-                              // .substring(200, 20)
-                              // .concat(" ..."),
+                              __html: `<div>${service.description}</div>`,
                             }}
                           ></p>
                           <div className="read-btn">
@@ -322,26 +327,32 @@ const Home = () => {
                 className="col-lg-6 or-2 wow animate animate__fadeIn text-left"
                 data-wow-duration="1500ms"
               >
-                <div className="sec-title white layout2">
-                  <div
-                    dangerouslySetInnerHTML={{ __html: aboutData.title }}
-                  ></div>
+                <div>
+                  <div className="sec-title white layout2">
+                    <span>{t("about_page_get_to_know")}</span>
+                    <h2>{t("about_page_about_us")}</h2>
+                  </div>
                 </div>
                 <div className="about-left layout2">
                   <div
                     dangerouslySetInnerHTML={{
-                      __html: aboutData.aboutDescription,
+                      __html: `<div>${aboutData.missionDescription}</div>`,
+                    }}
+                  ></div>
+                  <div
+                    dangerouslySetInnerHTML={{
+                      __html: `<div>${aboutData.visionDescription}</div>`,
                     }}
                   ></div>
                   <div className="company-since layout2">
                     <div className="company-logo">
                       <img src={Logo} alt="" />
                     </div>
-                    <div
-                      dangerouslySetInnerHTML={{
-                        __html: aboutData.missionDescription,
-                      }}
-                    ></div>
+                    <strong>#1</strong>
+                    <h4 className="ArCompany">
+                      {t("about_page_best_agency")}
+                      <span>{t("about_page_since")}</span>
+                    </h4>
                   </div>
                 </div>
               </div>
@@ -351,7 +362,7 @@ const Home = () => {
               >
                 <div className="about-right layout2">
                   <div className="banner-1">
-                    <img src={aboutData.visionPhotoPath} alt="" />
+                    <img src={aboutData.missionPhotoPath} alt="" />
                   </div>
                   <div className="buttons">
                     <div className="cmn-btn">
@@ -362,7 +373,7 @@ const Home = () => {
                     <div className="cmn-btn ">
                       <div className="line-1"></div>
                       <div className="line-2"></div>
-                      <a href="/contact">{t("company_profile")}</a>
+                      <a href="/about">{t("company_profile")}</a>
                     </div>
                   </div>
                 </div>

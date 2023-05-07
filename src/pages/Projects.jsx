@@ -9,11 +9,16 @@ import ProjectBtn from "../components/ProjectBtn";
 import ProjectCard from "../components/ProjectCard";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const Projects = () => {
   const [t, i18n] = useTranslation();
   const [apiData, setApiData] = useState([]);
   const [item, setItem] = useState([]);
+  const [video, setVideo] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
 
   useEffect(() => {
@@ -29,6 +34,16 @@ const Projects = () => {
         console.log(err);
       });
   }, [lang]);
+  useEffect(() => {
+    axios
+      .get("https://api.udtech-sa.com/api/WebSite/GetPagesVideo")
+      .then((res) => {
+        setVideo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   const menuItems = [...new Set(apiData.map((Val) => Val.category))];
   const filterItem = (curcat) => {
@@ -88,15 +103,21 @@ const Projects = () => {
                         <BsArrowRight className="m-1" />
                         {t("our_projects")}
                       </span>
-                      <div className="breadcrumb-video">
+                      <div
+                        className="breadcrumb-video"
+                        style={{
+                          display: video.video_Projects ? "block" : "none",
+                        }}
+                      >
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
-                          <a
+                          <Link
                             className="video-popup"
-                            href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                            href="#"
+                            onClick={() => setShowModal(true)}
                           >
                             <FaPlay />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -105,6 +126,19 @@ const Projects = () => {
               </div>
             </div>
           </section>
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Body>
+              <video
+                src={video.video_Projects}
+                controls
+                autoPlay
+                className="bread-video"
+              />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={() => setShowModal(false)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
           <section className="projectsPage project-area sec-mar">
             <div className="container">
               <div className="title-wrap">

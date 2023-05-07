@@ -7,12 +7,16 @@ import { FaPlay } from "react-icons/fa";
 import VideoImg from "../assests/img/breadcrumb-video.jpg";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Link } from "react-router-dom";
 
 const ElectronicInvoice = () => {
   const [getInvoice, setGetInvoice] = useState([]);
   const [t, i18n] = useTranslation();
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
-
+  const [video, setVideo] = useState([]);
+  const [showModal, setShowModal] = useState(false);
   useEffect(() => {
     axios
       .get(
@@ -25,6 +29,17 @@ const ElectronicInvoice = () => {
         console.log(err);
       });
   }, [lang]);
+
+  useEffect(() => {
+    axios
+      .get("https://api.udtech-sa.com/api/WebSite/GetPagesVideo")
+      .then((res) => {
+        setVideo(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, []);
 
   useEffect(() => {
     window.scrollTo(0, 0);
@@ -77,15 +92,21 @@ const ElectronicInvoice = () => {
                         <BsArrowRight className="m-1" />
                         {t("electronic_invoice")}
                       </span>
-                      <div className="breadcrumb-video">
+                      <div
+                        className="breadcrumb-video"
+                        style={{
+                          display: video.video_Electronic ? "block" : "none",
+                        }}
+                      >
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
-                          <a
+                          <Link
                             className="video-popup"
-                            href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                            href="#"
+                            onClick={() => setShowModal(true)}
                           >
                             <FaPlay />
-                          </a>
+                          </Link>
                         </div>
                       </div>
                     </div>
@@ -94,6 +115,19 @@ const ElectronicInvoice = () => {
               </div>
             </div>
           </section>
+          <Modal show={showModal} onHide={() => setShowModal(false)}>
+            <Modal.Body>
+              <video
+                src={video.video_Electronic}
+                controls
+                autoPlay
+                className="bread-video"
+              />
+            </Modal.Body>
+            <Modal.Footer>
+              <Button onClick={() => setShowModal(false)}>Close</Button>
+            </Modal.Footer>
+          </Modal>
           <section
             className="why-choose paragraph sec-mar wow animate animate__fadeIn"
             data-wow-duration="1500ms"
@@ -109,9 +143,10 @@ const ElectronicInvoice = () => {
                           data-wow-duration="1500ms"
                         >
                           <h3>{first.title}</h3>
+
                           <p
                             dangerouslySetInnerHTML={{
-                              __html: first.description,
+                              __html: `<div>${first.description}</div>`,
                             }}
                           ></p>
                         </div>
@@ -131,7 +166,7 @@ const ElectronicInvoice = () => {
                           <h3>{second.title}</h3>
                           <p
                             dangerouslySetInnerHTML={{
-                              __html: second.description,
+                              __html: `<div>${second.description}</div>`,
                             }}
                           ></p>
                         </div>
@@ -168,7 +203,7 @@ const ElectronicInvoice = () => {
                           <h3>{fourth.title}</h3>
                           <p
                             dangerouslySetInnerHTML={{
-                              __html: fourth.description,
+                              __html: `<div>${fourth.description}</div>`,
                             }}
                           ></p>
                         </div>

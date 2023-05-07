@@ -52,7 +52,7 @@ const Team = () => {
                       <BsArrowRight className="m-1" />
                       Team
                     </span>
-                    <div className="breadcrumb-video">
+                    {/* <div className="breadcrumb-video">
                       <img src={VideoImg} alt="" />
                       <div className="video-inner">
                         <a
@@ -62,7 +62,7 @@ const Team = () => {
                           <FaPlay />
                         </a>
                       </div>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               </div>

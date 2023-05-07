@@ -110,7 +110,7 @@ const Testimonials = () => {
                           </div>
                           <p
                             dangerouslySetInnerHTML={{
-                              __html: testimonial.comment,
+                              __html: `<div>${testimonial.comment}</div>`,
                             }}
                           ></p>
                           <div className="reviewer">

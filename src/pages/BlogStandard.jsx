@@ -68,7 +68,7 @@ const BlogStandard = () => {
                         <BsArrowRight className="m-1" />
                         Blog standard
                       </span>
-                      <div className="breadcrumb-video">
+                      {/* <div className="breadcrumb-video">
                         <img src={VideoImg} alt="" />
                         <div className="video-inner">
                           <a
@@ -78,7 +78,7 @@ const BlogStandard = () => {
                             <FaPlay />
                           </a>
                         </div>
-                      </div>
+                      </div> */}
                     </div>
                   </div>
                 </div>

@@ -494,7 +494,7 @@
 
 @media (max-width: 767px) {
   .breadcrumb-cnt .breadcrumb-video {
-    display: none;
+    display: none !important;
   }
 }
 
@@ -600,7 +600,7 @@
 
 .sec-title h2 {
   font-weight: 700;
-  font-size: 40px;
+  font-size: 2em;
   text-transform: capitalize;
   color: #17161a;
   margin-bottom: 15px;
@@ -615,6 +615,9 @@
 @media (max-width: 767px) {
   .sec-title h2 {
     font-size: 30px;
+  }
+  .sec-title.white p {
+    padding: 0 0.75rem;
   }
 }
 
@@ -1997,7 +2000,6 @@ header {
 }
 
 .company-since h4 span {
-  display: block;
   color: #2d60a2;
 }
 
@@ -7373,6 +7375,7 @@ footer.error {
 }
 
 .directionAR .subscribe-form form input[type="email"] {
+  direction: rtl;
   padding-right: 25px;
 }
 .directionAR .subscribe-form form input[type="submit"] {
@@ -7777,4 +7780,31 @@ footer.error {
     gap: 12px;
     align-items: self-start;
   }
+}
+.modal-dialog {
+  margin: auto;
+  max-width: 90%;
+  height: 90%;
+}
+
+/* .modal-content {
+  height: 100%;
+} */
+
+.modal-body {
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bread-video {
+  max-width: 100%;
+  max-height: 100%;
+}
+.company-since .company-logo {
+  display: flex;
+}
+.directionAR .company-since .ArCompany {
+  text-align: right !important;
 }
