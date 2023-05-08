@@ -24,12 +24,14 @@
   "about_page_superior_support": "Superior Support",
   "about_page_unique_design": "Unique Designs",
   "about_page_clean_code": "Clean Code Develop",
-  "about_page_ud-history": "UD-Tech  History",
+  "about_page_ud_history": "UD-Tech  History",
   "about_page_our_history": "Our History",
   "about_page_projects_completed": "Projects Completed",
   "about_page_satisfied_customers": "Satisfied Customers",
   "about_page_years": "Years",
   "about_page_experts": "Experts",
+  "about_page_best_agency": "Best Creative software company And business Solutions ",
+  "about_page_since": "Since 2005.",
   "project_page_case_study": "Case Study",
   "project_page_project": "Projects",
   "project_page_paragraph": "Check out some of our past work on complex projects for SMBs and enterprise-size businesses.",
@@ -99,6 +101,8 @@
   "by": "By",
   "we_use_cookie": "WE USE COOKIES",
   "cookie_paragraph": "THIS WEBSITE USES COOKIES TO ENSURE YOU GET THE BEST EXPERIENCE ON OUR WEBSITE",
-  "refuse":"Refuse",
-  "accept":"Accept"
+  "refuse": "Refuse",
+  "accept": "Accept",
+  "project_details": "Project Details",
+  "service_details": "Service Details"
 }

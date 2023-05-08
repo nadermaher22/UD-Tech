@@ -14,14 +14,13 @@ import WOW from "wowjs";
 import Newsletter from "../components/Newsletter";
 import axios from "axios";
 import { useTranslation } from "react-i18next";
-import i18next from "i18next";
 import { Modal, Button } from "react-bootstrap";
 import "bootstrap/dist/css/bootstrap.min.css";
 import { Link } from "react-router-dom";
 import Logo from "../assests/img/logo.svg";
 
 const About = () => {
-  const [t, i18n] = useTranslation();
+  const [t] = useTranslation();
   const [apiData, setApiData] = useState([]);
   const [getBlogsHome, setGetBlogsHome] = useState([]);
   const [getHistory, setGetHistory] = useState([]);
@@ -189,7 +188,7 @@ const About = () => {
                       <img
                         src={apiData.aboutPhotoPath}
                         alt=""
-                        className="w-100"
+                        className="w-100 h-100 object-fit-cover"
                       />
                     </div>
                     {/* <div className="choose-banner2">

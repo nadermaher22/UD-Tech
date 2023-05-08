@@ -12,12 +12,18 @@ import Arrow from "../assests/img/arrow-angle.png";
 import Thumb from "../assests/img/blog/thumb-1.jpg";
 import Thumb2 from "../assests/img/blog/thumb-2.jpg";
 import Thumb3 from "../assests/img/blog/thumb-3.jpg";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 import axios from "axios";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
+import { useTranslation } from "react-i18next";
+
 const ServiceDetails = () => {
   const { serviceId } = useParams();
   const [apiData, setApiData] = useState([]);
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
+  const [showModal, setShowModal] = useState(false);
+  const [t, i18n] = useTranslation();
 
   useEffect(() => {
     axios
@@ -63,18 +69,22 @@ const ServiceDetails = () => {
               <div className="col-12">
                 <div className="breadcrumb-wrapper">
                   <div className="breadcrumb-cnt">
-                    <h1>Service Details</h1>
+                    <h1>{t("service_details")}</h1>
                     <span>
-                      <a href="/">Home</a>
+                      <a href="/">{t("home")}</a>
                       <BsArrowRight className="m-1" />
-                      Service Details
+                      {t("service_details")}
                     </span>
                     <div className="breadcrumb-video">
                       <img src={VideoImg} alt="" />
                       <div className="video-inner">
-                        <a className="video-popup" href={apiData.videoUrl}>
+                        <Link
+                          className="video-popup"
+                          href="#"
+                          onClick={() => setShowModal(true)}
+                        >
                           <FaPlay />
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -83,12 +93,25 @@ const ServiceDetails = () => {
             </div>
           </div>
         </section>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Body>
+            <video
+              src={apiData.videoUrl}
+              controls
+              autoPlay
+              className="bread-video"
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => setShowModal(false)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
         <section className="service-details sec-mar-top">
           <div className="container">
             <div className="row">
               <div className="col-lg-8">
                 <div className="service-details-content">
-                  <img src={apiData.photoPath} alt="" />
+                  <img src={apiData.photoPath} alt="" className="img-fluid" />
                   <h3>
                     {/* <i>
                       <img src={ServiceIcon} alt="" />

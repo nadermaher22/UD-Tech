@@ -12,18 +12,24 @@ import Project2 from "../assests/img/project/project-2.jpg";
 import Project3 from "../assests/img/project/project-3.jpg";
 import { Swiper, SwiperSlide, useSwiper } from "swiper/react";
 import { A11y, Navigation, Pagination } from "swiper";
+import { useTranslation } from "react-i18next";
+
 // Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 import "swiper/css/bundle";
 import axios from "axios";
-import { useParams } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
+import { Modal, Button } from "react-bootstrap";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 const ProjectDetails = () => {
   const [apiData, setApiData] = useState([]);
   const { projectId } = useParams();
   const lang = localStorage.i18nextLng === "en-US" ? 1 : 2;
+  const [showModal, setShowModal] = useState(false);
+  const [t, i18n] = useTranslation();
 
   useEffect(() => {
     axios
@@ -66,21 +72,22 @@ const ProjectDetails = () => {
               <div className="col-12">
                 <div className="breadcrumb-wrapper">
                   <div className="breadcrumb-cnt">
-                    <h1>Project Details</h1>
+                    <h1>{t("project_details")}</h1>
                     <span>
-                      <a href="/">Home</a>
+                      <a href="/">{t("home")}</a>
                       <BsArrowRight className="m-1" />
-                      Project Details
+                      {t("project_details")}
                     </span>
                     <div className="breadcrumb-video">
                       <img src={VideoImg} alt="" />
                       <div className="video-inner">
-                        <a
+                        <Link
                           className="video-popup"
-                          href="http://www.youtube.com/watch?v=0O2aH4XLbto"
+                          href="#"
+                          onClick={() => setShowModal(true)}
                         >
                           <FaPlay />
-                        </a>
+                        </Link>
                       </div>
                     </div>
                   </div>
@@ -89,13 +96,26 @@ const ProjectDetails = () => {
             </div>
           </div>
         </section>
+        <Modal show={showModal} onHide={() => setShowModal(false)}>
+          <Modal.Body>
+            <video
+              src={apiData.videoUrl}
+              controls
+              autoPlay
+              className="bread-video"
+            />
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={() => setShowModal(false)}>Close</Button>
+          </Modal.Footer>
+        </Modal>
         <section className="project-details sec-mar-top">
           <div className="container">
             <div className="row">
               <div className="col-lg-8">
                 <div className="project-details-content">
                   <div className="project-thumb">
-                    <img src={apiData.photoPath} alt="" />
+                    <img src={apiData.photoPath} alt="" className="img-fluid" />
                     <div className="tag">
                       <a href="/project-details">{apiData.category}</a>
                     </div>
@@ -128,7 +148,8 @@ const ProjectDetails = () => {
                     </p>
                   </div> */}
                   <div className="working-process">
-                    <h4>Working Process</h4>
+                    {apiData.images?.length > 0 && <h4>Working Process</h4>}
+
                     <div className="swiper work-process-slide">
                       <div className="swiper-wrapper">
                         <Swiper
@@ -144,7 +165,23 @@ const ProjectDetails = () => {
                           autoplay={true}
                           onSwiper={(swiper) => setSwiperRef(swiper)}
                         >
-                          <SwiperSlide>
+                          {apiData.images?.length > 0 &&
+                            apiData.images.map((slide) => {
+                              return (
+                                <SwiperSlide key={slide.id}>
+                                  <div className="swiper-slide">
+                                    <div className="work-thumb">
+                                      <img src={slide} alt="" />
+                                      {/* <div className="label">
+                        <span>01. Brainstorming</span>
+                    </div> */}
+                                    </div>
+                                  </div>
+                                </SwiperSlide>
+                              );
+                            })}
+
+                          {/* <SwiperSlide>
                             <div className="swiper-slide">
                               <div className="work-thumb">
                                 <img src={WorkThumbnail} alt="" />
@@ -163,7 +200,7 @@ const ProjectDetails = () => {
                                 </div>
                               </div>
                             </div>
-                          </SwiperSlide>
+                          </SwiperSlide> */}
                         </Swiper>
                       </div>
                       <div className="arrow">

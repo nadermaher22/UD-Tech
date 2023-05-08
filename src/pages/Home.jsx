@@ -292,14 +292,24 @@ const Home = () => {
                       <div
                         className="swiper-slide wow animate animate__fadeInUp "
                         data-wow-duration="1500ms"
+                        style={{ height: "250px" }}
                       >
-                        <div className="single-service layout2">
+                        <div
+                          className="single-service layout2"
+                          style={{ height: "100%" }}
+                        >
                           <span>{service.id}</span>
-                          <div className="icon">
-                            <img src={service.photoPath} alt={service.title} />
+                          <div className="icon" style={{ height: "50%" }}>
+                            <img
+                              src={service.photoPath}
+                              alt={service.title}
+                              style={{
+                                objectFit: "cover",
+                                height: "100%",
+                              }}
+                            />
                           </div>
                           <h4>{service.title}</h4>
-
                           <p
                             className="limit-words limit-words-20"
                             dangerouslySetInnerHTML={{

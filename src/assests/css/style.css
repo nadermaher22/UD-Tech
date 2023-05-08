@@ -3634,7 +3634,10 @@ footer.error {
   transition: all 0.5s ease-out 0s;
   text-decoration: none;
 }
-
+.directionAR .phone a,
+.directionAR .email a {
+  direction: ltr;
+}
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .phone a,
   .email a {
@@ -7807,4 +7810,9 @@ footer.error {
 }
 .directionAR .company-since .ArCompany {
   text-align: right !important;
+}
+.object-fit-cover {
+  object-fit: cover;
+  object-position: center;
+  height: 100%;
 }
